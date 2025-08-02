@@ -44,6 +44,7 @@
         <module>user-service</module>
         <module>job-service</module>
         <module>blog-service</module>
+        <module>event-service</module>
     </modules>
 
 </project>
