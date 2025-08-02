@@ -43,6 +43,7 @@
     <modules>
         <module>user-service</module>
         <module>job-service</module>
+        <module>blog-service</module>
     </modules>
 
 </project>
