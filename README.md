@@ -16,10 +16,10 @@ JobSpring helps individuals make informed career decisions by providing:
 - ✅ Company Management
 - ✅ Job Posting and Management
 - ✅ Job Application System
+- ✅ Blog System (Content Management)
 - 🚧 Interview System (Planned)
 - 🚧 AI-based CV Scanning (Planned)
 - 🚧 Event Management (Planned)
-- 🚧 Blog System (Planned)
 - 🚧 Career Path Recommendations (Planned)
 
 ## Tech Stack
@@ -31,6 +31,7 @@ JobSpring helps individuals make informed career decisions by providing:
 - **Java Version**: 17
 
 =
+
 ### Installation
 
 1. Clone the repository:
@@ -308,6 +309,90 @@ DELETE /api/applications/{id}
 
 ---
 
+### Blog Management
+
+#### Create Blog (URL-based author binding)
+
+```http
+POST /api/blogs/user/{userId}
+Content-Type: application/json
+
+{
+  "title": "How I prepped for my first Java interview",
+  "content": "Notes, mistakes, what worked...",
+  "tags": ["Java", "Interview", "Career"],
+  "published": true
+}
+```
+
+#### Create Blog (flexible - author in body)
+
+```http
+POST /api/blogs
+Content-Type: application/json
+
+{
+  "title": "Career guidance for CS students",
+  "content": "Complete guide for computer science students...",
+  "author": {
+    "id": 1
+  },
+  "tags": ["Career", "Computer Science"],
+  "published": true
+}
+```
+
+#### Get All Blogs
+
+```http
+GET /api/blogs
+```
+
+#### Get Published Blogs Only
+
+```http
+GET /api/blogs/published
+```
+
+#### Search Blogs
+
+```http
+GET /api/blogs/search?q=java
+```
+
+#### Get Blog by ID
+
+```http
+GET /api/blogs/{id}
+```
+
+#### Get Blogs by User
+
+```http
+GET /api/blogs/user/{userId}
+```
+
+#### Update Blog
+
+```http
+PUT /api/blogs/{id}
+Content-Type: application/json
+
+{
+  "title": "Updated title",
+  "content": "Updated content",
+  "published": false
+}
+```
+
+#### Delete Blog
+
+```http
+DELETE /api/blogs/{id}
+```
+
+---
+
 ## Data Models
 
 ### User
@@ -379,6 +464,26 @@ DELETE /api/applications/{id}
 }
 ```
 
+### Blog
+
+```json
+{
+  "id": 1,
+  "title": "How I prepped for my first Java interview",
+  "content": "Notes, mistakes, what worked...",
+  "author": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "user"
+  },
+  "tags": ["Java", "Interview", "Career"],
+  "published": true,
+  "createdAt": "2025-08-22T01:30:00Z",
+  "updatedAt": "2025-08-22T01:30:00Z"
+}
+```
+
 ## User Roles
 
 ### 1. Anonymous User
@@ -415,6 +520,137 @@ DELETE /api/applications/{id}
 - `accepted` - Application has been accepted
 - `rejected` - Application has been rejected
 
+## All API Endpoints
+
+### Authentication
+
+1. `POST /api/auth/login`
+
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+### User Management
+
+2. `POST /api/users`
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "user"
+}
+```
+
+3. `GET /api/users`
+4. `GET /api/users/{id}`
+5. `PUT /api/users/{id}`
+6. `DELETE /api/users/{id}`
+
+### Company Management
+
+7. `POST /api/companies`
+
+```json
+{
+  "name": "TechCorp",
+  "description": "A technology company",
+  "location": "New York",
+  "website": "https://techcorp.com"
+}
+```
+
+8. `GET /api/companies`
+9. `GET /api/companies/{id}`
+10. `PUT /api/companies/{id}`
+11. `DELETE /api/companies/{id}`
+
+### Job Management
+
+12. `POST /api/jobs`
+
+```json
+{
+  "title": "Software Engineer",
+  "description": "Develop amazing software",
+  "location": "New York",
+  "responsibilities": "Code, test, debug applications",
+  "qualifications": "Bachelor degree in Computer Science",
+  "skills": ["Java", "Spring Boot", "React"],
+  "company": {
+    "id": 1
+  }
+}
+```
+
+13. `GET /api/jobs`
+14. `GET /api/jobs/{id}`
+15. `GET /api/jobs/company/{companyId}`
+16. `PUT /api/jobs/{id}`
+17. `DELETE /api/jobs/{id}`
+
+### Application Management
+
+18. `POST /api/applications`
+
+```json
+{
+  "user": {
+    "id": 1
+  },
+  "job": {
+    "id": 2
+  },
+  "status": "applied",
+  "coverLetter": "I am excited to contribute to your team!"
+}
+```
+
+19. `GET /api/applications`
+20. `GET /api/applications/{id}`
+21. `GET /api/applications/user/{userId}`
+22. `GET /api/applications/job/{jobId}`
+23. `PUT /api/applications/{id}`
+24. `DELETE /api/applications/{id}`
+
+### Blog Management
+
+25. `POST /api/blogs/user/{userId}`
+
+```json
+{
+  "title": "How I prepped for my first Java interview",
+  "content": "Notes, mistakes, what worked...",
+  "tags": ["Java", "Interview", "Career"],
+  "published": true
+}
+```
+
+26. `POST /api/blogs`
+
+```json
+{
+  "title": "Career guidance for CS students",
+  "content": "Complete guide for computer science students...",
+  "author": {
+    "id": 1
+  },
+  "tags": ["Career", "Computer Science"],
+  "published": true
+}
+```
+
+27. `GET /api/blogs`
+28. `GET /api/blogs/published`
+29. `GET /api/blogs/search?q={keyword}`
+30. `GET /api/blogs/{id}`
+31. `GET /api/blogs/user/{userId}`
+32. `PUT /api/blogs/{id}`
+33. `DELETE /api/blogs/{id}`
 
 ## Development Setup
 
@@ -447,4 +683,3 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 - 🔜 Chatbot Integration
 - 🔜 Video Interview System
 - 🔜 Question Bank Management
-
