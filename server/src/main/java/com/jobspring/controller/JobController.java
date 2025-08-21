@@ -1,5 +1,6 @@
 package com.jobspring.controller;
 
+import com.jobspring.model.Company;
 import com.jobspring.model.Job;
 import com.jobspring.service.JobService;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,15 @@ public class JobController {
         this.service = service;
     }
 
+    // Frontend-friendly: company ID from URL
+    @PostMapping("/company/{companyId}")
+    public ResponseEntity<Job> createForCompany(@PathVariable Long companyId, @RequestBody Job job) {
+        job.setCompany(Company.builder().id(companyId).build());
+        Job created = service.create(job);
+        return ResponseEntity.created(URI.create("/api/jobs/" + created.getId())).body(created);
+    }
+
+    // (Optional) Original create kept for flexibility
     @PostMapping
     public ResponseEntity<Job> create(@RequestBody Job job) {
         Job created = service.create(job);

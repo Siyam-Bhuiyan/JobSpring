@@ -1,6 +1,8 @@
 package com.jobspring.controller;
 
 import com.jobspring.model.Application;
+import com.jobspring.model.Job;
+import com.jobspring.model.User;
 import com.jobspring.service.ApplicationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,27 @@ public class ApplicationController {
         this.service = service;
     }
 
+    // Frontend-friendly: user and job IDs from URL
+    @PostMapping("/user/{userId}/job/{jobId}")
+    public ResponseEntity<Application> createForUserAndJob(
+            @PathVariable Long userId, 
+            @PathVariable Long jobId, 
+            @RequestBody Application app) {
+        app.setUser(User.builder().id(userId).build());
+        app.setJob(Job.builder().id(jobId).build());
+        Application created = service.create(app);
+        return ResponseEntity.created(URI.create("/api/applications/" + created.getId())).body(created);
+    }
+
+    // Alternative: only job ID from URL (user from auth later)
+    @PostMapping("/job/{jobId}")
+    public ResponseEntity<Application> createForJob(@PathVariable Long jobId, @RequestBody Application app) {
+        app.setJob(Job.builder().id(jobId).build());
+        Application created = service.create(app);
+        return ResponseEntity.created(URI.create("/api/applications/" + created.getId())).body(created);
+    }
+
+    // (Optional) Original create kept for flexibility
     @PostMapping
     public ResponseEntity<Application> create(@RequestBody Application app) {
         Application created = service.create(app);
