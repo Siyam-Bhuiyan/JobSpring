@@ -1,4 +1,10 @@
 package com.jobspring.repository;
 
-public class JobRepository {
+import com.jobspring.model.Job;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface JobRepository extends JpaRepository<Job, Long> {
+    List<Job> findByCompany_Id(Long companyId);
 }
