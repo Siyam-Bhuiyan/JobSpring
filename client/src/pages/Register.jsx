@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Container,
   Paper,
@@ -10,21 +10,21 @@ import {
   Box,
   MenuItem,
   Alert,
-} from '@mui/material';
-import { createUser } from '../redux/slices/userSlice';
+} from "@mui/material";
+import { createUser } from "../redux/slices/userSlice";
 
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: 'user',
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "user",
   });
 
   const handleChange = (e) => {
@@ -36,10 +36,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    
+    setError("");
+
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
@@ -50,22 +50,27 @@ const Register = () => {
         password: formData.password,
         role: formData.role,
       };
-      
+
       await dispatch(createUser(userData));
       setSuccess(true);
       setTimeout(() => {
-        navigate('/login');
+        navigate("/login");
       }, 2000);
     } catch (error) {
-      setError('Registration failed. Please try again.');
+      setError("Registration failed. Please try again.");
     }
   };
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600, color: 'primary.main' }}>
+        <Box sx={{ textAlign: "center", mb: 4 }}>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{ fontWeight: 600, color: "primary.main" }}
+          >
             Join JobSpring
           </Typography>
           <Typography variant="body1" color="text.secondary">
@@ -73,8 +78,16 @@ const Register = () => {
           </Typography>
         </Box>
 
-        {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
-        {success && <Alert severity="success" sx={{ mb: 3 }}>Registration successful! Redirecting to login...</Alert>}
+        {error && (
+          <Alert severity="error" sx={{ mb: 3 }}>
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" sx={{ mb: 3 }}>
+            Registration successful! Redirecting to login...
+          </Alert>
+        )}
 
         <form onSubmit={handleSubmit}>
           <TextField
@@ -128,22 +141,27 @@ const Register = () => {
             required
             sx={{ mb: 4 }}
           />
-          
+
           <Button
             type="submit"
             fullWidth
             variant="contained"
             size="large"
-            sx={{ py: 1.5, mb: 3, borderRadius: 2, textTransform: 'none' }}
+            sx={{ py: 1.5, mb: 3, borderRadius: 2, textTransform: "none" }}
           >
             Create Account
           </Button>
         </form>
 
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ textAlign: "center" }}>
           <Typography variant="body2" color="text.secondary">
-            Already have an account?{' '}
-            <Button component={Link} to="/login" variant="text" sx={{ textTransform: 'none' }}>
+            Already have an account?{" "}
+            <Button
+              component={Link}
+              to="/login"
+              variant="text"
+              sx={{ textTransform: "none" }}
+            >
               Sign in here
             </Button>
           </Typography>

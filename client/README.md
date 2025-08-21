@@ -24,16 +24,19 @@ A modern React frontend application for the JobSpring career platform built with
 ## Installation
 
 1. Navigate to the client directory:
+
 ```bash
 cd client
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -65,6 +68,7 @@ The frontend connects to the Spring Boot backend API running on `http://localhos
 ## Deployment
 
 Build the project for production:
+
 ```bash
 npm run build
 ```

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Paper,
@@ -10,17 +10,17 @@ import {
   Box,
   Alert,
   CircularProgress,
-} from '@mui/material';
-import { loginUser } from '../redux/slices/authSlice';
+} from "@mui/material";
+import { loginUser } from "../redux/slices/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
-  
+
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -34,11 +34,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const result = await dispatch(loginUser(formData));
-      if (result.type === 'auth/login/fulfilled') {
-        navigate('/dashboard');
+      if (result.type === "auth/login/fulfilled") {
+        navigate("/dashboard");
       }
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     }
   };
 
@@ -49,15 +49,15 @@ const Login = () => {
         sx={{
           p: 4,
           borderRadius: 3,
-          background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+          background: "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
         }}
       >
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Box sx={{ textAlign: "center", mb: 4 }}>
           <Typography
             variant="h4"
             component="h1"
             gutterBottom
-            sx={{ fontWeight: 600, color: 'primary.main' }}
+            sx={{ fontWeight: 600, color: "primary.main" }}
           >
             Welcome Back
           </Typography>
@@ -95,7 +95,7 @@ const Login = () => {
             sx={{ mb: 4 }}
             variant="outlined"
           />
-          
+
           <Button
             type="submit"
             fullWidth
@@ -106,22 +106,22 @@ const Login = () => {
               py: 1.5,
               mb: 3,
               borderRadius: 2,
-              textTransform: 'none',
-              fontSize: '1.1rem',
+              textTransform: "none",
+              fontSize: "1.1rem",
             }}
           >
-            {loading ? <CircularProgress size={24} /> : 'Sign In'}
+            {loading ? <CircularProgress size={24} /> : "Sign In"}
           </Button>
         </form>
 
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ textAlign: "center" }}>
           <Typography variant="body2" color="text.secondary">
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <Button
               component={Link}
               to="/register"
               variant="text"
-              sx={{ textTransform: 'none', fontWeight: 600 }}
+              sx={{ textTransform: "none", fontWeight: 600 }}
             >
               Sign up here
             </Button>

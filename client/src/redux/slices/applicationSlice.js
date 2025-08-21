@@ -1,26 +1,30 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { applicationAPI } from '../../api/services';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { applicationAPI } from "../../api/services";
 
 export const fetchApplications = createAsyncThunk(
-  'applications/fetchApplications',
+  "applications/fetchApplications",
   async (_, { rejectWithValue }) => {
     try {
       const response = await applicationAPI.getAll();
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch applications');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch applications"
+      );
     }
   }
 );
 
 export const createApplication = createAsyncThunk(
-  'applications/createApplication',
+  "applications/createApplication",
   async (applicationData, { rejectWithValue }) => {
     try {
       const response = await applicationAPI.create(applicationData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to create application');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to create application"
+      );
     }
   }
 );
@@ -32,7 +36,7 @@ const initialState = {
 };
 
 const applicationSlice = createSlice({
-  name: 'applications',
+  name: "applications",
   initialState,
   reducers: {
     clearError: (state) => {

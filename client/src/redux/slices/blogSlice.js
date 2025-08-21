@@ -1,38 +1,44 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { blogAPI } from '../../api/services';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { blogAPI } from "../../api/services";
 
 export const fetchBlogs = createAsyncThunk(
-  'blogs/fetchBlogs',
+  "blogs/fetchBlogs",
   async (_, { rejectWithValue }) => {
     try {
       const response = await blogAPI.getPublished();
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch blogs');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch blogs"
+      );
     }
   }
 );
 
 export const createBlog = createAsyncThunk(
-  'blogs/createBlog',
+  "blogs/createBlog",
   async (blogData, { rejectWithValue }) => {
     try {
       const response = await blogAPI.create(blogData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to create blog');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to create blog"
+      );
     }
   }
 );
 
 export const searchBlogs = createAsyncThunk(
-  'blogs/searchBlogs',
+  "blogs/searchBlogs",
   async (query, { rejectWithValue }) => {
     try {
       const response = await blogAPI.search(query);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to search blogs');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to search blogs"
+      );
     }
   }
 );
@@ -45,7 +51,7 @@ const initialState = {
 };
 
 const blogSlice = createSlice({
-  name: 'blogs',
+  name: "blogs",
   initialState,
   reducers: {
     clearError: (state) => {

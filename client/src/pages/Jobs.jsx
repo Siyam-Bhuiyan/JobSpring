@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Typography,
@@ -10,9 +10,9 @@ import {
   Button,
   Box,
   CircularProgress,
-} from '@mui/material';
-import { LocationOn, Work, Business } from '@mui/icons-material';
-import { fetchJobs } from '../redux/slices/jobSlice';
+} from "@mui/material";
+import { LocationOn, Work, Business } from "@mui/icons-material";
+import { fetchJobs } from "../redux/slices/jobSlice";
 
 const Jobs = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Jobs = () => {
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
         <CircularProgress />
       </Box>
     );
@@ -32,13 +32,18 @@ const Jobs = () => {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600, mb: 4 }}>
+      <Typography
+        variant="h4"
+        component="h1"
+        gutterBottom
+        sx={{ fontWeight: 600, mb: 4 }}
+      >
         Job Opportunities
       </Typography>
-      
+
       {jobs.length === 0 ? (
-        <Box sx={{ textAlign: 'center', mt: 8 }}>
-          <Work sx={{ fontSize: 64, color: 'text.secondary', mb: 2 }} />
+        <Box sx={{ textAlign: "center", mt: 8 }}>
+          <Work sx={{ fontSize: 64, color: "text.secondary", mb: 2 }} />
           <Typography variant="h6" color="text.secondary">
             No jobs available at the moment
           </Typography>
@@ -50,19 +55,29 @@ const Jobs = () => {
         <Grid container spacing={3}>
           {jobs.map((job) => (
             <Grid item xs={12} md={6} lg={4} key={job.id}>
-              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Card
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant="h6" component="h2" gutterBottom>
                     {job.title}
                   </Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <Business sx={{ fontSize: 16, mr: 1, color: 'text.secondary' }} />
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                    <Business
+                      sx={{ fontSize: 16, mr: 1, color: "text.secondary" }}
+                    />
                     <Typography variant="body2" color="text.secondary">
-                      {job.company?.name || 'Company Name'}
+                      {job.company?.name || "Company Name"}
                     </Typography>
                   </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <LocationOn sx={{ fontSize: 16, mr: 1, color: 'text.secondary' }} />
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                    <LocationOn
+                      sx={{ fontSize: 16, mr: 1, color: "text.secondary" }}
+                    />
                     <Typography variant="body2" color="text.secondary">
                       {job.location}
                     </Typography>
@@ -82,7 +97,11 @@ const Jobs = () => {
                       />
                     ))}
                   </Box>
-                  <Button variant="contained" fullWidth sx={{ textTransform: 'none' }}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    sx={{ textTransform: "none" }}
+                  >
                     Apply Now
                   </Button>
                 </CardContent>

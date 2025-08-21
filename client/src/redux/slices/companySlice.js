@@ -1,26 +1,30 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { companyAPI } from '../../api/services';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { companyAPI } from "../../api/services";
 
 export const fetchCompanies = createAsyncThunk(
-  'companies/fetchCompanies',
+  "companies/fetchCompanies",
   async (_, { rejectWithValue }) => {
     try {
       const response = await companyAPI.getAll();
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch companies');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch companies"
+      );
     }
   }
 );
 
 export const createCompany = createAsyncThunk(
-  'companies/createCompany',
+  "companies/createCompany",
   async (companyData, { rejectWithValue }) => {
     try {
       const response = await companyAPI.create(companyData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to create company');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to create company"
+      );
     }
   }
 );
@@ -32,7 +36,7 @@ const initialState = {
 };
 
 const companySlice = createSlice({
-  name: 'companies',
+  name: "companies",
   initialState,
   reducers: {
     clearError: (state) => {

@@ -1,51 +1,59 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { userAPI } from '../../api/services';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { userAPI } from "../../api/services";
 
 // Async thunks
 export const fetchUsers = createAsyncThunk(
-  'users/fetchUsers',
+  "users/fetchUsers",
   async (_, { rejectWithValue }) => {
     try {
       const response = await userAPI.getAll();
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch users');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch users"
+      );
     }
   }
 );
 
 export const createUser = createAsyncThunk(
-  'users/createUser',
+  "users/createUser",
   async (userData, { rejectWithValue }) => {
     try {
       const response = await userAPI.create(userData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to create user');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to create user"
+      );
     }
   }
 );
 
 export const updateUser = createAsyncThunk(
-  'users/updateUser',
+  "users/updateUser",
   async ({ id, userData }, { rejectWithValue }) => {
     try {
       const response = await userAPI.update(id, userData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to update user');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to update user"
+      );
     }
   }
 );
 
 export const deleteUser = createAsyncThunk(
-  'users/deleteUser',
+  "users/deleteUser",
   async (id, { rejectWithValue }) => {
     try {
       await userAPI.delete(id);
       return id;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to delete user');
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to delete user"
+      );
     }
   }
 );
@@ -58,7 +66,7 @@ const initialState = {
 };
 
 const userSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
     clearError: (state) => {
@@ -87,13 +95,15 @@ const userSlice = createSlice({
         state.users.push(action.payload);
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        const index = state.users.findIndex(user => user.id === action.payload.id);
+        const index = state.users.findIndex(
+          (user) => user.id === action.payload.id
+        );
         if (index !== -1) {
           state.users[index] = action.payload;
         }
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
-        state.users = state.users.filter(user => user.id !== action.payload);
+        state.users = state.users.filter((user) => user.id !== action.payload);
       });
   },
 });

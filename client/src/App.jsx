@@ -1,36 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { store } from './redux/store';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Jobs from './pages/Jobs';
-import Companies from './pages/Companies';
-import Applications from './pages/Applications';
-import Blogs from './pages/Blogs';
-import Dashboard from './pages/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { store } from "./redux/store";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Jobs from "./pages/Jobs";
+import Companies from "./pages/Companies";
+import Applications from "./pages/Applications";
+import Blogs from "./pages/Blogs";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Custom Material-UI theme
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#0ea5e9',
-      light: '#38bdf8',
-      dark: '#0284c7',
+      main: "#0ea5e9",
+      light: "#38bdf8",
+      dark: "#0284c7",
     },
     secondary: {
-      main: '#d946ef',
-      light: '#e879f9',
-      dark: '#c026d3',
+      main: "#d946ef",
+      light: "#e879f9",
+      dark: "#c026d3",
     },
     background: {
-      default: '#f8fafc',
-      paper: '#ffffff',
+      default: "#f8fafc",
+      paper: "#ffffff",
     },
   },
   typography: {
@@ -61,10 +61,10 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none',
+          textTransform: "none",
           fontWeight: 500,
           borderRadius: 8,
-          padding: '8px 24px',
+          padding: "8px 24px",
         },
       },
     },
@@ -72,9 +72,11 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-          '&:hover': {
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          boxShadow:
+            "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+          "&:hover": {
+            boxShadow:
+              "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
           },
         },
       },
@@ -82,7 +84,7 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          '& .MuiOutlinedInput-root': {
+          "& .MuiOutlinedInput-root": {
             borderRadius: 8,
           },
         },
@@ -107,21 +109,21 @@ function App() {
                 <Route path="/jobs" element={<Jobs />} />
                 <Route path="/companies" element={<Companies />} />
                 <Route path="/blogs" element={<Blogs />} />
-                <Route 
-                  path="/dashboard" 
+                <Route
+                  path="/dashboard"
                   element={
                     <ProtectedRoute>
                       <Dashboard />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
-                <Route 
-                  path="/applications" 
+                <Route
+                  path="/applications"
                   element={
                     <ProtectedRoute>
                       <Applications />
                     </ProtectedRoute>
-                  } 
+                  }
                 />
               </Routes>
             </main>
