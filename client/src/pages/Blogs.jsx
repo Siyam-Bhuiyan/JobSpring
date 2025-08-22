@@ -86,9 +86,7 @@ const Blogs = () => {
 
     try {
       // Use the JWT-authenticated endpoint
-      await dispatch(
-        createBlog(blogData)
-      ).unwrap();
+      await dispatch(createBlog(blogData)).unwrap();
 
       setCreateDialogOpen(false);
       setNewBlog({ title: "", content: "", tags: "", published: true });
