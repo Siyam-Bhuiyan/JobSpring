@@ -9,3 +9,8 @@ public class JobSpringApplication {
 		SpringApplication.run(JobSpringApplication.class, args);
 	}
 }
+
+
+//http://localhost:8081/swagger-ui/index.html
+//username: user
+// password: generated in console
