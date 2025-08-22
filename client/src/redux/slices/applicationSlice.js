@@ -33,7 +33,11 @@ export const createApplicationByUserAndJob = createAsyncThunk(
   "applications/createByUserAndJob",
   async ({ userId, jobId, applicationData }, { rejectWithValue }) => {
     try {
-      const response = await applicationAPI.createByUserAndJob(userId, jobId, applicationData);
+      const response = await applicationAPI.createByUserAndJob(
+        userId,
+        jobId,
+        applicationData
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(

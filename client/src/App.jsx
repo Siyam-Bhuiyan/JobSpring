@@ -13,6 +13,7 @@ import Jobs from "./pages/Jobs";
 import Companies from "./pages/Companies";
 import Applications from "./pages/Applications";
 import Blogs from "./pages/Blogs";
+import BlogDetail from "./pages/BlogDetail";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -35,6 +36,7 @@ const AppContent = () => {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/companies" element={<Companies />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route
           path="/dashboard"
           element={

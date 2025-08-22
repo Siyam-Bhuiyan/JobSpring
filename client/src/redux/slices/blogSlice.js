@@ -29,6 +29,20 @@ export const createBlog = createAsyncThunk(
   }
 );
 
+export const createBlogByUser = createAsyncThunk(
+  "blogs/createBlogByUser",
+  async ({ userId, blogData }, { rejectWithValue }) => {
+    try {
+      const response = await blogAPI.createByUser(userId, blogData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to create blog"
+      );
+    }
+  }
+);
+
 export const searchBlogs = createAsyncThunk(
   "blogs/searchBlogs",
   async (query, { rejectWithValue }) => {
@@ -76,8 +90,29 @@ const blogSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(createBlog.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(createBlog.fulfilled, (state, action) => {
+        state.loading = false;
         state.blogs.push(action.payload);
+      })
+      .addCase(createBlog.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(createBlogByUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createBlogByUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.blogs.push(action.payload);
+      })
+      .addCase(createBlogByUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(searchBlogs.fulfilled, (state, action) => {
         state.searchResults = action.payload;
