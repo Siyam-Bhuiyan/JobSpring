@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
@@ -10,17 +10,72 @@ import {
   Button,
   Box,
   CircularProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Alert,
 } from "@mui/material";
 import { LocationOn, Work, Business } from "@mui/icons-material";
 import { fetchJobs } from "../redux/slices/jobSlice";
+import { createApplicationByUserAndJob } from "../redux/slices/applicationSlice";
 
 const Jobs = () => {
   const dispatch = useDispatch();
   const { jobs, loading } = useSelector((state) => state.jobs);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading: applyLoading } = useSelector((state) => state.applications);
+
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [applyDialogOpen, setApplyDialogOpen] = useState(false);
+  const [coverLetter, setCoverLetter] = useState("");
+  const [applyError, setApplyError] = useState("");
+  const [applySuccess, setApplySuccess] = useState("");
 
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
+
+  const handleApplyClick = (job) => {
+    if (!isAuthenticated) {
+      alert("Please login to apply for jobs");
+      return;
+    }
+    setSelectedJob(job);
+    setApplyDialogOpen(true);
+    setCoverLetter("");
+    setApplyError("");
+    setApplySuccess("");
+  };
+
+  const handleApplySubmit = async () => {
+    if (!coverLetter.trim()) {
+      setApplyError("Please write a cover letter");
+      return;
+    }
+
+    try {
+      await dispatch(
+        createApplicationByUserAndJob({
+          userId: user.userId,
+          jobId: selectedJob.id,
+          applicationData: {
+            status: "applied",
+            coverLetter: coverLetter,
+          },
+        })
+      ).unwrap();
+
+      setApplySuccess("Application submitted successfully!");
+      setTimeout(() => {
+        setApplyDialogOpen(false);
+        setApplySuccess("");
+      }, 2000);
+    } catch (error) {
+      setApplyError(error || "Failed to submit application");
+    }
+  };
 
   if (loading) {
     return (
@@ -101,6 +156,7 @@ const Jobs = () => {
                     variant="contained"
                     fullWidth
                     sx={{ textTransform: "none" }}
+                    onClick={() => handleApplyClick(job)}
                   >
                     Apply Now
                   </Button>
@@ -110,6 +166,59 @@ const Jobs = () => {
           ))}
         </Grid>
       )}
+
+      {/* Apply Dialog */}
+      <Dialog
+        open={applyDialogOpen}
+        onClose={() => setApplyDialogOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Apply for {selectedJob?.title}</DialogTitle>
+        <DialogContent>
+          {applyError && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {applyError}
+            </Alert>
+          )}
+          {applySuccess && (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              {applySuccess}
+            </Alert>
+          )}
+
+          <Typography variant="body2" sx={{ mb: 2 }}>
+            At {selectedJob?.company?.name} • {selectedJob?.location}
+          </Typography>
+
+          <TextField
+            fullWidth
+            multiline
+            rows={6}
+            label="Cover Letter"
+            placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+            value={coverLetter}
+            onChange={(e) => setCoverLetter(e.target.value)}
+            disabled={applyLoading}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setApplyDialogOpen(false)}
+            disabled={applyLoading}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleApplySubmit}
+            variant="contained"
+            disabled={applyLoading || !coverLetter.trim()}
+            startIcon={applyLoading && <CircularProgress size={20} />}
+          >
+            {applyLoading ? "Submitting..." : "Submit Application"}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };

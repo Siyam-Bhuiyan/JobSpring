@@ -29,6 +29,20 @@ export const createApplication = createAsyncThunk(
   }
 );
 
+export const createApplicationByUserAndJob = createAsyncThunk(
+  "applications/createByUserAndJob",
+  async ({ userId, jobId, applicationData }, { rejectWithValue }) => {
+    try {
+      const response = await applicationAPI.createByUserAndJob(userId, jobId, applicationData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to create application"
+      );
+    }
+  }
+);
+
 const initialState = {
   applications: [],
   loading: false,
@@ -58,8 +72,29 @@ const applicationSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(createApplication.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(createApplication.fulfilled, (state, action) => {
+        state.loading = false;
         state.applications.push(action.payload);
+      })
+      .addCase(createApplication.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(createApplicationByUserAndJob.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createApplicationByUserAndJob.fulfilled, (state, action) => {
+        state.loading = false;
+        state.applications.push(action.payload);
+      })
+      .addCase(createApplicationByUserAndJob.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

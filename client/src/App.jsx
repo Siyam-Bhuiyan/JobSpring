@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { store } from "./redux/store";
+import { loadUser } from "./redux/slices/authSlice";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -14,6 +15,46 @@ import Applications from "./pages/Applications";
 import Blogs from "./pages/Blogs";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+// App component that handles user loading
+const AppContent = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Load user from localStorage on app start
+    dispatch(loadUser());
+  }, [dispatch]);
+
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/companies" element={<Companies />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/applications"
+          element={
+            <ProtectedRoute>
+              <Applications />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  );
+};
 
 // Custom Material-UI theme
 const theme = createTheme({
@@ -98,37 +139,9 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
-          <div className="min-h-screen bg-gray-50">
-            <Navbar />
-            <main className="container mx-auto px-4 py-8">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/jobs" element={<Jobs />} />
-                <Route path="/companies" element={<Companies />} />
-                <Route path="/blogs" element={<Blogs />} />
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/applications"
-                  element={
-                    <ProtectedRoute>
-                      <Applications />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </main>
-          </div>
-        </Router>
+        <div className="min-h-screen bg-gray-50">
+          <AppContent />
+        </div>
       </ThemeProvider>
     </Provider>
   );

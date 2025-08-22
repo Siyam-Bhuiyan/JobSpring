@@ -8,144 +8,157 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActions,
 } from "@mui/material";
 import {
   Work as WorkIcon,
   Business as BusinessIcon,
   TrendingUp as TrendingUpIcon,
   School as SchoolIcon,
+  ArrowForward as ArrowIcon,
 } from "@mui/icons-material";
 
 const Home = () => {
   const features = [
     {
-      icon: <WorkIcon sx={{ fontSize: 48, color: "primary.main" }} />,
-      title: "Find Your Dream Job",
-      description:
-        "Browse through thousands of job opportunities from top companies.",
-      action: "Browse Jobs",
-      link: "/jobs",
+      icon: <WorkIcon sx={{ fontSize: 32, color: "#000" }} />,
+      title: "Find Jobs That Matter",
+      description: "Real opportunities from companies that actually care about their people."
     },
     {
-      icon: <BusinessIcon sx={{ fontSize: 48, color: "secondary.main" }} />,
-      title: "Discover Companies",
-      description:
-        "Explore company profiles and find the perfect workplace culture.",
-      action: "View Companies",
-      link: "/companies",
+      icon: <BusinessIcon sx={{ fontSize: 32, color: "#000" }} />,
+      title: "Company Deep Dives",
+      description: "Get the inside scoop on workplace culture before you apply."
     },
     {
-      icon: <TrendingUpIcon sx={{ fontSize: 48, color: "success.main" }} />,
-      title: "Career Growth",
-      description: "Get personalized career recommendations and growth paths.",
-      action: "Get Started",
-      link: "/register",
+      icon: <TrendingUpIcon sx={{ fontSize: 32, color: "#000" }} />,
+      title: "Career Guidance",
+      description: "Personalized advice that doesn't sound like it came from a robot."
     },
     {
-      icon: <SchoolIcon sx={{ fontSize: 48, color: "info.main" }} />,
-      title: "Learn & Develop",
-      description:
-        "Access career guidance blogs and interview preparation resources.",
-      action: "Read Blogs",
-      link: "/blogs",
+      icon: <SchoolIcon sx={{ fontSize: 32, color: "#000" }} />,
+      title: "Interview Prep",
+      description: "Practice with real questions from actual interviews."
     },
   ];
 
   return (
-    <div className="fade-in">
+    <Box sx={{ backgroundColor: "#fff", minHeight: "100vh" }}>
       {/* Hero Section */}
       <Box
         sx={{
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-          color: "white",
-          py: 8,
-          mb: 8,
-          borderRadius: 3,
+          backgroundColor: "#000",
+          color: "#fff",
+          py: { xs: 6, md: 10 },
           position: "relative",
-          overflow: "hidden",
         }}
       >
-        <Container maxWidth="md">
-          <Typography
-            variant="h2"
-            component="h1"
-            gutterBottom
-            sx={{
-              fontWeight: 700,
-              textAlign: "center",
-              mb: 3,
-            }}
-          >
-            Your Career Journey Starts Here
-          </Typography>
-          <Typography
-            variant="h5"
-            component="p"
-            sx={{
-              textAlign: "center",
-              mb: 4,
-              opacity: 0.9,
-            }}
-          >
-            Connect with opportunities, grow your career, and achieve your
-            professional goals with JobSpring's comprehensive career platform.
-          </Typography>
-          <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-            <Button
-              component={Link}
-              to="/jobs"
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "white",
-                color: "primary.main",
-                "&:hover": {
-                  backgroundColor: "grey.100",
-                },
-                px: 4,
-                py: 1.5,
-              }}
-            >
-              Explore Jobs
-            </Button>
-            <Button
-              component={Link}
-              to="/register"
-              variant="outlined"
-              size="large"
-              sx={{
-                borderColor: "white",
-                color: "white",
-                "&:hover": {
-                  borderColor: "white",
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                },
-                px: 4,
-                py: 1.5,
-              }}
-            >
-              Join Now
-            </Button>
-          </Box>
+        <Container maxWidth="lg">
+          <Grid container spacing={4} alignItems="center">
+            <Grid item xs={12} md={7}>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: { xs: "2.5rem", md: "3.5rem" },
+                  fontWeight: 600,
+                  lineHeight: 1.2,
+                  mb: 3,
+                  fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                }}
+              >
+                Your next career move starts here
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: { xs: "1.1rem", md: "1.3rem" },
+                  fontWeight: 400,
+                  mb: 4,
+                  opacity: 0.8,
+                  maxWidth: "500px",
+                  lineHeight: 1.6,
+                }}
+              >
+                We're not just another job board. We help you discover opportunities that actually align with who you are and where you want to go.
+              </Typography>
+              <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
+                <Button
+                  component={Link}
+                  to="/jobs"
+                  variant="contained"
+                  size="large"
+                  endIcon={<ArrowIcon />}
+                  sx={{
+                    backgroundColor: "#fff",
+                    color: "#000",
+                    px: 4,
+                    py: 1.5,
+                    fontSize: "1.1rem",
+                    fontWeight: 500,
+                    borderRadius: 0,
+                    textTransform: "none",
+                    "&:hover": {
+                      backgroundColor: "#f5f5f5",
+                    },
+                  }}
+                >
+                  Browse Jobs
+                </Button>
+                <Button
+                  component={Link}
+                  to="/register"
+                  variant="outlined"
+                  size="large"
+                  sx={{
+                    borderColor: "#fff",
+                    color: "#fff",
+                    px: 4,
+                    py: 1.5,
+                    fontSize: "1.1rem",
+                    fontWeight: 500,
+                    borderRadius: 0,
+                    textTransform: "none",
+                    "&:hover": {
+                      borderColor: "#fff",
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    },
+                  }}
+                >
+                  Get Started
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
 
       {/* Features Section */}
-      <Container maxWidth="lg">
-        <Typography
-          variant="h3"
-          component="h2"
-          gutterBottom
-          sx={{
-            textAlign: "center",
-            mb: 6,
-            fontWeight: 600,
-            color: "text.primary",
-          }}
-        >
-          Everything You Need for Career Success
-        </Typography>
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Box sx={{ mb: 8, textAlign: "left" }}>
+          <Typography
+            variant="h2"
+            sx={{
+              fontSize: { xs: "2rem", md: "2.8rem" },
+              fontWeight: 600,
+              mb: 3,
+              color: "#000",
+              fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+            }}
+          >
+            Everything you need to land your dream job
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: "1.2rem",
+              color: "#666",
+              maxWidth: "600px",
+              fontWeight: 400,
+              lineHeight: 1.6,
+            }}
+          >
+            No fluff, no false promises. Just the tools and insights you need to make smarter career decisions.
+          </Typography>
+        </Box>
 
         <Grid container spacing={4}>
           {features.map((feature, index) => (
@@ -153,91 +166,106 @@ const Home = () => {
               <Card
                 sx={{
                   height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  transition: "transform 0.3s ease-in-out",
+                  backgroundColor: "#fff",
+                  border: "1px solid #e0e0e0",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  transition: "all 0.3s ease",
                   "&:hover": {
-                    transform: "translateY(-8px)",
+                    backgroundColor: "#f9f9f9",
+                    borderColor: "#000",
                   },
                 }}
               >
-                <CardContent sx={{ flexGrow: 1, textAlign: "center", pt: 4 }}>
-                  <Box sx={{ mb: 2 }}>{feature.icon}</Box>
+                <CardContent sx={{ p: 4 }}>
+                  <Box sx={{ mb: 3 }}>{feature.icon}</Box>
                   <Typography
                     variant="h6"
-                    component="h3"
-                    gutterBottom
-                    sx={{ fontWeight: 600 }}
+                    sx={{
+                      fontWeight: 600,
+                      mb: 2,
+                      color: "#000",
+                      fontSize: "1.2rem",
+                    }}
                   >
                     {feature.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "#666",
+                      lineHeight: 1.6,
+                      fontSize: "1rem",
+                    }}
+                  >
                     {feature.description}
                   </Typography>
                 </CardContent>
-                <CardActions sx={{ justifyContent: "center", pb: 3 }}>
-                  <Button
-                    component={Link}
-                    to={feature.link}
-                    variant="contained"
-                    size="small"
-                    sx={{ textTransform: "none" }}
-                  >
-                    {feature.action}
-                  </Button>
-                </CardActions>
               </Card>
             </Grid>
           ))}
         </Grid>
 
-        {/* Stats Section */}
+        {/* CTA Section */}
         <Box
           sx={{
-            mt: 8,
-            py: 6,
-            backgroundColor: "primary.main",
-            borderRadius: 3,
+            mt: 10,
+            py: { xs: 6, md: 8 },
+            backgroundColor: "#000",
             textAlign: "center",
+            borderRadius: 0,
           }}
         >
           <Typography
-            variant="h4"
-            component="h2"
-            gutterBottom
-            sx={{ color: "white", fontWeight: 600, mb: 4 }}
+            variant="h3"
+            sx={{
+              fontSize: { xs: "2rem", md: "2.5rem" },
+              fontWeight: 600,
+              color: "#fff",
+              mb: 3,
+              fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+            }}
           >
-            Join Thousands of Successful Professionals
+            Ready to take the next step?
           </Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h3" sx={{ color: "white", fontWeight: 700 }}>
-                10K+
-              </Typography>
-              <Typography variant="h6" sx={{ color: "white", opacity: 0.9 }}>
-                Active Jobs
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h3" sx={{ color: "white", fontWeight: 700 }}>
-                500+
-              </Typography>
-              <Typography variant="h6" sx={{ color: "white", opacity: 0.9 }}>
-                Companies
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h3" sx={{ color: "white", fontWeight: 700 }}>
-                50K+
-              </Typography>
-              <Typography variant="h6" sx={{ color: "white", opacity: 0.9 }}>
-                Success Stories
-              </Typography>
-            </Grid>
-          </Grid>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: "1.2rem",
+              color: "rgba(255, 255, 255, 0.8)",
+              mb: 4,
+              maxWidth: "600px",
+              mx: "auto",
+              fontWeight: 400,
+            }}
+          >
+            Join thousands of professionals who've found their perfect career match through JobSpring.
+          </Typography>
+          <Button
+            component={Link}
+            to="/register"
+            variant="contained"
+            size="large"
+            endIcon={<ArrowIcon />}
+            sx={{
+              backgroundColor: "#fff",
+              color: "#000",
+              px: 6,
+              py: 2,
+              fontSize: "1.1rem",
+              fontWeight: 500,
+              borderRadius: 0,
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+              },
+            }}
+          >
+            Start Your Journey
+          </Button>
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 
