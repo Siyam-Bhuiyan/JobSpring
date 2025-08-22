@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { LocationOn, Work, Business } from "@mui/icons-material";
 import { fetchJobs } from "../redux/slices/jobSlice";
-import { createApplicationByUserAndJob } from "../redux/slices/applicationSlice";
+import { createApplicationForJob } from "../redux/slices/applicationSlice";
 
 const Jobs = () => {
   const dispatch = useDispatch();
@@ -57,8 +57,7 @@ const Jobs = () => {
 
     try {
       await dispatch(
-        createApplicationByUserAndJob({
-          userId: user.userId,
+        createApplicationForJob({
           jobId: selectedJob.id,
           applicationData: {
             status: "applied",
@@ -109,7 +108,7 @@ const Jobs = () => {
       ) : (
         <Grid container spacing={3}>
           {jobs.map((job) => (
-            <Grid item xs={12} md={6} lg={4} key={job.id}>
+            <Grid item size={{ xs: 12, md: 6, lg: 4 }} key={job.id}>
               <Card
                 sx={{
                   height: "100%",

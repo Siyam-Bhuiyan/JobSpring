@@ -22,22 +22,25 @@ const Home = () => {
     {
       icon: <WorkIcon sx={{ fontSize: 32, color: "#000" }} />,
       title: "Find Jobs That Matter",
-      description: "Real opportunities from companies that actually care about their people."
+      description:
+        "Real opportunities from companies that actually care about their people.",
     },
     {
       icon: <BusinessIcon sx={{ fontSize: 32, color: "#000" }} />,
       title: "Company Deep Dives",
-      description: "Get the inside scoop on workplace culture before you apply."
+      description:
+        "Get the inside scoop on workplace culture before you apply.",
     },
     {
       icon: <TrendingUpIcon sx={{ fontSize: 32, color: "#000" }} />,
       title: "Career Guidance",
-      description: "Personalized advice that doesn't sound like it came from a robot."
+      description:
+        "Personalized advice that doesn't sound like it came from a robot.",
     },
     {
       icon: <SchoolIcon sx={{ fontSize: 32, color: "#000" }} />,
       title: "Interview Prep",
-      description: "Practice with real questions from actual interviews."
+      description: "Practice with real questions from actual interviews.",
     },
   ];
 
@@ -54,7 +57,7 @@ const Home = () => {
       >
         <Container maxWidth="lg">
           <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={7}>
+            <Grid item size={{ xs: 12, md: 7 }}>
               <Typography
                 variant="h1"
                 sx={{
@@ -62,7 +65,8 @@ const Home = () => {
                   fontWeight: 600,
                   lineHeight: 1.2,
                   mb: 3,
-                  fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+                  fontFamily:
+                    '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
                 }}
               >
                 Your next career move starts here
@@ -78,7 +82,9 @@ const Home = () => {
                   lineHeight: 1.6,
                 }}
               >
-                We're not just another job board. We help you discover opportunities that actually align with who you are and where you want to go.
+                We're not just another job board. We help you discover
+                opportunities that actually align with who you are and where you
+                want to go.
               </Typography>
               <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
                 <Button
@@ -141,7 +147,8 @@ const Home = () => {
               fontWeight: 600,
               mb: 3,
               color: "#000",
-              fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+              fontFamily:
+                '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
             }}
           >
             Everything you need to land your dream job
@@ -156,13 +163,14 @@ const Home = () => {
               lineHeight: 1.6,
             }}
           >
-            No fluff, no false promises. Just the tools and insights you need to make smarter career decisions.
+            No fluff, no false promises. Just the tools and insights you need to
+            make smarter career decisions.
           </Typography>
         </Box>
 
         <Grid container spacing={4}>
           {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid item xs={12} size={{ sm: 6, md: 3 }} key={index}>
               <Card
                 sx={{
                   height: "100%",
@@ -223,7 +231,8 @@ const Home = () => {
               fontWeight: 600,
               color: "#fff",
               mb: 3,
-              fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+              fontFamily:
+                '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
             }}
           >
             Ready to take the next step?
@@ -239,7 +248,8 @@ const Home = () => {
               fontWeight: 400,
             }}
           >
-            Join thousands of professionals who've found their perfect career match through JobSpring.
+            Join thousands of professionals who've found their perfect career
+            match through JobSpring.
           </Typography>
           <Button
             component={Link}

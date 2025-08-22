@@ -1,23 +1,31 @@
+// Enhanced JWT-based auth slice example
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authAPI } from "../../api/services";
 
-// Async thunks for JWT authentication
+// Async thunks for JWT auth
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authAPI.login(credentials);
-      const { token, refreshToken, id, email, name, role } = response.data;
+      const { token, refreshToken, user } = response.data;
 
-      // Store JWT tokens
+      // Store tokens securely
       localStorage.setItem("authToken", token);
       localStorage.setItem("refreshToken", refreshToken);
 
       // Store minimal user info
-      const userData = { id, email, name, role };
-      localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        })
+      );
 
-      return { token, refreshToken, user: userData };
+      return { token, refreshToken, user };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Login failed");
     }
@@ -33,14 +41,13 @@ export const refreshToken = createAsyncThunk(
         throw new Error("No refresh token available");
       }
 
-      const response = await authAPI.refresh({ refreshToken });
-      const { token, id, email, name, role } = response.data;
+      const response = await authAPI.refreshToken(refreshToken);
+      const { token, user } = response.data;
 
       localStorage.setItem("authToken", token);
-      const userData = { id, email, name, role };
-      localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem("user", JSON.stringify(user));
 
-      return { token, user: userData };
+      return { token, user };
     } catch (error) {
       // Clear all tokens if refresh fails
       localStorage.removeItem("authToken");
@@ -51,37 +58,16 @@ export const refreshToken = createAsyncThunk(
   }
 );
 
-export const registerUser = createAsyncThunk(
-  "auth/register",
-  async (userData, { rejectWithValue }) => {
-    try {
-      const response = await authAPI.register(userData);
-      const { token, refreshToken, id, email, name, role } = response.data;
-
-      // Store JWT tokens
-      localStorage.setItem("authToken", token);
-      localStorage.setItem("refreshToken", refreshToken);
-
-      // Store minimal user info
-      const user = { id, email, name, role };
-      localStorage.setItem("user", JSON.stringify(user));
-
-      return { token, refreshToken, user };
-    } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || "Registration failed"
-      );
-    }
-  }
-);
-
 export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      await authAPI.logout();
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (refreshToken) {
+        await authAPI.logout(refreshToken); // Invalidate refresh token on server
+      }
 
-      // Clear all tokens
+      // Clear all local storage
       localStorage.removeItem("authToken");
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("user");
@@ -93,32 +79,6 @@ export const logoutUser = createAsyncThunk(
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("user");
       return rejectWithValue(error.response?.data?.message || "Logout failed");
-    }
-  }
-);
-
-// Load user from localStorage on app start
-export const loadUser = createAsyncThunk(
-  "auth/loadUser",
-  async (_, { rejectWithValue }) => {
-    try {
-      const token = localStorage.getItem("authToken");
-      const user = localStorage.getItem("user");
-
-      if (token && user) {
-        return {
-          token,
-          refreshToken: localStorage.getItem("refreshToken"),
-          user: JSON.parse(user),
-        };
-      }
-      return null;
-    } catch (error) {
-      // Clear invalid data
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("user");
-      return rejectWithValue("Failed to load user");
     }
   }
 );
@@ -169,27 +129,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         state.isAuthenticated = false;
-        state.user = null;
-        state.token = null;
-        state.refreshToken = null;
-      })
-      // Register cases
-      .addCase(registerUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.refreshToken = action.payload.refreshToken;
-        state.isAuthenticated = true;
-        state.error = null;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-        state.isAuthenticated = false;
       })
       // Refresh token cases
       .addCase(refreshToken.fulfilled, (state, action) => {
@@ -210,21 +149,6 @@ const authSlice = createSlice({
         state.refreshToken = null;
         state.isAuthenticated = false;
         state.error = null;
-      })
-      // Load user cases
-      .addCase(loadUser.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.user = action.payload.user;
-          state.token = action.payload.token;
-          state.refreshToken = action.payload.refreshToken;
-          state.isAuthenticated = true;
-        }
-      })
-      .addCase(loadUser.rejected, (state) => {
-        state.user = null;
-        state.token = null;
-        state.refreshToken = null;
-        state.isAuthenticated = false;
       });
   },
 });

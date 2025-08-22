@@ -54,7 +54,7 @@ const Companies = () => {
       ) : (
         <Grid container spacing={3}>
           {companies.map((company) => (
-            <Grid item xs={12} md={6} lg={4} key={company.id}>
+            <Grid item size={{ xs: 12, md: 6, lg: 4 }} key={company.id}>
               <Card
                 sx={{
                   height: "100%",

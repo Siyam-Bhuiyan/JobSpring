@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Paper,
@@ -10,14 +10,14 @@ import {
   Box,
   MenuItem,
   Alert,
+  CircularProgress,
 } from "@mui/material";
-import { createUser } from "../redux/slices/userSlice";
+import { registerUser } from "../redux/slices/authSlice";
 
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const { loading, error } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -26,6 +26,8 @@ const Register = () => {
     confirmPassword: "",
     role: "user",
   });
+
+  const [localError, setLocalError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -36,10 +38,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setLocalError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setLocalError("Passwords do not match");
       return;
     }
 
@@ -51,13 +53,13 @@ const Register = () => {
         role: formData.role,
       };
 
-      await dispatch(createUser(userData));
-      setSuccess(true);
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    } catch (error) {
-      setError("Registration failed. Please try again.");
+      const result = await dispatch(registerUser(userData));
+
+      if (registerUser.fulfilled.match(result)) {
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      console.error("Registration failed:", err);
     }
   };
 
@@ -78,14 +80,9 @@ const Register = () => {
           </Typography>
         </Box>
 
-        {error && (
+        {(error || localError) && (
           <Alert severity="error" sx={{ mb: 3 }}>
-            {error}
-          </Alert>
-        )}
-        {success && (
-          <Alert severity="success" sx={{ mb: 3 }}>
-            Registration successful! Redirecting to login...
+            {error || localError}
           </Alert>
         )}
 
@@ -147,9 +144,10 @@ const Register = () => {
             fullWidth
             variant="contained"
             size="large"
+            disabled={loading}
             sx={{ py: 1.5, mb: 3, borderRadius: 2, textTransform: "none" }}
           >
-            Create Account
+            {loading ? <CircularProgress size={24} /> : "Create Account"}
           </Button>
         </form>
 

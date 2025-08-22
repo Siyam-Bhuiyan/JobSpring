@@ -1,8 +1,11 @@
+// Enhanced API configuration with JWT support
 import axios from "axios";
+import { store } from "../redux/store";
+import { refreshToken, tokenExpired } from "../redux/slices/authSlice";
 
 const BASE_URL = "http://localhost:8080/api";
 
-// Create axios instance with default config
+// Create axios instance
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -24,7 +27,7 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor to handle token expiration and refresh
+// Response interceptor to handle token expiration
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -35,33 +38,18 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken = localStorage.getItem("refreshToken");
-        if (!refreshToken) {
-          throw new Error("No refresh token available");
-        }
-
         // Attempt to refresh token
-        const response = await axios.post(`${BASE_URL}/auth/refresh`, {
-          refreshToken: refreshToken,
-        });
-
-        const { token } = response.data;
-        localStorage.setItem("authToken", token);
+        await store.dispatch(refreshToken()).unwrap();
 
         // Retry original request with new token
-        originalRequest.headers.Authorization = `Bearer ${token}`;
-        return api(originalRequest);
-      } catch (refreshError) {
-        // Refresh failed, clear tokens and redirect to login
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("user");
-
-        // Dispatch logout action if store is available
-        if (window.store) {
-          window.store.dispatch({ type: "auth/tokenExpired" });
+        const newToken = localStorage.getItem("authToken");
+        if (newToken) {
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          return api(originalRequest);
         }
-
+      } catch (refreshError) {
+        // Refresh failed, redirect to login
+        store.dispatch(tokenExpired());
         window.location.href = "/login";
         return Promise.reject(refreshError);
       }

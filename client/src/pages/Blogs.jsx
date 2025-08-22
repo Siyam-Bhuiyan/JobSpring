@@ -85,12 +85,9 @@ const Blogs = () => {
     };
 
     try {
-      // Use the frontend-friendly endpoint with user ID from URL
+      // Use the JWT-authenticated endpoint
       await dispatch(
-        createBlogByUser({
-          userId: user.userId,
-          blogData,
-        })
+        createBlog(blogData)
       ).unwrap();
 
       setCreateDialogOpen(false);
@@ -185,7 +182,7 @@ const Blogs = () => {
       ) : (
         <Grid container spacing={3}>
           {displayedBlogs.map((blog) => (
-            <Grid item xs={12} md={6} lg={4} key={blog.id}>
+            <Grid item size={{ xs: 12, md: 6, lg: 4 }} key={blog.id}>
               <Card
                 sx={{
                   height: "100%",

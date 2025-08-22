@@ -48,18 +48,10 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-
-    @PostMapping("/auth/login")
-    public Map<String, Object> login(@RequestBody Map<String, String> payload) {
-        String email = payload.get("email");
-        String password = payload.get("password");
-        User u = service.login(email, password);
-        return Map.of(
-                "message", "login successful",
-                "userId", u.getId(),
-                "role", u.getRole(),
-                "email", u.getEmail(),
-                "name", u.getName()
-        );
+    // Registration endpoint - moved from auth
+    @PostMapping("/users/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        User created = service.create(user);
+        return ResponseEntity.created(URI.create("/api/users/" + created.getId())).body(created);
     }
 }
