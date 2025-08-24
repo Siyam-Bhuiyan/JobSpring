@@ -212,13 +212,24 @@ const Navbar = () => {
                 
                 <MenuItem
                   onClick={() => {
-                    navigate("/dashboard");
+                    navigate("/profile");
                     handleClose();
                   }}
                   sx={{ py: 1.5, fontSize: "0.95rem" }}
                 >
                   <PersonIcon sx={{ mr: 2, fontSize: 20 }} />
-                  Profile
+                  My Profile
+                </MenuItem>
+                
+                <MenuItem
+                  onClick={() => {
+                    navigate("/dashboard");
+                    handleClose();
+                  }}
+                  sx={{ py: 1.5, fontSize: "0.95rem" }}
+                >
+                  <DashboardIcon sx={{ mr: 2, fontSize: 20 }} />
+                  Dashboard
                 </MenuItem>
                 
                 <Divider />
