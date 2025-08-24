@@ -84,9 +84,12 @@ public class SecurityConfig {
                 // Protected application endpoints (all require authentication)
                 .requestMatchers("/api/applications/**").authenticated()
                 
+                // Protected profile endpoints
+                .requestMatchers("GET", "/api/profiles/user/**").permitAll() // Public profile view
+                .requestMatchers("/api/profiles/**").authenticated() // All other profile operations require auth
+                
                 // User management endpoints
                 .requestMatchers("/api/users/**").authenticated()
-                .requestMatchers("/api/applications/**").authenticated()
                 
                 // Admin only endpoints
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
