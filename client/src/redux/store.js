@@ -5,6 +5,7 @@ import companySlice from "./slices/companySlice";
 import jobSlice from "./slices/jobSlice";
 import applicationSlice from "./slices/applicationSlice";
 import blogSlice from "./slices/blogSlice";
+import profileSlice from "../store/slices/profileSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     jobs: jobSlice,
     applications: applicationSlice,
     blogs: blogSlice,
+    profile: profileSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

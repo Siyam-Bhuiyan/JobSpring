@@ -15,6 +15,7 @@ import Applications from "./pages/Applications";
 import Blogs from "./pages/Blogs";
 import BlogDetail from "./pages/BlogDetail";
 import Dashboard from "./pages/Dashboard";
+import UserProfile from "./components/UserProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 // App component that handles user loading
@@ -50,6 +51,14 @@ const AppContent = () => {
           element={
             <ProtectedRoute>
               <Applications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
             </ProtectedRoute>
           }
         />
