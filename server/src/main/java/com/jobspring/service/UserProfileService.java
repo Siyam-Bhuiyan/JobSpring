@@ -3,6 +3,7 @@ package com.jobspring.service;
 import com.jobspring.model.User;
 import com.jobspring.model.UserProfile;
 import com.jobspring.repository.UserProfileRepository;
+import com.jobspring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class UserProfileService {
     
     private final UserProfileRepository repository;
+    private final UserRepository userRepository;
     private final SupabaseStorageService storageService;
     
     /**
@@ -37,8 +39,13 @@ public class UserProfileService {
             profile = existingProfile.get();
             updateProfileFields(profile, profileData);
         } else {
+            // Need to fetch the User entity for the relationship
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            
             profile = UserProfile.builder()
                     .userId(userId)
+                    .user(user)
                     .phone(profileData.getPhone())
                     .location(profileData.getLocation())
                     .university(profileData.getUniversity())
@@ -59,52 +66,81 @@ public class UserProfileService {
     /**
      * Upload profile picture
      */
+    @Transactional
     public UserProfile uploadProfilePicture(Long userId, MultipartFile file) throws IOException {
         // Validate file
         if (file.isEmpty()) {
             throw new IOException("File is empty");
         }
         
-        // Get or create profile
-        UserProfile profile = getProfileByUserId(userId)
-                .orElse(UserProfile.builder().userId(userId).build());
-        
-        // Delete existing profile picture if exists
-        if (profile.getProfilePictureUrl() != null) {
-            String oldFileName = storageService.extractFileNameFromUrl(profile.getProfilePictureUrl());
-            if (oldFileName != null) {
+        // Retry logic for optimistic locking
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                // Get or create profile (fresh load for each attempt)
+                UserProfile profile = getProfileByUserId(userId)
+                        .orElseGet(() -> {
+                            // Need to fetch the User entity for the relationship
+                            User user = userRepository.findById(userId)
+                                    .orElseThrow(() -> new RuntimeException("User not found"));
+                            return UserProfile.builder()
+                                    .userId(userId)
+                                    .user(user)
+                                    .build();
+                        });
+                
+                // Delete existing profile picture if exists
+                if (profile.getProfilePictureUrl() != null) {
+                    String oldFileName = storageService.extractFileNameFromUrl(profile.getProfilePictureUrl());
+                    if (oldFileName != null) {
+                        try {
+                            storageService.deleteProfilePicture(oldFileName);
+                        } catch (IOException e) {
+                            // Log error but continue with upload
+                            System.err.println("Failed to delete old profile picture: " + e.getMessage());
+                        }
+                    }
+                }
+                
+                // Generate unique filename
+                String fileName = storageService.generateFileName(
+                        file.getOriginalFilename(), 
+                        userId, 
+                        "profile"
+                );
+                
+                // Upload to Supabase
+                String fileUrl = storageService.uploadProfilePicture(
+                        file.getBytes(), 
+                        fileName, 
+                        file.getContentType()
+                );
+                
+                // Update profile
+                profile.setProfilePictureUrl(fileUrl);
+                
+                return repository.save(profile);
+                
+            } catch (org.springframework.orm.ObjectOptimisticLockingFailureException e) {
+                if (attempt == 2) { // Last attempt
+                    throw new RuntimeException("Failed to update profile after multiple attempts due to concurrent modifications", e);
+                }
+                // Wait briefly before retry
                 try {
-                    storageService.deleteProfilePicture(oldFileName);
-                } catch (IOException e) {
-                    // Log error but continue with upload
-                    System.err.println("Failed to delete old profile picture: " + e.getMessage());
+                    Thread.sleep(100);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Upload interrupted", ie);
                 }
             }
         }
         
-        // Generate unique filename
-        String fileName = storageService.generateFileName(
-                file.getOriginalFilename(), 
-                userId, 
-                "profile"
-        );
-        
-        // Upload to Supabase
-        String fileUrl = storageService.uploadProfilePicture(
-                file.getBytes(), 
-                fileName, 
-                file.getContentType()
-        );
-        
-        // Update profile
-        profile.setProfilePictureUrl(fileUrl);
-        
-        return repository.save(profile);
+        throw new RuntimeException("Unexpected error in upload retry logic");
     }
     
     /**
      * Upload CV/Resume
      */
+    @Transactional
     public UserProfile uploadCV(Long userId, MultipartFile file) throws IOException {
         // Validate file
         if (file.isEmpty()) {
@@ -115,42 +151,69 @@ public class UserProfileService {
             throw new IOException("Only PDF files are allowed for CV upload");
         }
         
-        // Get or create profile
-        UserProfile profile = getProfileByUserId(userId)
-                .orElse(UserProfile.builder().userId(userId).build());
-        
-        // Delete existing CV if exists
-        if (profile.getCvUrl() != null) {
-            String oldFileName = storageService.extractFileNameFromUrl(profile.getCvUrl());
-            if (oldFileName != null) {
+        // Retry logic for optimistic locking
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                // Get or create profile (fresh load for each attempt)
+                UserProfile profile = getProfileByUserId(userId)
+                        .orElseGet(() -> {
+                            // Need to fetch the User entity for the relationship
+                            User user = userRepository.findById(userId)
+                                    .orElseThrow(() -> new RuntimeException("User not found"));
+                            return UserProfile.builder()
+                                    .userId(userId)
+                                    .user(user)
+                                    .build();
+                        });
+                
+                // Delete existing CV if exists
+                if (profile.getCvUrl() != null) {
+                    String oldFileName = storageService.extractFileNameFromUrl(profile.getCvUrl());
+                    if (oldFileName != null) {
+                        try {
+                            storageService.deleteFile(oldFileName);
+                        } catch (IOException e) {
+                            // Log error but continue with upload
+                            System.err.println("Failed to delete old CV: " + e.getMessage());
+                        }
+                    }
+                }
+                
+                // Generate unique filename
+                String fileName = storageService.generateFileName(
+                        file.getOriginalFilename(), 
+                        userId, 
+                        "cv"
+                );
+                
+                // Upload to Supabase
+                String fileUrl = storageService.uploadFile(
+                        file.getBytes(), 
+                        fileName, 
+                        file.getContentType()
+                );
+                
+                // Update profile
+                profile.setCvUrl(fileUrl);
+                profile.setCvFileName(file.getOriginalFilename());
+                
+                return repository.save(profile);
+                
+            } catch (org.springframework.orm.ObjectOptimisticLockingFailureException e) {
+                if (attempt == 2) { // Last attempt
+                    throw new RuntimeException("Failed to update profile after multiple attempts due to concurrent modifications", e);
+                }
+                // Wait briefly before retry
                 try {
-                    storageService.deleteFile(oldFileName);
-                } catch (IOException e) {
-                    // Log error but continue with upload
-                    System.err.println("Failed to delete old CV: " + e.getMessage());
+                    Thread.sleep(100);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("Upload interrupted", ie);
                 }
             }
         }
         
-        // Generate unique filename
-        String fileName = storageService.generateFileName(
-                file.getOriginalFilename(), 
-                userId, 
-                "cv"
-        );
-        
-        // Upload to Supabase
-        String fileUrl = storageService.uploadFile(
-                file.getBytes(), 
-                fileName, 
-                file.getContentType()
-        );
-        
-        // Update profile
-        profile.setCvUrl(fileUrl);
-        profile.setCvFileName(file.getOriginalFilename());
-        
-        return repository.save(profile);
+        throw new RuntimeException("Unexpected error in upload retry logic");
     }
     
     /**

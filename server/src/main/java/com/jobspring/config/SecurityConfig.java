@@ -84,9 +84,12 @@ public class SecurityConfig {
                 // Protected application endpoints (all require authentication)
                 .requestMatchers("/api/applications/**").authenticated()
                 
-                // Protected profile endpoints
+                // Protected profile endpoints (all methods)
                 .requestMatchers("GET", "/api/profiles/user/**").permitAll() // Public profile view
-                .requestMatchers("/api/profiles/**").authenticated() // All other profile operations require auth
+                .requestMatchers("POST", "/api/profiles/**").authenticated() // File uploads
+                .requestMatchers("PUT", "/api/profiles/**").authenticated() // Profile updates
+                .requestMatchers("DELETE", "/api/profiles/**").authenticated() // Delete operations
+                .requestMatchers("GET", "/api/profiles/**").authenticated() // Private profile access
                 
                 // User management endpoints
                 .requestMatchers("/api/users/**").authenticated()

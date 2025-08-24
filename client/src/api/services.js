@@ -151,26 +151,19 @@ export const profileAPI = {
   uploadProfilePicture: (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    return api.post("/profiles/my-profile/profile-picture", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    return api.post("/profiles/my-profile/profile-picture", formData);
   },
 
   // REQUIRES AUTHENTICATION - Upload CV/Resume
   uploadCV: (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    return api.post("/profiles/my-profile/cv", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    return api.post("/profiles/my-profile/cv", formData);
   },
 
   // REQUIRES AUTHENTICATION - Delete profile picture
-  deleteProfilePicture: () => api.delete("/profiles/my-profile/profile-picture"),
+  deleteProfilePicture: () =>
+    api.delete("/profiles/my-profile/profile-picture"),
 
   // REQUIRES AUTHENTICATION - Delete CV
   deleteCV: () => api.delete("/profiles/my-profile/cv"),

@@ -37,8 +37,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
 
+        // Debug logging
+        log.debug("Processing request: {} {}", request.getMethod(), request.getRequestURI());
+        log.debug("Authorization header: {}", authHeader != null ? "Present" : "Missing");
+
         // Check if Authorization header exists and starts with "Bearer "
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            log.debug("No valid Authorization header, proceeding without authentication");
             filterChain.doFilter(request, response);
             return;
         }
@@ -48,6 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         
         try {
             userEmail = jwtUtil.extractUsername(jwt);
+            log.debug("Extracted user email: {}", userEmail);
 
             // If user email exists and no authentication in security context
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -63,7 +69,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         );
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
+                    log.debug("Authentication successful for user: {}", userEmail);
+                } else {
+                    log.debug("Token validation failed for user: {}", userEmail);
                 }
+            } else {
+                log.debug("User email null or authentication already exists");
             }
         } catch (Exception e) {
             log.error("Cannot set user authentication: {}", e.getMessage());

@@ -338,7 +338,7 @@ spring.datasource.username=postgres
 spring.datasource.password=postgres
 
 # Server Configuration
-server.port=8081  # Changed from 8080 to avoid conflicts
+server.port=8080  # Changed from 8080 to avoid conflicts
 ```
 
 ---
@@ -619,14 +619,14 @@ Content-Type: application/json
 ### 3. Test Protected Endpoint
 
 ```bash
-GET http://localhost:8081/api/users/profile
+GET http://localhost:8080/api/users/profile
 Authorization: Bearer <your-jwt-token>
 ```
 
 ### 4. Test Token Refresh
 
 ```bash
-POST http://localhost:8081/api/auth/refresh
+POST http://localhost:8080/api/auth/refresh
 Content-Type: application/json
 
 {
@@ -646,7 +646,7 @@ Content-Type: application/json
 ### Issue 2: Port 8080 Already in Use
 
 **Problem:** React dev server using same port
-**Solution:** Changed Spring Boot server to port 8081 in `application.properties`
+**Solution:** Changed Spring Boot server to port 8080 in `application.properties`
 
 ### Issue 3: CORS Issues
 

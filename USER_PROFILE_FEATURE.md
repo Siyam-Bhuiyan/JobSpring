@@ -59,15 +59,18 @@ The User Profile feature allows authenticated users to create, manage, and maint
 
 #### 2. State Management
 
-- **profileSlice.js** - Redux slice for profile state
+- **redux/slices/profileSlice.js** - Redux slice for profile state
   - Async thunks for all profile operations
   - Loading, error, and success state management
   - File upload progress tracking
 
 #### 3. API Layer
 
-- **profileAPI.js** - API service functions
+- **api/services.js** - Consolidated API service functions
+  - `profileAPI` object with all profile endpoints
   - HTTP requests to backend endpoints
+  - File upload with FormData
+  - JWT authentication integration
   - File upload with FormData
   - JWT authentication integration
 

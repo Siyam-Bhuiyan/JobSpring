@@ -69,6 +69,9 @@ public class UserProfile {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
+    @Version
+    private Long version; // For optimistic locking
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @MapsId
