@@ -47,12 +47,19 @@ const Navbar = () => {
     <AppBar
       position="sticky"
       elevation={0}
-      sx={{ 
-        backgroundColor: "#fff", 
+      sx={{
+        backgroundColor: "#fff",
         borderBottom: "1px solid #e0e0e0",
       }}
     >
-      <Toolbar sx={{ maxWidth: "1200px", mx: "auto", width: "100%", px: { xs: 2, sm: 3 } }}>
+      <Toolbar
+        sx={{
+          maxWidth: "1200px",
+          mx: "auto",
+          width: "100%",
+          px: { xs: 2, sm: 3 },
+        }}
+      >
         <Typography
           variant="h6"
           component={Link}
@@ -63,7 +70,8 @@ const Navbar = () => {
             color: "#000",
             fontWeight: 700,
             fontSize: "1.5rem",
-            fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+            fontFamily:
+              '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
             "&:hover": {
               color: "#666",
             },
@@ -73,13 +81,19 @@ const Navbar = () => {
           JobSpring
         </Typography>
 
-        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: 1 }}>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
           <Button
             component={Link}
             to="/jobs"
             startIcon={<WorkIcon sx={{ fontSize: 20 }} />}
-            sx={{ 
-              color: "#000", 
+            sx={{
+              color: "#000",
               textTransform: "none",
               fontWeight: 500,
               px: 3,
@@ -98,8 +112,8 @@ const Navbar = () => {
             component={Link}
             to="/companies"
             startIcon={<BusinessIcon sx={{ fontSize: 20 }} />}
-            sx={{ 
-              color: "#000", 
+            sx={{
+              color: "#000",
               textTransform: "none",
               fontWeight: 500,
               px: 3,
@@ -118,8 +132,8 @@ const Navbar = () => {
             component={Link}
             to="/blogs"
             startIcon={<ArticleIcon sx={{ fontSize: 20 }} />}
-            sx={{ 
-              color: "#000", 
+            sx={{
+              color: "#000",
               textTransform: "none",
               fontWeight: 500,
               px: 3,
@@ -141,8 +155,8 @@ const Navbar = () => {
                 component={Link}
                 to="/dashboard"
                 startIcon={<DashboardIcon sx={{ fontSize: 20 }} />}
-                sx={{ 
-                  color: "#000", 
+                sx={{
+                  color: "#000",
                   textTransform: "none",
                   fontWeight: 500,
                   px: 3,
@@ -157,10 +171,10 @@ const Navbar = () => {
               >
                 Dashboard
               </Button>
-              
+
               <Box sx={{ ml: 2 }}>
-                <IconButton 
-                  size="large" 
+                <IconButton
+                  size="large"
                   onClick={handleMenu}
                   sx={{
                     borderRadius: 0,
@@ -171,10 +185,10 @@ const Navbar = () => {
                     },
                   }}
                 >
-                  <Avatar 
-                    sx={{ 
-                      width: 32, 
-                      height: 32, 
+                  <Avatar
+                    sx={{
+                      width: 32,
+                      height: 32,
                       bgcolor: "#000",
                       fontSize: "1rem",
                       fontWeight: 600,
@@ -184,7 +198,7 @@ const Navbar = () => {
                   </Avatar>
                 </IconButton>
               </Box>
-              
+
               <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
@@ -202,14 +216,17 @@ const Navbar = () => {
                 }}
               >
                 <Box sx={{ px: 2, py: 1.5, borderBottom: "1px solid #e0e0e0" }}>
-                  <Typography variant="subtitle2" sx={{ fontWeight: 600, color: "#000" }}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ fontWeight: 600, color: "#000" }}
+                  >
                     {user?.name || "User"}
                   </Typography>
                   <Typography variant="caption" sx={{ color: "#666" }}>
                     {user?.email || "user@example.com"}
                   </Typography>
                 </Box>
-                
+
                 <MenuItem
                   onClick={() => {
                     navigate("/profile");
@@ -220,7 +237,7 @@ const Navbar = () => {
                   <PersonIcon sx={{ mr: 2, fontSize: 20 }} />
                   My Profile
                 </MenuItem>
-                
+
                 <MenuItem
                   onClick={() => {
                     navigate("/dashboard");
@@ -231,10 +248,10 @@ const Navbar = () => {
                   <DashboardIcon sx={{ mr: 2, fontSize: 20 }} />
                   Dashboard
                 </MenuItem>
-                
+
                 <Divider />
-                
-                <MenuItem 
+
+                <MenuItem
                   onClick={handleLogout}
                   sx={{ py: 1.5, fontSize: "0.95rem", color: "#000" }}
                 >
@@ -249,7 +266,7 @@ const Navbar = () => {
                 component={Link}
                 to="/login"
                 variant="outlined"
-                sx={{ 
+                sx={{
                   textTransform: "none",
                   borderColor: "#000",
                   color: "#000",
@@ -270,7 +287,7 @@ const Navbar = () => {
                 component={Link}
                 to="/register"
                 variant="contained"
-                sx={{ 
+                sx={{
                   textTransform: "none",
                   backgroundColor: "#000",
                   color: "#fff",
@@ -293,8 +310,8 @@ const Navbar = () => {
         {/* Mobile Menu - Simplified */}
         <Box sx={{ display: { xs: "flex", md: "none" }, gap: 1 }}>
           {isAuthenticated ? (
-            <IconButton 
-              size="large" 
+            <IconButton
+              size="large"
               onClick={handleMenu}
               sx={{ borderRadius: 0 }}
             >
@@ -309,7 +326,7 @@ const Navbar = () => {
                 to="/login"
                 variant="outlined"
                 size="small"
-                sx={{ 
+                sx={{
                   textTransform: "none",
                   borderColor: "#000",
                   color: "#000",
@@ -325,7 +342,7 @@ const Navbar = () => {
                 to="/register"
                 variant="contained"
                 size="small"
-                sx={{ 
+                sx={{
                   textTransform: "none",
                   backgroundColor: "#000",
                   borderRadius: 0,

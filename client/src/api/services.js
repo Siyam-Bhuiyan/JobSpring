@@ -135,3 +135,46 @@ export const blogAPI = {
   // REQUIRES AUTHENTICATION - Delete blog
   delete: (id) => api.delete(`/blogs/${id}`),
 };
+
+// Enhanced Profile API calls with JWT awareness
+export const profileAPI = {
+  // REQUIRES AUTHENTICATION - Get current user's profile
+  getMyProfile: () => api.get("/profiles/my-profile"),
+
+  // PUBLIC - Get public profile by user ID
+  getPublicProfile: (userId) => api.get(`/profiles/user/${userId}`),
+
+  // REQUIRES AUTHENTICATION - Update current user's profile
+  updateProfile: (profileData) => api.put("/profiles/my-profile", profileData),
+
+  // REQUIRES AUTHENTICATION - Upload profile picture
+  uploadProfilePicture: (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    return api.post("/profiles/my-profile/profile-picture", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
+
+  // REQUIRES AUTHENTICATION - Upload CV/Resume
+  uploadCV: (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    return api.post("/profiles/my-profile/cv", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
+
+  // REQUIRES AUTHENTICATION - Delete profile picture
+  deleteProfilePicture: () => api.delete("/profiles/my-profile/profile-picture"),
+
+  // REQUIRES AUTHENTICATION - Delete CV
+  deleteCV: () => api.delete("/profiles/my-profile/cv"),
+
+  // REQUIRES AUTHENTICATION - Delete entire profile
+  deleteProfile: () => api.delete("/profiles/my-profile"),
+};

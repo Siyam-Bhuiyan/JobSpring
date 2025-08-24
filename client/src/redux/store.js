@@ -5,7 +5,7 @@ import companySlice from "./slices/companySlice";
 import jobSlice from "./slices/jobSlice";
 import applicationSlice from "./slices/applicationSlice";
 import blogSlice from "./slices/blogSlice";
-import profileSlice from "../store/slices/profileSlice";
+import profileSlice from "./slices/profileSlice";
 
 export const store = configureStore({
   reducer: {

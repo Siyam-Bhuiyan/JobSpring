@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import * as profileAPI from "../api/profileAPI";
+import { profileAPI } from "../../api/services";
 
 // Async thunks
 export const getMyProfile = createAsyncThunk(
