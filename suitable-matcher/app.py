@@ -36,6 +36,29 @@ def get_top_candidates(
     scored_candidates = []
     max_distance = max((app.get("distance", 0) or 0) for app in applications) or 1
 
+    for app in applications:
+        match_percentage = app.get("matchPercentage", 0) or 0
+        distance = app.get("distance", 0) or 0
+
+        # Normalize distance score
+        distance_score = 100 - (distance / max_distance * 100)
+        distance_score = max(0, distance_score)
+
+        # Weighted score
+        final_score = (match_percentage * 0.8) + (distance_score * 0.2)
+
+        scored_candidates.append({
+            "applicationId": app.get("id"),
+            "userId": app["applicant"]["id"] if app.get("applicant") else None,
+            "userName": app["applicant"]["name"] if app.get("applicant") else "Unknown",
+            "matchPercentage": match_percentage,
+            "distance": distance,
+            "finalScore": round(final_score, 2)
+        })
+
+    
+    top_candidates = sorted(scored_candidates, key=lambda x: x["finalScore"], reverse=True)[:5]
+    return {"jobId": job_id, "topCandidates": top_candidates}
 
 if __name__ == "__main__":
     import uvicorn
