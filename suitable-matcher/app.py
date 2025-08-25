@@ -1,0 +1,42 @@
+from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
+from typing import Optional
+import requests
+
+app = FastAPI()
+
+# Allow frontend to call API from localhost:5173
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+SPRING_BOOT_API_BASE = "http://localhost:8080/api/applications/job"
+
+@app.get("/match-top-candidates")
+def get_top_candidates(
+    job_id: int
+):
+    """
+    Fetch job applications for a given job_id from Spring Boot,
+    calculate suitability score, and return top N candidates.
+    """
+
+    resp = requests.get(f"{SPRING_BOOT_API_BASE}/{job_id}")
+    if resp.status_code != 200:
+        return {"error": "Failed to fetch applications from backend"}
+
+    applications = resp.json()
+    if not applications:
+        return {"message": "No applications found"}
+
+    scored_candidates = []
+    max_distance = max((app.get("distance", 0) or 0) for app in applications) or 1
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=5002)
