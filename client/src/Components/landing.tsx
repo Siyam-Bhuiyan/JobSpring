@@ -11,7 +11,7 @@ const Landing: React.FC = () => {
             Find your <span className="text-yellow-500"> Dream Job</span> with
             us
           </h1>
-          <p className="text-lg mb-6">
+          <p className="text-2xl mb-6 text-white">
             Good life begins with a good company. Start exploring thousands of
             jobs in one place.
           </p>
@@ -21,7 +21,10 @@ const Landing: React.FC = () => {
               placeholder="Search a job"
               className="search-input flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none"
             />
-            <button className="search-button px-4 py-2 bg-yellow-500 text-white rounded-r-md flex items-center">
+            <button
+              className="search-button px-4 py-2 bg-yellow-500 text-white rounded-r-md flex items-center 
+  hover:bg-yellow-600 transition-colors duration-200"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 mr-2"
@@ -49,9 +52,7 @@ const Landing: React.FC = () => {
           />
         </div>
       </div>
-      <div>
-        
-      </div>
+      <div></div>
     </div>
   );
 };

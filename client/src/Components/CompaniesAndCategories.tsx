@@ -143,13 +143,13 @@ const categories = [
 
 const CompaniesAndCategories = () => {
   return (
-    <Box bg="#2d2d2d" c="white" >
-      <Container size="lg">
+    <Box bg="#2d2d2d" c="white" w="100%">
+      <Container size="lg" w="100%">
         {/* Trusted Companies */}
         <Title order={1} ta="center" mb="xl" fw={700}>
           Trusted By <span style={{ color: "#FFD700" }}>1000+ </span> Companies
         </Title>
-        <Group justify="center" gap="xl" mb={60} wrap="wrap">
+        <Group justify="center" gap="xl" w="100%" mb={70} wrap="wrap">
           {companies.map((logo, index) => (
             <Box key={index} w={100} h={40}>
               <img
