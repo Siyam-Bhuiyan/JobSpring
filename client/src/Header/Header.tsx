@@ -4,8 +4,8 @@ import { Briefcase } from "tabler-icons-react";
 
 const Header = () => {
   return (
-    <div className="w-full bg-pharlap-950 px-6 text-white h-28 flex justify-between items-center">
-      <div className="text-crete-400 flex gap-3 items-center ">
+    <div className="w-full bg-mine-shaft-950 px-6 text-white h-28 flex justify-between items-center">
+      <div className="text-bright-sun-400 flex gap-3 items-center ">
         <Briefcase className="h-10 w-10 " />
         <div className="text-2xl font-semibold">JobSpring</div>
       </div>
