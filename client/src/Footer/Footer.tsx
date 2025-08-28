@@ -8,7 +8,6 @@ import {
   Button,
   ActionIcon,
   Stack,
-  Flex,
 } from "@mantine/core";
 import {
   IconBrandLinkedin,
