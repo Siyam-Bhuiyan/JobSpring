@@ -7,7 +7,7 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core";
-import { IconSearch, IconSelector } from "@tabler/icons-react";
+import { IconSelector } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 
