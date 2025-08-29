@@ -28,14 +28,16 @@ const JobCard: React.FC<JobCardProps> = ({
   posted,
 }) => {
   return (
-    <div
-      className="flex-4 cursor-pointer 
-             w-[350px] h-[250px] 
+  <div
+  className="flex-4 cursor-pointer 
+             aspect-[4/3]   /* maintains 4:3 ratio */
+             w-full max-w-sm 
              bg-mine-shaft-900 
              rounded-2xl p-6 shadow-md 
+             hover:border border-bright-sun-400
              transition-transform duration-500 ease-in-out
              hover:shadow-xl hover:scale-105"
-    >
+>
       {/* Top Section */}
       <div className="flex justify-between mb-4">
         <div className="flex gap-4">
@@ -64,7 +66,7 @@ const JobCard: React.FC<JobCardProps> = ({
       </div>
 
       {/* Description */}
-      <div className="text-gray-400 text-sm line-clamp-3 mb-3">
+      <div className="text-gray-400 text-sm line-clamp-3 mb-8">
         {description}
       </div>
       <Divider size="xs" mx="md" />

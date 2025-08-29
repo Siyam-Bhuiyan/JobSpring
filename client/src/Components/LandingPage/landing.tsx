@@ -8,7 +8,7 @@ const Landing: React.FC = () => {
         {/* Left Content */}
         <div className="hero-text flex-1 mr-10">
           <h1 className="text-7xl font-bold mb-4 text-white">
-            Find your <span className="text-yellow-500"> Dream Job</span> with
+            Find your <span className="text-bright-sun-500"> Dream Job</span> with
             us
           </h1>
           <p className="text-2xl mb-6 text-white">
@@ -22,8 +22,8 @@ const Landing: React.FC = () => {
               className="search-input flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none"
             />
             <button
-              className="search-button px-4 py-2 bg-yellow-500 text-white rounded-r-md flex items-center 
-  hover:bg-yellow-600 transition-colors duration-200"
+              className="search-button px-4 py-2 bg-bright-sun-500 text-white rounded-r-md flex items-center 
+  hover:bg-bright-sun-600 transition-colors duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

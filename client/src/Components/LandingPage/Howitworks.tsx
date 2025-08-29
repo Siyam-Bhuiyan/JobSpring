@@ -31,7 +31,7 @@ const HowItWorks = () => {
           />
 
           {/* Floating Card */}
-          <div className="absolute top-1/2 right-1/9 transform -translate-x-1/2 bg-mine-shaft-950 border border-yellow-500 rounded-lg px-6 py-4 shadow-lg text-center">
+          <div className="cursor-pointer absolute top-1/2 right-1/9 transform -translate-x-1/2 bg-mine-shaft-950 border border-bright-sun-500 rounded-lg px-6 py-4 shadow-lg text-center hover:scale-105 hover:shadow-lg transition-transform duration-300">
             <img
               src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" // avatar placeholder
               alt="Profile"
@@ -45,7 +45,7 @@ const HowItWorks = () => {
         {/* Right Side Content */}
         <div>
           <h2 className="text-3xl font-bold mb-4">
-            How it <span className="text-yellow-500">Works</span>
+            How it <span className="text-bright-sun-500">Works</span>
           </h2>
           <p className="text-gray-300 mb-8">
             Effortlessly navigate through the process and land your dream job.
@@ -56,7 +56,7 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <div key={index} className="flex items-center gap-4">
                 {/* Circle Icon */}
-                <div className="flex-shrink-0 w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-black font-semibold text-sm text-center leading-tight px-2">
+                <div className="flex-shrink-0 w-16 h-16 bg-bright-sun-500 rounded-full flex items-center justify-center text-black font-semibold text-sm text-center leading-tight px-2">
                   {step.icon}
                 </div>
 

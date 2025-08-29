@@ -50,9 +50,9 @@
 
 //         <Carousel
 //           slideSize="25%"
-       
+
 //           slideGap="md"
-        
+
 //           withControls
 //           withIndicators
 //         >
@@ -79,15 +79,7 @@
 // };
 
 // export default Showcase;
-import {
-  Box,
-  Container,
-  Grid,
-  Title,
-  Text,
-  Card,
-  Group,
-} from "@mantine/core";
+import { Box, Container, Grid, Title, Text, Card, Group } from "@mantine/core";
 import {
   IconCurrencyDollar,
   IconUsers,
@@ -143,11 +135,12 @@ const categories = [
 
 const CompaniesAndCategories = () => {
   return (
-    <Box bg="#2d2d2d" c="white" w="100%">
+    <Box bg="mine-shaft-900" c="white" w="100%">
       <Container size="lg" w="100%">
         {/* Trusted Companies */}
         <Title order={1} ta="center" mb="xl" fw={700}>
-          Trusted By <span style={{ color: "#FFD700" }}>1000+ </span> Companies
+          Trusted By <span className="text-bright-sun-500">1000+ </span>{" "}
+          Companies
         </Title>
         <Group justify="center" gap="xl" w="100%" mb={70} wrap="wrap">
           {companies.map((logo, index) => (
@@ -164,40 +157,24 @@ const CompaniesAndCategories = () => {
         {/* Job Categories */}
         <Box ta="center" mb={40}>
           <Title order={1} fw={700}>
-            Browse <span style={{ color: "#FFD700" }}>Job</span> Category
+            Browse <span className="text-bright-sun-500">Job</span> Category
           </Title>
-          <Text c="gray.4" maw={600} mx="auto" mt="sm">
-            Explore diverse job opportunities tailored to your skills. Start your
-            career journey today!
+          <Text c="mineShaft.4" maw={600} mx="auto" mt="sm">
+            Explore diverse job opportunities tailored to your skills. Start
+            your career journey today!
           </Text>
         </Box>
 
         <Grid>
           {categories.map((cat, index) => (
             <Grid.Col span={{ base: 12, sm: 6, md: 4, lg: 3 }} key={index}>
-              <Card
-                shadow="sm"
-                radius="md"
-                withBorder
-                p="lg"
-                style={{
-                  borderColor: "#FFD700",
-                  textAlign: "center",
-                  background: "transparent",
-                }}
-              >
+              <div className="shadow-lg rounded-md border border-bright-sun-500 p-6 text-center bg-transparent hover:scale-105 hover:shadow-lg transition-transform duration-300">
                 <Box
                   w={60}
                   h={60}
                   mx="auto"
                   mb="md"
-                  style={{
-                    background: "#FFD700",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className="bg-bright-sun-500 rounded-full flex items-center justify-center "
                 >
                   {cat.icon}
                 </Box>
@@ -207,10 +184,10 @@ const CompaniesAndCategories = () => {
                 <Text c="gray.4" fz="sm" mb="md">
                   {cat.desc}
                 </Text>
-                <Text c="yellow" fw={500}>
+                <Text c="bright-sun-500" fw={500}>
                   {cat.jobs}
                 </Text>
-              </Card>
+              </div>
             </Grid.Col>
           ))}
         </Grid>

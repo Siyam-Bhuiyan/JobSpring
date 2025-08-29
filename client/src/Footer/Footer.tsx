@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
                 radius="md"
                 style={{ flex: 1 }}
               />
-              <Button radius="md" color="yellow">
+              <Button radius="md" color="bright-sun">
                 Subscribe
               </Button>
             </Group>
@@ -79,14 +79,14 @@ const Footer: React.FC = () => {
             </Text>
             <a
           href="/find-job"
-          className="transition-colors duration-300 hover:text-yellow-400 "
+          className="transition-colors duration-300 hover:text-bright-sun-400 "
         >
               Find Job
             </a>
-            <a href="/find-company" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/find-company" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Find Company
             </a>
-            <a href="/find-employee" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/find-employee" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Find Employee
             </a>
           </Stack>
@@ -96,16 +96,16 @@ const Footer: React.FC = () => {
             <Text fw={600} mb="sm">
              <span>Company</span> 
             </Text>
-            <a href="/about" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/about" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               About Us
             </a>
-            <a href="/contact" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/contact" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Contact Us
             </a>
-            <a href="/privacy-policy" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/privacy-policy" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Privacy Policy
             </a>
-            <a href="/terms-conditions" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/terms-conditions" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Terms and Conditions
             </a>
           </Stack>
@@ -115,16 +115,16 @@ const Footer: React.FC = () => {
             <Text fw={600} mb="sm">
               Support
             </Text>
-            <a href="/find-job" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/find-job" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Jobs
             </a>
-            <a href="/blogs" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/blogs" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Blogs
             </a>
-            <a href="/find-company" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/find-company" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Companies
             </a>
-            <a href="/applications" className="transition-colors duration-300 hover:text-yellow-400 ">
+            <a href="/applications" className="transition-colors duration-300 hover:text-bright-sun-400 ">
               Applications
             </a>
           </Stack>

@@ -58,6 +58,7 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <MantineProvider defaultColorScheme="dark" theme={theme}>
+      {/* <MantineProvider theme={theme}> */}
         <BrowserRouter>
           <Header />
           <Routes>
