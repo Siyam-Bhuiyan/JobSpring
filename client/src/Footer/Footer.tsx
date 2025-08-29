@@ -78,34 +78,37 @@ const Footer: React.FC = () => {
             <Text fw={600} mb="sm">
               Product
             </Text>
-            <Anchor href="/privacy-policy" c="gray.3">
+            <a
+          href="/find-job"
+          className="transition-colors duration-300 hover:text-yellow-400 "
+        >
               Find Job
-            </Anchor>
-            <Anchor href="/refund-policy" c="gray.3">
+            </a>
+            <a href="/find-company" className="transition-colors duration-300 hover:text-yellow-400 ">
               Find Company
-            </Anchor>
-            <Anchor href="/shipping-policy" c="gray.3">
+            </a>
+            <a href="/find-employee" className="transition-colors duration-300 hover:text-yellow-400 ">
               Find Employee
-            </Anchor>
+            </a>
           </Stack>
 
           {/* Company */}
           <Stack style={{ minWidth: 200 }}>
             <Text fw={600} mb="sm">
-              Company
+             <span>Company</span> 
             </Text>
-            <Anchor href="/about" c="gray.3">
+            <a href="/about" className="transition-colors duration-300 hover:text-yellow-400 ">
               About Us
-            </Anchor>
-            <Anchor href="/contact" c="gray.3">
+            </a>
+            <a href="/contact" className="transition-colors duration-300 hover:text-yellow-400 ">
               Contact Us
-            </Anchor>
-            <Anchor href="/faq" c="gray.3">
+            </a>
+            <a href="/privacy-policy" className="transition-colors duration-300 hover:text-yellow-400 ">
               Privacy Policy
-            </Anchor>
-            <Anchor href="/faq" c="gray.3">
+            </a>
+            <a href="/terms-conditions" className="transition-colors duration-300 hover:text-yellow-400 ">
               Terms and Conditions
-            </Anchor>
+            </a>
           </Stack>
 
           {/* Support */}
@@ -113,18 +116,18 @@ const Footer: React.FC = () => {
             <Text fw={600} mb="sm">
               Support
             </Text>
-            <Anchor href="#" c="gray.3">
+            <a href="/find-job" className="transition-colors duration-300 hover:text-yellow-400 ">
               Jobs
-            </Anchor>
-            <Anchor href="#" c="gray.3">
+            </a>
+            <a href="/blogs" className="transition-colors duration-300 hover:text-yellow-400 ">
               Blogs
-            </Anchor>
-            <Anchor href="#" c="gray.3">
+            </a>
+            <a href="/find-company" className="transition-colors duration-300 hover:text-yellow-400 ">
               Companies
-            </Anchor>
-            <Anchor href="#" c="gray.3">
+            </a>
+            <a href="/applications" className="transition-colors duration-300 hover:text-yellow-400 ">
               Applications
-            </Anchor>
+            </a>
           </Stack>
         </Group>
       </div>

@@ -28,7 +28,7 @@ const Header = () => {
           href="/find-company"
           className="transition-colors duration-300 hover:text-yellow-400 "
         >
-          Find Company
+          Company
         </a>
         <a
           href="/blogs"

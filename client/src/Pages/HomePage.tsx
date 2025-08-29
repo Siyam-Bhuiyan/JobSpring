@@ -1,17 +1,15 @@
-import Landing from "../Components/landing";
-import CompaniesAndCategories from "../Components/CompaniesAndCategories";
-import HowItWorks from "../Components/Howitworks";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Landing from "../Components/LandingPage/landing";
+import CompaniesAndCategories from "../Components/LandingPage/CompaniesAndCategories";
+import HowItWorks from "../Components/LandingPage/Howitworks";
 
 const HomePage = () => {
   return (
     <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif]">
-      <Header />
+     
       <Landing />
       <CompaniesAndCategories />
       <HowItWorks />
-      <Footer />
+      
     </div>
   );
 };
