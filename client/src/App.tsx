@@ -8,22 +8,12 @@ import FindJobsPage from "./Pages/FindJobsPage";
 import FindCompanyPage from "./Pages/FindCompanyPage";
 import BlogsPage from "./Pages/BlogsPage";
 import ApplicationPage from "./Pages/ApplicationPage";
-import { AnimatePresence, motion } from "framer-motion";
 import { LoginPage, RegisterPage } from "./Pages/LoginRegister";
-import Profile  from "./Components/TalentProfile/Profile";
 import FindTalent from "./Pages/FindTalentPage";
 import TalentProfilePage from "./Pages/TalentProfilePage";
-
-const PageWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.4 }}
-  >
-    {children}
-  </motion.div>
-);
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import PostJobPage from "./Pages/PostJobPage";
 
 function App() {
   const theme = createTheme({
@@ -58,87 +48,26 @@ function App() {
     fontFamily: "Poppins, sans-serif",
   });
   return (
-    <AnimatePresence mode="wait">
-      <MantineProvider defaultColorScheme="dark" theme={theme}>
-        {/* <MantineProvider theme={theme}> */}
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/login"
-              element={
-                <PageWrapper>
-                  <LoginPage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <PageWrapper>
-                  <RegisterPage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/find-job"
-              element={
-                <PageWrapper>
-                  <FindJobsPage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/find-talent"
-              element={
-                <PageWrapper>
-                  <FindTalent />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/talent-profile"
-              element={
-                <PageWrapper>
-                  <TalentProfilePage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/find-company"
-              element={
-                <PageWrapper>
-                  <FindCompanyPage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/blogs"
-              element={
-                <PageWrapper>
-                  <BlogsPage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="/applications"
-              element={
-                <PageWrapper>
-                  <ApplicationPage />
-                </PageWrapper>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                <PageWrapper>
-                  <HomePage />
-                </PageWrapper>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </MantineProvider>
-    </AnimatePresence>
+    <MantineProvider defaultColorScheme="dark" theme={theme}>
+    {/* <MantineProvider  theme={theme}> */}
+
+      <BrowserRouter>
+      <Header />
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/find-job" element={<FindJobsPage />} />
+          <Route path="/post-job" element={<PostJobPage />} />
+          <Route path="/find-talent" element={<FindTalent />} />
+          <Route path="/talent-profile" element={<TalentProfilePage />} />
+          <Route path="/find-company" element={<FindCompanyPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/applications" element={<ApplicationPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </MantineProvider>
   );
 }
 

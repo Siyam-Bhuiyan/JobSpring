@@ -7,11 +7,11 @@ const Landing: React.FC = () => {
       <div className="hero-section w-full flex items-center justify-between px-10 bg-mine-shaft-950">
         {/* Left Content */}
         <div className="hero-text flex-1 mr-10">
-          <h1 className="text-7xl font-bold mb-4 text-white">
+          <h1 className="text-7xl font-bold mb-4 ">
             Find your <span className="text-bright-sun-500"> Dream Job</span> with
             us
           </h1>
-          <p className="text-2xl mb-6 text-white">
+          <p className="text-2xl mb-6">
             Good life begins with a good company. Start exploring thousands of
             jobs in one place.
           </p>
@@ -22,7 +22,7 @@ const Landing: React.FC = () => {
               className="search-input flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none"
             />
             <button
-              className="search-button px-4 py-2 bg-bright-sun-500 text-white rounded-r-md flex items-center 
+              className="search-button px-4 py-2 bg-bright-sun-500  rounded-r-md flex items-center 
   hover:bg-bright-sun-600 transition-colors duration-200"
             >
               <svg

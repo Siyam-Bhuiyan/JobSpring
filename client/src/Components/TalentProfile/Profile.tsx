@@ -1,5 +1,6 @@
 import { Avatar, Badge, Button, Divider, Text } from "@mantine/core";
 import { IconBookmark, IconBriefcase, IconMapPin } from "@tabler/icons-react";
+import RecommandedTalents from "../FindTalent/RecommandedTalents";
 
 interface TalentCardProps {
   name: string;
@@ -57,7 +58,7 @@ const Profile: React.FC<TalentCardProps> = ({
       <div className="px-3 mt-20">
         <div className="text-3xl font-semibold flex justify-between">
           Jarrod Wood
-          <Button color="yellow" variant="light">
+          <Button color="green" variant="light">
             Message
           </Button>
         </div>
@@ -88,7 +89,7 @@ const Profile: React.FC<TalentCardProps> = ({
               key={index}
               variant="filled"
               radius="sm"
-              color="green"
+              color="violet"
               className=" text-black px-3 py-1"
             >
               {skill}
@@ -112,10 +113,8 @@ const Profile: React.FC<TalentCardProps> = ({
         </div>
         <div className="text-gray-400 text-sm line-clamp-3 mb-6">{about}</div>
       </div>
-    </div>
-    <div className="w-1/3 p-5 absolute right-0 top-0">
       <div className="bg-mine-shaft-950 p-6 rounded-xl shadow-md w-full mb-5">
-        <div className="text-lg font-semibold mb-3">Experience</div>
+        <div className="text-lg font-semibold mb-3">Certifications</div>
         <div className="flex justify-between mb-4">
           <div className="flex gap-4">
             <Avatar src={image} size={50} radius="xl" />
@@ -130,6 +129,25 @@ const Profile: React.FC<TalentCardProps> = ({
         </div>
         <div className="text-gray-400 text-sm line-clamp-3 mb-6">{about}</div>
       </div>
+      <div className="bg-mine-shaft-950 p-6 rounded-xl shadow-md w-full mb-5">
+        <div className="text-lg font-semibold mb-3">Resume</div>
+        <div className="flex justify-between mb-4">
+          <div className="flex gap-4">
+            <Avatar src={image} size={50} radius="xl" />
+            <div>
+              <div className="text-lg font-semibold">{name}</div>
+              <Text size="sm" className="text-gray-400">
+                {role} • {company}
+              </Text>
+            </div>
+          </div>
+          <div className="text-sm">Jan 2018 - March 2022</div>
+        </div>
+        <div className="text-gray-400 text-sm line-clamp-3 mb-6">{about}</div>
+      </div>
+    </div>
+    <div className="w-1/3 p-5 absolute right-0 top-0">
+      <RecommandedTalents />
     </div>
 
     </div>

@@ -5,7 +5,7 @@ const Anonymousfeature = () => {
 <div className="flex gap-5 items-center"> 
   <Link
     to="/login"
-    className="bg-mine-shaft-900 p-2 rounded-full text-white hover:bg-mine-shaft-800 transition"
+    className=" p-2 rounded-full text-white hover:bg-mine-shaft-800 transition"
   >
     Log in
   </Link>

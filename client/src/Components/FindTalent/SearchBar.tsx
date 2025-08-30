@@ -29,7 +29,7 @@ const SearchBar = () => {
         </div>
         <RangeSlider
           size="xs"
-          color="yellow"
+          color="green"
           value={value}
           labelTransitionProps={{
             transition: "skew-down",

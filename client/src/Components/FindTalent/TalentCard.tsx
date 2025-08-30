@@ -26,8 +26,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
 }) => {
   return (
     <div
-      className="flex-4 cursor-pointer 
-                aspect-[4/3] 
+      className="flex-4 cursor-pointer                 
                  w-full max-w-sm 
                  bg-mine-shaft-900 
                  rounded-2xl p-6 shadow-md 
@@ -52,7 +51,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
       {/* Skills */}
       <div className="mb-4 flex flex-wrap gap-2">
         {topskills.map((skill, idx) => (
-          <Badge key={idx} color="green" radius="sm" variant="filled">
+          <Badge key={idx} color="violet" radius="sm" variant="filled">
             {skill}
           </Badge>
         ))}
@@ -66,7 +65,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
 
       {/* Bottom Section */}
       <div className="mt-3 flex justify-between items-center">
-        <Text className="font-bold text-lg text-white">
+        <Text className="font-bold text-lg ">
           {" "}
           &#x09F3; {expectedCtc}
         </Text>
@@ -81,7 +80,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
         <Link to="/talent-profile" >
           <Button
             variant="outline"
-            color="yellow"
+            color="green"
             radius="md"
             className="flex-1 "
             fullWidth
@@ -90,7 +89,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
           </Button>
         </Link>
         <Link to="/msg">
-        <Button variant="filled" color="yellow" radius="md" className="flex-1" fullWidth>
+        <Button variant="filled" color="green" radius="md" className="flex-1" fullWidth>
           Message
         </Button>
       </Link>
