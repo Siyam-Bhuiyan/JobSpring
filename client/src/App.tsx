@@ -10,8 +10,9 @@ import BlogsPage from "./Pages/BlogsPage";
 import ApplicationPage from "./Pages/ApplicationPage";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoginPage, RegisterPage } from "./Pages/LoginRegister";
-import Profile  from "./Pages/Profile";
+import Profile  from "./Components/TalentProfile/Profile";
 import FindTalent from "./Pages/FindTalentPage";
+import TalentProfilePage from "./Pages/TalentProfilePage";
 
 const PageWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
   <motion.div
@@ -79,14 +80,6 @@ function App() {
               }
             />
             <Route
-              path="/profile"
-              element={
-                <PageWrapper>
-                  <Profile />
-                </PageWrapper>
-              }
-            />
-            <Route
               path="/find-job"
               element={
                 <PageWrapper>
@@ -99,6 +92,14 @@ function App() {
               element={
                 <PageWrapper>
                   <FindTalent />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/talent-profile"
+              element={
+                <PageWrapper>
+                  <TalentProfilePage />
                 </PageWrapper>
               }
             />

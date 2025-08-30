@@ -1,6 +1,7 @@
 import React from "react";
 import { Badge, Text, Avatar, Divider, Button } from "@mantine/core";
 import { IconBookmark, IconMapPin } from "@tabler/icons-react";
+import { Link } from "react-router";
 
 interface TalentCardProps {
   name: string;
@@ -65,7 +66,10 @@ const TalentCard: React.FC<TalentCardProps> = ({
 
       {/* Bottom Section */}
       <div className="mt-3 flex justify-between items-center">
-        <Text className="font-bold text-lg text-white"> &#x09F3; {expectedCtc}</Text>
+        <Text className="font-bold text-lg text-white">
+          {" "}
+          &#x09F3; {expectedCtc}
+        </Text>
         <div className="flex items-center gap-2 text-gray-400 text-sm">
           <IconMapPin size={16} />
           {location}
@@ -74,22 +78,22 @@ const TalentCard: React.FC<TalentCardProps> = ({
 
       {/* Action Buttons */}
       <div className="mt-5 flex justify-between gap-3">
-        <Button
-          variant="outline"
-          color="yellow"
-          radius="md"
-          className="flex-1"
-        >
-          Profile
-        </Button>
-        <Button
-          variant="filled"
-          color="yellow"
-          radius="md"
-          className="flex-1"
-        >
+        <Link to="/talent-profile" >
+          <Button
+            variant="outline"
+            color="yellow"
+            radius="md"
+            className="flex-1 "
+            fullWidth
+          >
+            Profile
+          </Button>
+        </Link>
+        <Link to="/msg">
+        <Button variant="filled" color="yellow" radius="md" className="flex-1" fullWidth>
           Message
         </Button>
+      </Link>
       </div>
     </div>
   );
