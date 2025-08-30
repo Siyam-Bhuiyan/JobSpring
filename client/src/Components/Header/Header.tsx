@@ -23,6 +23,12 @@ const Header = () => {
         >
           Find Job
         </a>
+         <a
+          href="/find-talent"
+          className="transition-colors duration-300 hover:text-bright-sun-400 "
+        >
+          Find Talent
+        </a>
         <a
           href="/find-company"
           className="transition-colors duration-300 hover:text-bright-sun-400 "
@@ -44,7 +50,7 @@ const Header = () => {
       </div>
       <div className="flex gap-5 items-center">
         <Loginfeature />
-        {/* <Anonymousfeature /> */}
+        <Anonymousfeature />
       </div>
     </div>
   );

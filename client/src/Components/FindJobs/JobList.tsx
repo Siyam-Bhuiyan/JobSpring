@@ -4,7 +4,7 @@ import JobCard from "./JobCard";
 
 const JobList: React.FC = () => {
   return (
-    <div className="flex flex-wrap align-center justify-center gap-10 px-10">
+    <div className="flex flex-wrap justify-center gap-10 px-10">
       {jobCardList.map((job, index) => (
         <JobCard
           key={index}
