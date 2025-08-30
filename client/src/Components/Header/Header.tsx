@@ -44,7 +44,7 @@ const Header = () => {
       </div>
       <div className="flex gap-5 items-center">
         <Loginfeature />
-        {/* <Anonymousfeature /> */}
+        <Anonymousfeature />
       </div>
     </div>
   );

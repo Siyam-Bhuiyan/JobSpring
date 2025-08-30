@@ -9,8 +9,8 @@ import FindCompanyPage from "./Pages/FindCompanyPage";
 import BlogsPage from "./Pages/BlogsPage";
 import ApplicationPage from "./Pages/ApplicationPage";
 import { AnimatePresence, motion } from "framer-motion";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+import { LoginPage, RegisterPage } from "./Pages/LoginRegister";
+import Profile  from "./Pages/Profile";
 
 const PageWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
   <motion.div
@@ -58,10 +58,33 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <MantineProvider defaultColorScheme="dark" theme={theme}>
-      {/* <MantineProvider theme={theme}> */}
+        {/* <MantineProvider theme={theme}> */}
         <BrowserRouter>
-          <Header />
           <Routes>
+            <Route
+              path="/login"
+              element={
+                <PageWrapper>
+                  <LoginPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PageWrapper>
+                  <RegisterPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PageWrapper>
+                  <Profile />
+                </PageWrapper>
+              }
+            />
             <Route
               path="/find-job"
               element={
@@ -102,24 +125,7 @@ function App() {
                 </PageWrapper>
               }
             />
-            {/* <Route
-              path="/login"
-              element={
-                <PageWrapper>
-                  <Login />
-                </PageWrapper>
-              }
-            />
-             <Route
-              path="/register"
-              element={
-                <PageWrapper>
-                  <Register />
-                </PageWrapper>
-              } */}
-            {/* /> */}
           </Routes>
-          <Footer />
         </BrowserRouter>
       </MantineProvider>
     </AnimatePresence>
