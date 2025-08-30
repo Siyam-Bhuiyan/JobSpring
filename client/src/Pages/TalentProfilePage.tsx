@@ -10,7 +10,7 @@ const TalentProfilePage = () => {
       <Link to="/find-talent" className="my-4 inline-block">
         <Button
           leftSection={<IconArrowBack size={20} />}
-          color="yellow"
+          color="green"
           variant="light"
         >
           Back

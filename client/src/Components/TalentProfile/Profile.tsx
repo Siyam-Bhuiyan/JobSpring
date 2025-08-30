@@ -1,7 +1,5 @@
 import { Avatar, Badge, Button, Divider, Text } from "@mantine/core";
 import { IconBookmark, IconBriefcase, IconMapPin } from "@tabler/icons-react";
-import TalentCard from "../FindTalent/TalentCard";
-import Talents from "../FindTalent/Talents";
 import RecommandedTalents from "../FindTalent/RecommandedTalents";
 
 interface TalentCardProps {
@@ -60,7 +58,7 @@ const Profile: React.FC<TalentCardProps> = ({
       <div className="px-3 mt-20">
         <div className="text-3xl font-semibold flex justify-between">
           Jarrod Wood
-          <Button color="yellow" variant="light">
+          <Button color="green" variant="light">
             Message
           </Button>
         </div>
@@ -91,7 +89,7 @@ const Profile: React.FC<TalentCardProps> = ({
               key={index}
               variant="filled"
               radius="sm"
-              color="green"
+              color="violet"
               className=" text-black px-3 py-1"
             >
               {skill}

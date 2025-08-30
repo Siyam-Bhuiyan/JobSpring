@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 const NavLinks = () => {
   const links = [
     { label: "Find Job", href: "/find-job" },
+    { label: "Post Job", href: "/post-job" },
     { label: "Find Employee", href: "/find-talent" },
     { label: "Company", href: "/find-company" },
     { label: "Blogs", href: "/blogs" },

@@ -51,7 +51,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
       {/* Skills */}
       <div className="mb-4 flex flex-wrap gap-2">
         {topskills.map((skill, idx) => (
-          <Badge key={idx} color="green" radius="sm" variant="filled">
+          <Badge key={idx} color="violet" radius="sm" variant="filled">
             {skill}
           </Badge>
         ))}
@@ -80,7 +80,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
         <Link to="/talent-profile" >
           <Button
             variant="outline"
-            color="yellow"
+            color="green"
             radius="md"
             className="flex-1 "
             fullWidth
@@ -89,7 +89,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
           </Button>
         </Link>
         <Link to="/msg">
-        <Button variant="filled" color="yellow" radius="md" className="flex-1" fullWidth>
+        <Button variant="filled" color="green" radius="md" className="flex-1" fullWidth>
           Message
         </Button>
       </Link>
