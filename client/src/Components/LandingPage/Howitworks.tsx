@@ -20,7 +20,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-mine-shaft-950 text-white py-16">
+    <section className="bg-mine-shaft-950  py-16">
       <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-10">
         {/* Left Side Image */}
         <div className="relative flex justify-center">
@@ -56,7 +56,7 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <div key={index} className="flex items-center gap-4">
                 {/* Circle Icon */}
-                <div className="flex-shrink-0 w-16 h-16 bg-bright-sun-500 rounded-full flex items-center justify-center text-black font-semibold text-sm text-center leading-tight px-2">
+                <div className="flex-shrink-0 w-16 h-16 bg-bright-sun-500 rounded-full flex items-center justify-center text-black font-semibold text-xs text-center leading-tight px-2">
                   {step.icon}
                 </div>
 

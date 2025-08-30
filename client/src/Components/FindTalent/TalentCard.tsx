@@ -26,8 +26,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
 }) => {
   return (
     <div
-      className="flex-4 cursor-pointer 
-                aspect-[4/3] 
+      className="flex-4 cursor-pointer                 
                  w-full max-w-sm 
                  bg-mine-shaft-900 
                  rounded-2xl p-6 shadow-md 
@@ -66,7 +65,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
 
       {/* Bottom Section */}
       <div className="mt-3 flex justify-between items-center">
-        <Text className="font-bold text-lg text-white">
+        <Text className="font-bold text-lg ">
           {" "}
           &#x09F3; {expectedCtc}
         </Text>

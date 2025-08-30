@@ -7,7 +7,7 @@ const Loginfeature = () => {
     <div className="flex gap-5 items-center">
       <Link
         to="/profile"
-        className="flex gap-3 items-center px-3 py-2 rounded-full text-white hover:bg-mine-shaft-900 transition"
+        className="flex gap-3 items-center px-3 py-2 rounded-full  hover:bg-mine-shaft-900 transition"
       >
         <div>Sadia</div>
         <Avatar src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzfEh8uzY78s2IjM4WlINNSSpnS3DRdGtJTA&s"} alt="Profile Picture" />

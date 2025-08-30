@@ -1,6 +1,4 @@
 import { Button, Divider } from "@mantine/core";
-import Footer from "../Components/Footer/Footer";
-import Header from "../Components/Header/Header";
 import { Link } from "react-router-dom";
 import { IconArrowBack } from "@tabler/icons-react";
 import Profile from "../Components/TalentProfile/Profile";
@@ -8,7 +6,6 @@ import Profile from "../Components/TalentProfile/Profile";
 const TalentProfilePage = () => {
   return (
     <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif] p-4">
-      <Header />
       <Divider size="xs" mx="md" />
       <Link to="/find-talent" className="my-4 inline-block">
         <Button
@@ -29,7 +26,6 @@ const TalentProfilePage = () => {
         location="New York, United States"
         image="avatar1"
       />
-      <Footer />
     </div>
   );
 };

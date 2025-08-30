@@ -135,7 +135,7 @@ const categories = [
 
 const CompaniesAndCategories = () => {
   return (
-    <Box bg="mine-shaft-900" c="white" w="100%">
+    <Box bg="mine-shaft-900"  w="100%">
       <Container size="lg" w="100%">
         {/* Trusted Companies */}
         <Title order={1} ta="center" mb="xl" fw={700}>
@@ -178,7 +178,7 @@ const CompaniesAndCategories = () => {
                 >
                   {cat.icon}
                 </Box>
-                <Text fw={600} fz="lg" mb="xs" c="white">
+                <Text fw={600} fz="lg" mb="xs" >
                   {cat.title}
                 </Text>
                 <Text c="gray.4" fz="sm" mb="md">

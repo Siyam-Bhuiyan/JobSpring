@@ -19,12 +19,12 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-mine-shaft-950 text-white">
       {/* Newsletter Section */}
-      <div className="w-full px-6 py-8" style={{ borderBottom: "1px solid #333" }}>
+      <div className="w-full px-16 py-8" style={{ borderBottom: "1px solid #333" }}>
         <Grid align="center">
           <Grid.Col span={{ base: 12, md: 6 }}>
-            <Text size="xl" fw={600}>
+            <div className="text-3xl font-semibold">
               Never Want to Miss a Job Opportunity?
-            </Text>
+            </div>
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Group wrap="nowrap">
