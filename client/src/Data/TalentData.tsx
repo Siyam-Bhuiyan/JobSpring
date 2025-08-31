@@ -8,7 +8,7 @@ export interface SearchField {
 
 export const searchFields: SearchField[] = [
   {
-    title: "Job Title",
+    title: "Job Title", 
     icon: IconSearch,
     options: [
       "Designer",
@@ -85,7 +85,7 @@ export const talents: Talent[] = [
       "As a UX/UI Designer at Adobe, I am dedicated to crafting visually compelling and user-centric designs. My expertise in Figma, Sketch, and InVision allows me to create intuitive interfaces that enhance user experience across digital platforms.",
     expectedCtc: "35 - 50 LPA",
     location: "Los Angeles, United States",
-    image: "avatar2",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Alice",
   },
   {
     name: "Bruce Wayne",
@@ -96,7 +96,7 @@ export const talents: Talent[] = [
       "Full Stack Developer with expertise in scalable web applications. Passionate about building robust systems and creating seamless user experiences from backend to frontend.",
     expectedCtc: "40 - 60 LPA",
     location: "Gotham, United States",
-    image: "avatar3",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Bruce",
   },
   {
     name: "Clark Kent",
@@ -107,7 +107,7 @@ export const talents: Talent[] = [
       "Data Analyst skilled in data visualization and predictive analytics. Experienced in turning complex datasets into actionable insights for business growth.",
     expectedCtc: "25 - 40 LPA",
     location: "Metropolis, United States",
-    image: "avatar4",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Clark",
   },
   {
     name: "Natasha Romanoff",
@@ -118,7 +118,7 @@ export const talents: Talent[] = [
       "Cybersecurity expert with a focus on threat detection and risk management. Strong background in securing enterprise systems against modern cyber threats.",
     expectedCtc: "45 - 70 LPA",
     location: "Moscow, Russia",
-    image: "avatar5",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Natasha",
   },
   {
     name: "Tony Stark",
@@ -129,7 +129,7 @@ export const talents: Talent[] = [
       "AI/ML Engineer with deep expertise in building intelligent systems. Passionate about innovation in machine learning, natural language processing, and computer vision.",
     expectedCtc: "70 - 100 LPA",
     location: "New York, United States",
-    image: "avatar6",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Tony",
   },
   {
     name: "Steve Rogers",
@@ -140,7 +140,7 @@ export const talents: Talent[] = [
       "Experienced Project Manager with a proven track record in leading cross-functional teams. Skilled at managing resources, timelines, and project risks.",
     expectedCtc: "30 - 45 LPA",
     location: "Brooklyn, United States",
-    image: "avatar7",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Steve",
   },
   {
     name: "Wanda Maximoff",
@@ -151,7 +151,7 @@ export const talents: Talent[] = [
       "Product Designer passionate about creating human-centered experiences. Adept at blending creativity with usability to design impactful digital products.",
     expectedCtc: "28 - 42 LPA",
     location: "Sokovia",
-    image: "avatar8",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Wanda",
   },
   {
     name: "Peter Parker",
@@ -162,7 +162,7 @@ export const talents: Talent[] = [
       "Frontend Developer specializing in modern web technologies. Focused on performance optimization and building user-friendly responsive interfaces.",
     expectedCtc: "20 - 35 LPA",
     location: "Queens, United States",
-    image: "avatar9",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Peter",
   },
   {
     name: "Carol Danvers",
@@ -173,7 +173,7 @@ export const talents: Talent[] = [
       "Cloud Architect with expertise in designing and deploying scalable cloud infrastructures. Skilled in cloud migration, DevOps practices, and system optimization.",
     expectedCtc: "55 - 80 LPA",
     location: "Washington, D.C., United States",
-    image: "avatar10",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Carol",
   },
   {
     name: "T'Challa",
@@ -184,6 +184,6 @@ export const talents: Talent[] = [
       "Business Analyst with experience in bridging business goals and technology solutions. Strong skills in requirement gathering, stakeholder management, and data-driven decision making.",
     expectedCtc: "32 - 48 LPA",
     location: "Wakanda",
-    image: "avatar11",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=T'Challa",
   },
 ];

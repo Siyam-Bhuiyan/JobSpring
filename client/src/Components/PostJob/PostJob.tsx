@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-import {
-  TextInput,
-  Select,
-  MultiSelect,
-  Textarea,
-  Button,
-  Paper,
-  Title,
-} from "@mantine/core";
+import { Select, MultiSelect, Button, Paper } from "@mantine/core";
 import TextEditor from "./TextEditor";
 import Link from "@mui/material/Link";
-import { IconArrowBack } from "@tabler/icons-react";
 
 const PostJobForm: React.FC = () => {
   const [skills, setSkills] = useState<string[]>([]);

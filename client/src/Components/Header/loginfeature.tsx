@@ -12,12 +12,12 @@ const Loginfeature = () => {
         <div>Sadia</div>
         <Avatar src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzfEh8uzY78s2IjM4WlINNSSpnS3DRdGtJTA&s"} alt="Profile Picture" />
       </Link>
-      <div className="bg-crete-900 p-2 rounded-full ">
+      <div className="bg-crete-900 p-2 rounded-full hover:bg-mine-shaft-800 transition ">
         <IconSettings />
       </div>
-      <div className="bg-crete-900 p-2 rounded-full">
+      <div className="bg-crete-900 p-2  hover:bg-mine-shaft-800 transition rounded-full">
         <Indicator color="pink" offset={6} size={8} position="top-end">
-          <IconBell />
+          <IconBell  />
         </Indicator>
       </div>
     </div>
