@@ -11,26 +11,22 @@ import ApplicationPage from "./Pages/ApplicationPage";
 import { LoginPage, RegisterPage } from "./Pages/LoginRegister";
 import FindTalent from "./Pages/FindTalentPage";
 import TalentProfilePage from "./Pages/TalentProfilePage";
-import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import PostJobPage from "./Pages/PostJobPage";
 import { AuthProvider } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import AdminDashboard from "./Pages/Dashboards/AdminDashboard";
+import RecruiterDashboard from "./Pages/Dashboards/RecruiterDashboard";
+import JobSeekerDashboard from "./Pages/Dashboards/JobSeekerDashboard";
 
-const AdminDashboard = () => <h1>Admin Dashboard</h1>;
-const RecruiterDashboard = () => <h1>Recruiter Dashboard</h1>;
-const JobSeekerDashboard = () => <h1>Job Seeker Dashboard</h1>;
-const Unauthorized = () => <h1>Unauthorized Access</h1>;
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
-  // Hide header/footer on login & register pages
   const hideLayout = ["/login", "/register"].includes(location.pathname);
 
   return (
     <>
-      {!hideLayout && <Header />}
       {children}
       {!hideLayout && <Footer />}
     </>
@@ -101,7 +97,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/unauthorized" element={<Unauthorized />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/find-job" element={<FindJobsPage />} />
               <Route path="/post-job" element={<PostJobPage />} />
@@ -110,7 +106,6 @@ function App() {
               <Route path="/find-company" element={<FindCompanyPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
               <Route path="/applications" element={<ApplicationPage />} />
-              <Route path="/" element={<HomePage />} />
             </Routes>
           </Layout>
         </BrowserRouter>

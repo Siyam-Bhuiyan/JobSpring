@@ -1,8 +1,6 @@
 import { Briefcase } from "tabler-icons-react";
-import Loginfeature from "./loginfeature";
-import Anonymousfeature from "./Anonymousfeature";
-import NavLinks from "./NavLink";
 import { Link } from "react-router-dom";
+import NavLinks from "./NavLink/NavLink";
 
 const Header = () => {
   return (
@@ -10,48 +8,25 @@ const Header = () => {
       <div className="text-bright-sun-500 flex gap-3 items-center transition-all duration-300 hover:scale-105 hover:text-bright-sun-400">
         <Briefcase className="h-10 w-10" />
         <div className="text-2xl font-semibold ">
-          <Link to="/" >
-            JobSpring
-          </Link>
+          <Link to="/">JobSpring</Link>
         </div>
       </div>
-      {/* Navigation Links */}
-      {/* <div className="flex gap-5">
-        <a
-          href="/find-job"
-          className="transition-colors duration-300 hover:text-bright-sun-400 "
-        >
-          Find Job
-        </a>
-         <a
-          href="/find-talent"
-          className="transition-colors duration-300 hover:text-bright-sun-400 "
-        >
-          Find employee
-        </a>
-        <a
-          href="/find-company"
-          className="transition-colors duration-300 hover:text-bright-sun-400 "
-        >
-          Company
-        </a>
-        <a
-          href="/blogs"
-          className="transition-colors duration-300 hover:text-bright-sun-400 "
-        >
-          Blogs
-        </a>
-        <a
-          href="/applications"
-          className="transition-colors duration-300 hover:text-bright-sun-400 "
-        >
-          Applications
-        </a>
-      </div> */}
-       {NavLinks()}
+      {NavLinks()}
       <div className="flex gap-5 items-center">
-        <Loginfeature />
-        <Anonymousfeature />
+        <div className="flex gap-5 items-center">
+          <Link
+            to="/login"
+            className=" p-2 rounded-full text-white hover:bg-mine-shaft-800 transition"
+          >
+            Log in
+          </Link>
+          <Link
+            to="/register"
+            className="bg-bright-sun-500 p-2 rounded-full text-white hover:bg-bright-sun-400 transition"
+          >
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );
