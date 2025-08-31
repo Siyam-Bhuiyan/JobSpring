@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "tabler-icons-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext"; // <- your auth context
 
 // ---------------- LOGIN ----------------
@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
       <div className="text-bright-sun-500 flex gap-3 items-center transition-all duration-300 hover:scale-105 hover:text-bright-sun-400">
         <Briefcase className="h-10 w-10" />
         <div className="text-2xl font-semibold">
-          <a href="/">JobSpring</a>
+          <Link to="/">JobSpring</Link>
         </div>
       </div>
 
@@ -88,9 +88,9 @@ const LoginPage: React.FC = () => {
 
           <p className="text-center text-sm text-mine-shaft-300 mt-6">
             Don't have an account?{" "}
-            <a href="/register" className="text-bright-sun-400 hover:underline">
+            <Link to="/register" className="text-bright-sun-400 hover:underline">
               Sign up
-            </a>
+            </Link>
           </p>
         </motion.div>
       </div>

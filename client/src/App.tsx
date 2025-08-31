@@ -11,6 +11,7 @@ import ApplicationPage from "./Pages/ApplicationPage";
 import { LoginPage, RegisterPage } from "./Pages/LoginRegister";
 import FindTalent from "./Pages/FindTalentPage";
 import TalentProfilePage from "./Pages/TalentProfilePage";
+import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import PostJobPage from "./Pages/PostJobPage";
 import { AuthProvider } from "./auth/AuthContext";
@@ -23,10 +24,11 @@ import JobSeekerDashboard from "./Pages/Dashboards/JobSeekerDashboard";
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
-  const hideLayout = ["/login", "/register"].includes(location.pathname);
+  const hideLayout = ["/login", "/register","/"].includes(location.pathname);
 
   return (
     <>
+      {!hideLayout && <Header />}
       {children}
       {!hideLayout && <Footer />}
     </>
