@@ -4,6 +4,7 @@ import { IconBookmark, IconMapPin } from "@tabler/icons-react";
 import { Link } from "react-router";
 
 interface TalentCardProps {
+  id: string | number;
   name: string;
   role: string;
   company: string;
@@ -15,16 +16,18 @@ interface TalentCardProps {
 }
 
 const TalentCard: React.FC<TalentCardProps> = ({
+  id,
   name,
   role,
   company,
   topskills,
-  about,
+  about, 
   expectedCtc,
   location,
   image,
 }) => {
   return (
+        <Link to={`/talent-details/${id}`} className="block no-underline">
     <div
       className="flex-4 cursor-pointer                 
                  w-full max-w-sm 
@@ -95,6 +98,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
       </Link>
       </div>
     </div>
+    </Link>
   );
 };
 

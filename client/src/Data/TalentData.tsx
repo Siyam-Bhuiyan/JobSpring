@@ -65,6 +65,7 @@ export const searchFields: SearchField[] = [
 ];
 
 export interface Talent {
+  id: number;
   name: string;
   role: string;
   company: string;
@@ -77,6 +78,7 @@ export interface Talent {
 
 export const talents: Talent[] = [
   {
+    id: 1,
     name: "Diana Prince",
     role: "UX/UI Designer",
     company: "Adobe",
@@ -88,6 +90,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Alice",
   },
   {
+    id: 2,
     name: "Bruce Wayne",
     role: "Full Stack Developer",
     company: "Wayne Enterprises",
@@ -99,6 +102,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Bruce",
   },
   {
+    id: 3,
     name: "Clark Kent",
     role: "Data Analyst",
     company: "Daily Planet",
@@ -110,6 +114,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Clark",
   },
   {
+    id: 4,
     name: "Natasha Romanoff",
     role: "Cybersecurity Specialist",
     company: "S.H.I.E.L.D.",
@@ -121,6 +126,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Natasha",
   },
   {
+    id: 5,
     name: "Tony Stark",
     role: "AI/ML Engineer",
     company: "Stark Industries",
@@ -132,6 +138,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Tony",
   },
   {
+    id: 6,
     name: "Steve Rogers",
     role: "Project Manager",
     company: "Avengers Initiative",
@@ -143,6 +150,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Steve",
   },
   {
+    id: 7,
     name: "Wanda Maximoff",
     role: "Product Designer",
     company: "VisionTech",
@@ -154,6 +162,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Wanda",
   },
   {
+    id: 8,
     name: "Peter Parker",
     role: "Frontend Developer",
     company: "Parker Web Solutions",
@@ -165,6 +174,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Peter",
   },
   {
+    id: 9,
     name: "Carol Danvers",
     role: "Cloud Architect",
     company: "NASA",
@@ -176,6 +186,7 @@ export const talents: Talent[] = [
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Carol",
   },
   {
+    id: 10,
     name: "T'Challa",
     role: "Business Analyst",
     company: "Wakanda Tech",

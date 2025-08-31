@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 const CompanyList: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-10 px-10">
+    <div className="flex flex-col gap-10 px-10">
       {companyData.map((company) => (
         <Link to={`/company-details/${company.id}`} key={company.id}>
-          <CompanyCard 
+          <CompanyCard  
             id={company.id}
             logo={company.logo}
             name={company.name}
