@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Select, MultiSelect, Button, Paper } from "@mantine/core";
 import TextEditor from "./TextEditor";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 
 const PostJobForm: React.FC = () => {
   const [skills, setSkills] = useState<string[]>([]);
@@ -110,4 +110,4 @@ const PostJobForm: React.FC = () => {
   );
 };
 
-export default PostJobForm;
+export default PostJobForm; 

@@ -33,9 +33,9 @@ export const dropdownData = [
     ],
   },
   {
-    title: "Experience",
+    title: "Company",
     icon: IconBriefcase,
-    options: ["Entry Level", "Intermediate", "Expert"],
+    options: ["Meta", "Google", "Amazon", "Microsoft", "Spotify"],
   },
   {
     title: "Job Type",

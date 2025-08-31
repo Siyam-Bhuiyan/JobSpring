@@ -8,19 +8,19 @@ const NavLinks = () => {
     { label: "Blogs", href: "/login" },
   ];
   const location = useLocation();
+
   return (
-    <div className="flex gap-5 text-white h-full items-center ">
+    <div className="flex gap-5 text-white h-full items-center">
       {links.map((link, index) => (
         <div
+          key={index} 
           className={`${
-            location.pathname == "/" + link.href
-              ? "border-bright-sun-400 text-bright-sun-400 "
-              : "border-transparent"
-          } border-t-[3px] h-full flex items-center transition-colors duration-300 hover:text-bright-sun-400 `}
+            location.pathname === link.href 
+              ? "border-b-2 border-green-400 text-green-400"
+              : "border-b-2 border-transparent"
+          } h-full flex items-center transition-colors duration-300 hover:text-green-400`}
         >
-          <Link key={index} to={link.href}>
-            {link.label}
-          </Link>
+          <Link to={link.href}>{link.label}</Link>
         </div>
       ))}
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import "@mantine/tiptap/styles.css"; 
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import FindJobsPage from "./Pages/FindJobsPage";
