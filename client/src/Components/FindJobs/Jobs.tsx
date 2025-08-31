@@ -8,7 +8,7 @@ const Jobs=()=>{
                 <div className="text-2xl font-semibold">Recommanded Jobs</div>
                 <Sort/>
             </div>
-           <JobList/>
+           <JobList/> 
         </div>
     )
 }

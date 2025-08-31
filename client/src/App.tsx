@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import "@mantine/tiptap/styles.css"; 
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import FindJobsPage from "./Pages/FindJobsPage";
@@ -19,6 +20,9 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import AdminDashboard from "./Pages/Dashboards/AdminDashboard";
 import RecruiterDashboard from "./Pages/Dashboards/RecruiterDashboard";
 import JobSeekerDashboard from "./Pages/Dashboards/JobSeekerDashboard";
+import JobDetailsPage from "./Pages/JobDetailsPage";
+import CompanyDetailsPage from "./Pages/CompanyDetailsPage";
+import JobApplicationForm from "./Components/Application/JobApplicationForms";
 
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -100,7 +104,11 @@ function App() {
                 }
               />
               <Route path="/" element={<HomePage />} />
+              <Route path="/job-details/:id" element={<JobDetailsPage />} />
+              <Route path="/company-details/:id" element={<CompanyDetailsPage />} />
+              <Route path="/talent-details/:id" element={<TalentProfilePage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/apply-job" element={<JobApplicationForm />} />
               <Route path="/find-job" element={<FindJobsPage />} />
               <Route path="/post-job" element={<PostJobPage />} />
               <Route path="/find-talent" element={<FindTalent />} />

@@ -58,7 +58,7 @@ const MultiSelectCreatable = (props:any) => {
         <Group gap="sm">
           <Checkbox
             size="xs"
-            color="yellow"
+            color="green"
             checked={value.includes(item)}
             onChange={() => {}}
             aria-hidden

@@ -1,6 +1,5 @@
-import { Box, Button, Card, Container, Grid, Typography } from "@mantine/core";
 import React from "react";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 const Landing: React.FC = () => {
   return (
     <div>
@@ -11,7 +10,7 @@ const Landing: React.FC = () => {
             Find your <span className="text-bright-sun-500"> Dream Job</span> with
             us
           </h1>
-          <p className="text-2xl mb-6">
+          <p className="text-2xl mt-2 mb-6">
             Good life begins with a good company. Start exploring thousands of
             jobs in one place.
           </p>

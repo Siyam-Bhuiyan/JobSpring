@@ -7,20 +7,21 @@ const AdminNavLinks = () => {
     { label: "Company", href: "/find-company" },
     { label: "Blogs", href: "/blogs" },
   ];
+
   const location = useLocation();
+
   return (
-    <div className="flex gap-5 text-white h-full items-center ">
+    <div className="flex gap-5 text-white h-full items-center">
       {links.map((link, index) => (
         <div
+          key={index} 
           className={`${
-            location.pathname == "/" + link.href
-              ? "border-bright-sun-400 text-bright-sun-400 "
-              : "border-transparent"
-          } border-t-[3px] h-full flex items-center transition-colors duration-300 hover:text-bright-sun-400 `}
+            location.pathname === link.href
+              ? "border-t-[3px] border-bright-sun-400 text-bright-sun-400"
+              : "border-t-[3px] border-transparent"
+          } h-full flex items-center transition-colors duration-300 hover:text-bright-sun-400`}
         >
-          <Link key={index} to={link.href}>
-            {link.label}
-          </Link>
+          <Link to={link.href}>{link.label}</Link>
         </div>
       ))}
     </div>

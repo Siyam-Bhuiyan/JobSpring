@@ -11,7 +11,7 @@ const PostJobPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-3xl p-10 font-bold">Post a Job</div>
+        <div className="text-3xl p-10 font-bold flex justify-center">Post a Job</div>
         <PostJobForm />
       </motion.div>
     </div>

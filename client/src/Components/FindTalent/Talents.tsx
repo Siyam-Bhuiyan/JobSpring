@@ -5,11 +5,11 @@ const Talents=()=>{
     return(
         <div className="p-10">
             <div className="flex justify-between mb-5">
-                <div className="text-2xl font-semibold">Talents</div>
+                <div className="text-2xl font-semibold">Job Seekers</div>
                 <Sort/>
             </div>
            <TalentList/>
-        </div>
+        </div> 
     )
 }
 export default Talents;

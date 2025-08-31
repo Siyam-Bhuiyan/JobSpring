@@ -33,9 +33,9 @@ export const dropdownData = [
     ],
   },
   {
-    title: "Experience",
+    title: "Company",
     icon: IconBriefcase,
-    options: ["Entry Level", "Intermediate", "Expert"],
+    options: ["Meta", "Google", "Amazon", "Microsoft", "Spotify"],
   },
   {
     title: "Job Type",
@@ -47,6 +47,7 @@ export const dropdownData = [
 // Job list data
 export const jobList = [
   {
+    id: 1,
     jobTitle: "Product Designer",
     company: "Meta",
     applicants: 25,
@@ -56,6 +57,7 @@ export const jobList = [
     package: "32 LPA",
   },
   {
+    id: 2,
     jobTitle: "Frontend Developer",
     company: "Google",
     applicants: 40,
@@ -65,6 +67,7 @@ export const jobList = [
     package: "28 LPA",
   },
   {
+    id: 3,
     jobTitle: "Backend Engineer",
     company: "Amazon",
     applicants: 18,
@@ -74,6 +77,7 @@ export const jobList = [
     package: "45 LPA",
   },
   {
+    id: 4,
     jobTitle: "Data Analyst",
     company: "Microsoft",
     applicants: 30,
@@ -83,6 +87,7 @@ export const jobList = [
     package: "12 LPA",
   },
   {
+    id: 5,
     jobTitle: "UI/UX Designer",
     company: "Spotify",
     applicants: 22,
@@ -95,6 +100,7 @@ export const jobList = [
 
 export const jobCardList = [
   {
+    id: 1,
     logo: "https://logo.clearbit.com/meta.com",
     jobTitle: "Product Designer",
     company: "Meta",
@@ -106,8 +112,10 @@ export const jobCardList = [
       "Meta is seeking a Product Designer to join our team. You'll be working on designing user-centric interfaces for our blockchain projects.",
     package: "₹32 LPA",
     posted: "12 days ago",
+    skills: ["Figma", "Sketch", "UI/UX", "Prototyping", "Design Systems"],
   },
   {
+    id: 2,
     logo: "https://logo.clearbit.com/netflix.com",
     jobTitle: "Sr. UX Designer",
     company: "Netflix",
@@ -119,8 +127,10 @@ export const jobCardList = [
       "Netflix is looking for a Sr. UX Designer to enhance user experiences on streaming platforms. Ideal candidates will have strong UI skills.",
     package: "₹40 LPA",
     posted: "5 days ago",
+    skills: ["Wireframing", "Adobe XD", "Interaction Design", "User Research"],
   },
   {
+    id: 3,
     logo: "https://logo.clearbit.com/microsoft.com",
     jobTitle: "Product Designer",
     company: "Microsoft",
@@ -132,8 +142,10 @@ export const jobCardList = [
       "Join Microsoft as a Product Designer and contribute to our Lightspeed LA studio. We're looking for designers who thrive in innovative spaces.",
     package: "₹35 LPA",
     posted: "4 days ago",
+    skills: ["Figma", "Illustrator", "User Testing", "Design Thinking"],
   },
   {
+    id: 4,
     logo: "https://logo.clearbit.com/google.com",
     jobTitle: "Frontend Developer",
     company: "Google",
@@ -145,8 +157,10 @@ export const jobCardList = [
       "Google is hiring a Frontend Developer to work on scalable web applications with cutting-edge frameworks like React and Next.js.",
     package: "₹28 LPA",
     posted: "8 days ago",
+    skills: ["React", "Next.js", "TypeScript", "JavaScript", "CSS"],
   },
   {
+    id: 5,
     logo: "https://logo.clearbit.com/amazon.com",
     jobTitle: "Backend Engineer",
     company: "Amazon",
@@ -158,8 +172,10 @@ export const jobCardList = [
       "Amazon is looking for a Backend Engineer to build APIs and services for large-scale e-commerce platforms.",
     package: "₹45 LPA",
     posted: "15 days ago",
+    skills: ["Java", "Spring Boot", "Node.js", "Microservices", "AWS"],
   },
   {
+    id: 6,
     logo: "https://logo.clearbit.com/spotify.com",
     jobTitle: "UI/UX Designer",
     company: "Spotify",
@@ -171,8 +187,10 @@ export const jobCardList = [
       "Spotify seeks a UI/UX Designer to design seamless experiences across music and podcast apps.",
     package: "₹20 LPA",
     posted: "6 days ago",
+    skills: ["Figma", "Adobe XD", "Design Systems", "User Flows"],
   },
   {
+    id: 7,
     logo: "https://logo.clearbit.com/airbnb.com",
     jobTitle: "Full Stack Developer",
     company: "Airbnb",
@@ -184,8 +202,10 @@ export const jobCardList = [
       "Airbnb is seeking a Full Stack Developer to build high-performance booking and user management systems.",
     package: "₹30 LPA",
     posted: "10 days ago",
+    skills: ["React", "Node.js", "Express", "MongoDB", "REST APIs"],
   },
   {
+    id: 8,
     logo: "https://logo.clearbit.com/adobe.com",
     jobTitle: "Graphic Designer",
     company: "Adobe",
@@ -197,8 +217,10 @@ export const jobCardList = [
       "Adobe is looking for a creative Graphic Designer Intern to help craft branding and digital assets for marketing campaigns.",
     package: "₹10 LPA",
     posted: "3 days ago",
+    skills: ["Photoshop", "Illustrator", "InDesign", "Branding", "Typography"],
   },
   {
+    id: 9,
     logo: "https://logo.clearbit.com/ibm.com",
     jobTitle: "Data Scientist",
     company: "IBM",
@@ -210,8 +232,10 @@ export const jobCardList = [
       "IBM is hiring a Data Scientist to work on advanced ML and AI solutions for enterprise clients.",
     package: "₹48 LPA",
     posted: "7 days ago",
+    skills: ["Python", "R", "TensorFlow", "Machine Learning", "SQL"],
   },
   {
+    id: 10,
     logo: "https://logo.clearbit.com/tesla.com",
     jobTitle: "Machine Learning Engineer",
     company: "Tesla",
@@ -223,6 +247,8 @@ export const jobCardList = [
       "Tesla is looking for a Machine Learning Engineer to build intelligent systems for autonomous driving.",
     package: "₹55 LPA",
     posted: "2 days ago",
+    skills: ["Python", "PyTorch", "Deep Learning", "Computer Vision", "C++"],
   },
 ];
+
 

@@ -1,8 +1,8 @@
 import { Button, Divider } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { IconArrowBack } from "@tabler/icons-react";
-import Profile from "../Components/TalentProfile/Profile";
 import { motion } from "framer-motion";
+import ProfilePage from "../Components/TalentProfile/Profile";
 
 const TalentProfilePage = () => {
   return (
@@ -22,16 +22,7 @@ const TalentProfilePage = () => {
             Back
           </Button>
         </Link>
-        <Profile
-          name="Jarrod Wood"
-          role="Software Engineer"
-          company="Google"
-          topskills={["React", "SpringBoot", "MongoDB"]}
-          about="As a Software Engineer at Google, I specialize in building scalable and high-performance applications. My expertise lies in integrating front-end and back-end technologies to deliver seamless user experiences."
-          expectedCtc="₹48 - 60 LPA"
-          location="New York, United States"
-          image="avatar1"
-        />
+        <ProfilePage />
       </motion.div>
     </div>
   );
