@@ -80,7 +80,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
 
       {/* Action Buttons */}
       <div className="mt-5 flex justify-between gap-3">
-        <Link to="/talent-profile" >
+        <Link to={`/talent-find/${id}`} >
           <Button
             variant="outline"
             color="green"

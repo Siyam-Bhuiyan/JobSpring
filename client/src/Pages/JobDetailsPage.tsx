@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Badge, Button, Card, Divider } from "@mantine/core";
 import { motion } from "framer-motion";
 import {
@@ -71,12 +71,14 @@ const JobDetailsPage = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
+                  <Link to="/apply-job">
                   <Button
                     color="green"
                     className=" text-black px-4 py-2 rounded-lg"
                   >
                     Apply
                   </Button>
+                  </Link>
                   <IconBookmark className="w-6 h-6 mt-2 text-bright-sun-400 cursor-pointer" />
                 </div>
               </div>

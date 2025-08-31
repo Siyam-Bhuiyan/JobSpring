@@ -14,7 +14,6 @@ const HomePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div>HomePage</div>
           <Landing />
           <CompaniesAndCategories />
           <HowItWorks />

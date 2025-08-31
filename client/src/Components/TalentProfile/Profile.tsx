@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Avatar, Badge, Button, Divider, Text } from "@mantine/core";
 import RecommandedTalents from "../FindTalent/RecommandedTalents";
 import { IconBriefcase, IconMapPin } from "@tabler/icons-react";
