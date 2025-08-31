@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import FindJobsPage from "./Pages/FindJobsPage";
 import FindCompanyPage from "./Pages/FindCompanyPage";
@@ -14,6 +14,26 @@ import TalentProfilePage from "./Pages/TalentProfilePage";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import PostJobPage from "./Pages/PostJobPage";
+import { AuthProvider } from "./auth/AuthContext";
+import ProtectedRoute from "./auth/ProtectedRoute";
+import AdminDashboard from "./Pages/Dashboards/AdminDashboard";
+import RecruiterDashboard from "./Pages/Dashboards/RecruiterDashboard";
+import JobSeekerDashboard from "./Pages/Dashboards/JobSeekerDashboard";
+
+
+function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  const hideLayout = ["/login", "/register","/"].includes(location.pathname);
+
+  return (
+    <>
+      {!hideLayout && <Header />}
+      {children}
+      {!hideLayout && <Footer />}
+    </>
+  );
+}
 
 function App() {
   const theme = createTheme({
@@ -47,26 +67,51 @@ function App() {
     },
     fontFamily: "Poppins, sans-serif",
   });
+
   return (
     <MantineProvider defaultColorScheme="dark" theme={theme}>
-    {/* <MantineProvider  theme={theme}> */}
-
-      <BrowserRouter>
-      <Header />
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/find-job" element={<FindJobsPage />} />
-          <Route path="/post-job" element={<PostJobPage />} />
-          <Route path="/find-talent" element={<FindTalent />} />
-          <Route path="/talent-profile" element={<TalentProfilePage />} />
-          <Route path="/find-company" element={<FindCompanyPage />} />
-          <Route path="/blogs" element={<BlogsPage />} />
-          <Route path="/applications" element={<ApplicationPage />} />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute allowedRoles={["admin"]}>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/recruiter"
+                element={
+                  <ProtectedRoute allowedRoles={["recruiter"]}>
+                    <RecruiterDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/job-seeker"
+                element={
+                  <ProtectedRoute allowedRoles={["job-seeker"]}>
+                    <JobSeekerDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/find-job" element={<FindJobsPage />} />
+              <Route path="/post-job" element={<PostJobPage />} />
+              <Route path="/find-talent" element={<FindTalent />} />
+              <Route path="/talent-profile" element={<TalentProfilePage />} />
+              <Route path="/find-company" element={<FindCompanyPage />} />
+              <Route path="/blogs" element={<BlogsPage />} />
+              <Route path="/applications" element={<ApplicationPage />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </AuthProvider>
     </MantineProvider>
   );
 }
