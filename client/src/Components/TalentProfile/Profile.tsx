@@ -69,7 +69,7 @@ const Profile: React.FC<TalentCardProps> = ({
         <div className="text-lg flex gap-1 items-center text-mine-shaft-300">
           <IconMapPin className="h-5 w-5" stroke={1.5} /> New york, United
           States
-        </div>
+        </div> 
       </div>
       <Divider size="xs" mx="md" className="my-4" />
       <div className="bg-mine-shaft-950 p-6 rounded-xl shadow-md w-full mb-5 ">
