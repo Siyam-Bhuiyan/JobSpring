@@ -1,3 +1,28 @@
+import { IconMapPin,  IconSearch } from "@tabler/icons-react";
+
+export const dropdownData = [
+  {
+    title: "Company Title",
+    icon: IconSearch,
+    options: ["Meta", "Google", "Amazon", "Microsoft", "Spotify"],
+
+  },
+  {
+    title: "Location",
+    icon: IconMapPin,
+    options: [
+      "Delhi",
+      "New York",
+      "San Francisco",
+      "London",
+      "Berlin",
+      "Tokyo",
+      "Sydney",
+      "Toronto",
+    ],
+  },
+];
+
 export interface Company {
   id: number;
   logo: string;

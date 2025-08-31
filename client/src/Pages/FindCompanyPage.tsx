@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import SearchBar from "../Components/FindJobs/SearchBar";
 import { Divider } from "@mantine/core";
 import Company from "../Components/Company/Company";
+import SearchBar from "../Components/Company/SearchBar";
 
 const FindCompanyPage = () => {
   return (
