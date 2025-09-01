@@ -8,7 +8,7 @@ const Talents=()=>{
                 <div className="text-2xl font-semibold">Job Seekers</div>
                 <Sort/>
             </div>
-           <TalentList/>
+           <TalentList/> 
         </div> 
     )
 }

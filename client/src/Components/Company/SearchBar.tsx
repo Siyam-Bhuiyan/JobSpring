@@ -9,7 +9,7 @@ const SearchBar = () => {
         <>
           <div key={index} className="w-1/2">
             <MultiSelectCreatable {...item} />
-          </div>
+          </div> 
           <Divider mr="xs" size="xs" orientation="vertical" />
         </>
       ))}

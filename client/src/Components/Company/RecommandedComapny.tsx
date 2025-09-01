@@ -7,7 +7,7 @@ interface RecommandedCompanyProps {
 }
 
 const RecommandedCompany = ({ id }: RecommandedCompanyProps) => {
-    return(
+    return( 
         <div >
             <div className="text-2xl font-semibold mb-2">Recommanded Companies</div>
             <div className="flex flex-col flex-wrap gap-5">

@@ -123,7 +123,7 @@ const RegisterPage: React.FC = () => {
       <div className="text-bright-sun-500 flex gap-3 items-center transition-all duration-300 hover:scale-105 hover:text-bright-sun-400">
         <Briefcase className="h-10 w-10" />
         <div className="text-2xl font-semibold">
-          <a href="/">JobSpring</a>
+          <Link to="/">JobSpring</Link>
         </div>
       </div>
 
@@ -195,9 +195,9 @@ const RegisterPage: React.FC = () => {
 
           <p className="text-center text-sm text-mine-shaft-300 mt-6">
             Already have an account?{" "}
-            <a href="/login" className="text-bright-sun-400 hover:underline">
+            <Link to="/login" className="text-bright-sun-400 hover:underline">
               Login
-            </a>
+            </Link>
           </p>
         </motion.div>
       </div>
