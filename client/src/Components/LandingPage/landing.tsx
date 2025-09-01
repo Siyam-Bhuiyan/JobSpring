@@ -18,7 +18,7 @@ const Landing: React.FC = () => {
             <input
               type="text"
               placeholder="Search a job"
-              className="search-input flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none"
+              className="search-input flex-1 px-4 py-2 bg-mine-shaft-900 border border-mine-shaft-300 rounded-l-md focus:outline-none"
             />
             <button
               className="search-button px-4 py-2 bg-bright-sun-500  rounded-r-md flex items-center 

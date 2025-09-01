@@ -8,6 +8,7 @@ interface TalentCardProps {
   name: string;
   role: string;
   company: string;
+  experience: string;
   topskills: string[];
   about: string;
   expectedCtc: string;
@@ -27,7 +28,6 @@ const TalentCard: React.FC<TalentCardProps> = ({
   image,
 }) => {
   return (
-        <Link to={`/talent-details/${id}`} className="block no-underline">
     <div
       className="flex-4 cursor-pointer                 
                  w-full max-w-sm 
@@ -77,10 +77,10 @@ const TalentCard: React.FC<TalentCardProps> = ({
           {location}
         </div>
       </div>
-
+ 
       {/* Action Buttons */}
       <div className="mt-5 flex justify-between gap-3">
-        <Link to={`/talent-find/${id}`} >
+        <Link to={`/talent-details/${id}`} className="block no-underline">
           <Button
             variant="outline"
             color="green"
@@ -98,7 +98,7 @@ const TalentCard: React.FC<TalentCardProps> = ({
       </Link>
       </div>
     </div>
-    </Link>
+
   );
 };
 

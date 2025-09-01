@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 interface CompanyCardProps {
   id: string | number;
   logo: string;
-  name: string;
+  name: string; 
   job: string[];
   location: string;
   employees: number;

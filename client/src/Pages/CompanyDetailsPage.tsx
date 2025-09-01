@@ -20,14 +20,21 @@ const CompanyDetailsPage = () => {
 
   if (!company) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white">
-        <h2>Company not found</h2>
+      <div className="min-h-[100vh] flex items-center justify-center bg-mine-shaft-950 font-[Poppins, sans-serif] p-4">
+        <Divider size="xs" mx="md" />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2>Company not found</h2>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif] text-white p-5">
+    <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif] p-5">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
