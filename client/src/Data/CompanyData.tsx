@@ -63,7 +63,7 @@ export const companyData: Company[] = [
   },
   {
     id: 4,
-    logo: "https://logo.clearbit.com/amazon.com",
+    logo: "https://cdn.worldvectorlogo.com/logos/amazon-dark.svg",
     name: "Amazon",
     job: ["Software Engineer", "Product Manager", "Data Scientist","Full Stack Developer","UX Designer","Frontend Developer","Backend Developer"],
     location: "Seattle, WA, USA",
@@ -72,7 +72,7 @@ export const companyData: Company[] = [
   },
   {
     id: 5,
-    logo: "https://logo.clearbit.com/apple.com",
+    logo: "https://cdn.worldvectorlogo.com/logos/apple-13.svg",
     name: "Apple",
     job: ["Software Engineer", "Product Manager", "Data Scientist","Full Stack Developer","UX Designer","Frontend Developer","Backend Developer"],
     location: "Cupertino, CA, USA",
@@ -81,7 +81,7 @@ export const companyData: Company[] = [
   },
   {
     id: 6,
-    logo: "https://logo.clearbit.com/microsoft.com",
+    logo: "https://cdn.worldvectorlogo.com/logos/microsoft-5.svg",
     name: "Microsoft",
     job: ["Software Engineer", "Product Manager", "Data Scientist","Full Stack Developer","UX Designer","Frontend Developer","Backend Developer"],
     location: "Redmond, WA, USA",
@@ -117,7 +117,7 @@ export const companyData: Company[] = [
   },
   {
     id: 10,
-    logo: "https://logo.clearbit.com/spotify.com",
+    logo: "https://cdn.worldvectorlogo.com/logos/spotify-2.svg",
     name: "Spotify",
     job: ["Software Engineer", "Product Manager", "Data Scientist","Full Stack Developer","UX Designer","Frontend Developer","Backend Developer"],
     location: "Stockholm, Sweden",
