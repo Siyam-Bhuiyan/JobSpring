@@ -6,6 +6,8 @@ const NavLinks = () => {
     { label: "Find Employee", href: "/login" },
     { label: "Company", href: "/login" },
     { label: "Blogs", href: "/login" },
+    { label: "ChatBot", href: "/login" },
+
   ];
   const location = useLocation();
 

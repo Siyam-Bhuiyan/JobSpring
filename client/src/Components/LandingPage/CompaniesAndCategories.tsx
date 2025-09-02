@@ -79,25 +79,26 @@
 // };
 
 // export default Showcase;
-import { Box, Container, Grid, Title, Text, Card, Group } from "@mantine/core";
+import { Box, Container, Grid, Title, Text, Group } from "@mantine/core";
 import {
   IconCurrencyDollar,
-  IconUsers,
   IconSpeakerphone,
   IconCode,
   IconPalette,
 } from "@tabler/icons-react";
-import React from "react";
+import { companyData } from "../../Data/CompanyData";
+import { Link } from "react-router-dom";
 
 const companies = [
-  "https://cdn.worldvectorlogo.com/logos/microsoft.svg",
-  "https://cdn.worldvectorlogo.com/logos/pinterest-1.svg",
-  "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg",
-  "https://cdn.worldvectorlogo.com/logos/spotify-2.svg",
-  "https://cdn.worldvectorlogo.com/logos/oracle-6.svg",
-  "https://cdn.worldvectorlogo.com/logos/walmart.svg",
-  "https://cdn.worldvectorlogo.com/logos/google-icon.svg",
-  "https://cdn.worldvectorlogo.com/logos/amazon-icon-1.svg",
+  "https://cdn.worldvectorlogo.com/logos/pinterest-3.svg",
+  "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg", 
+  "https://cdn.worldvectorlogo.com/logos/oracle-6.svg", 
+  "https://cdn.worldvectorlogo.com/logos/walmart-4.svg",
+  "https://cdn.worldvectorlogo.com/logos/tesla-1.svg",
+  "https://cdn.worldvectorlogo.com/logos/ibm.svg",
+  "https://cdn.worldvectorlogo.com/logos/airbnb-2.svg",
+  
+
 ];
 
 const categories = [
@@ -134,8 +135,10 @@ const categories = [
 ];
 
 const CompaniesAndCategories = () => {
+  // const [mounted, setMounted] = useState(false);
+  // useEffect(() => setMounted(true), []);
   return (
-    <Box bg="mine-shaft-900"  w="100%">
+    <Box bg="mine-shaft-900" w="100%">
       <Container size="lg" w="100%">
         {/* Trusted Companies */}
         <Title order={1} ta="center" mb="xl" fw={700}>
@@ -153,9 +156,23 @@ const CompaniesAndCategories = () => {
             </Box>
           ))}
         </Group>
+        <div className="flex justify-center">
+          {companyData.map((company, index) => (
+            <Link
+              to={`/login`}
+              key={index}
+              rel="noopener noreferrer"
+              className="mx-8 inline-block"
+            >
+              <img src={company.logo} alt={company.name} className="h-12" />
+            </Link>
+          ))}
+        </div>
+
+        {/* <CompanyMarquee /> */}
 
         {/* Job Categories */}
-        <Box ta="center" mb={40}>
+        <Box ta="center" mb={40} mt={60}>
           <Title order={1} fw={700}>
             Browse <span className="text-bright-sun-500">Job</span> Category
           </Title>
@@ -167,7 +184,7 @@ const CompaniesAndCategories = () => {
 
         <Grid>
           {categories.map((cat, index) => (
-            <Grid.Col span={{ base: 12, sm: 6, md: 4, lg: 3 }} key={index}>
+            <Grid.Col span={{ base: 12, sm: 6, md: 6, lg: 3 }} key={index}>
               <div className="shadow-lg rounded-md border border-bright-sun-500 p-6 text-center bg-transparent hover:scale-105 hover:shadow-lg transition-transform duration-300">
                 <Box
                   w={60}
@@ -178,7 +195,7 @@ const CompaniesAndCategories = () => {
                 >
                   {cat.icon}
                 </Box>
-                <Text fw={600} fz="lg" mb="xs" >
+                <Text fw={600} fz="lg" mb="xs">
                   {cat.title}
                 </Text>
                 <Text c="gray.4" fz="sm" mb="md">
