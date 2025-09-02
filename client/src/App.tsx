@@ -27,6 +27,7 @@ import PreUniversityDashboard from "./PreUniversity/PreUniversityDashboard";
 import ChatBotPage from "./Pages/ChatBotPage";
 import CareerPlanningPage from "./PreUniversity/CareerPlanningPage";
 import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPAge";
+import ProfilePage from "./Components/Profile/ProfilePage";
 
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -131,6 +132,7 @@ function App() {
               <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
               <Route path="/applications" element={<ApplicationPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </Layout>
         </BrowserRouter>

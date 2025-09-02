@@ -19,9 +19,9 @@ const Header = () => {
   useEffect(() => {
     // For example, pick the first user as logged-in
     //setUserData(users[0]);   //admin
-    //setUserData(users[1]); //job seeker
-    //setUserData(users[2]); //recruiter
-    setUserData(users[3]); //pre-university
+    setUserData(users[1]); //job seeker
+   // setUserData(users[2]); //recruiter
+    //setUserData(users[3]); //pre-university
 
   }, []);
 
@@ -74,7 +74,7 @@ const Header = () => {
       {userData ? (
         <div className="flex gap-5 items-center">
           <Link
-            to="/"
+            to="/profile"
             className="flex gap-3 items-center px-3 py-2 rounded-full hover:bg-mine-shaft-900 transition"
           >
             <div>{name}</div>
