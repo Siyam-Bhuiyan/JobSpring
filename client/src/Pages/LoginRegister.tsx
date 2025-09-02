@@ -9,7 +9,7 @@ const LoginPage: React.FC = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker">("job-seeker");
+  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker" | "pre-university">("job-seeker");
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -19,6 +19,8 @@ const LoginPage: React.FC = () => {
     if (role === "admin") navigate("/admin");
     if (role === "recruiter") navigate("/recruiter");
     if (role === "job-seeker") navigate("/job-seeker");
+    if (role === "pre-university") navigate("/pre-university");
+
   };
 
   return (
@@ -73,6 +75,7 @@ const LoginPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
               >
                 <option value="job-seeker">Job Seeker</option>
+                <option value="pre-university">Pre-University</option>
                 <option value="recruiter">Recruiter</option>
                 <option value="admin">Admin</option>
               </select>
@@ -104,7 +107,7 @@ const RegisterPage: React.FC = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker">("job-seeker");
+  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker" | "pre-university">("job-seeker");
   const navigate = useNavigate();
 
   const handleRegister = (e: React.FormEvent) => {
@@ -115,6 +118,7 @@ const RegisterPage: React.FC = () => {
     if (role === "admin") navigate("/admin");
     if (role === "recruiter") navigate("/recruiter");
     if (role === "job-seeker") navigate("/job-seeker");
+    if (role === "pre-university") navigate("/pre-university");
   };
 
   return (
@@ -169,6 +173,7 @@ const RegisterPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
               >
                 <option value="job-seeker">Job Seeker</option>
+                <option value="pre-university">Pre-University</option>
                 <option value="recruiter">Recruiter</option>
                 <option value="admin">Admin</option>
               </select>

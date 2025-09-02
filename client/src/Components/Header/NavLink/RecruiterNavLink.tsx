@@ -7,6 +7,8 @@ const RecruiterNavLinks = () => {
     { label: "Find Employee", href: "/find-talent" },
     { label: "Company", href: "/find-company" },
     { label: "Blogs", href: "/blogs" },
+    { label: "ChatBot", href: "/chatbot" },
+
   ];
 
   const location = useLocation();

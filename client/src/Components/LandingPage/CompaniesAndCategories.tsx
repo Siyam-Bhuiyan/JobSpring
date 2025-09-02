@@ -79,17 +79,13 @@
 // };
 
 // export default Showcase;
-import { Box, Container, Grid, Title, Text, Card, Group } from "@mantine/core";
+import { Box, Container, Grid, Title, Text, Group } from "@mantine/core";
 import {
   IconCurrencyDollar,
-  IconUsers,
   IconSpeakerphone,
   IconCode,
   IconPalette,
 } from "@tabler/icons-react";
-import React, { useEffect, useState } from "react";
-import Marquee from "react-fast-marquee";
-import CompanyMarquee from "./CompanyMarquee";
 import { companyData } from "../../Data/CompanyData";
 import { Link } from "react-router-dom";
 

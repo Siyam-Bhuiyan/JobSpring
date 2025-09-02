@@ -11,6 +11,7 @@ import NavLinks from "./NavLink/NavLink";
 import RecruiterNavLinks from "./NavLink/RecruiterNavLink";
 import JobSeekerNavLinks from "./NavLink/JobSeekerNavLink";
 import { users, type UserData } from "../../Data/UserData";
+import PreUniversityNavLinks from "../../PreUniversity/PreUniversityNavLink";
 
 const Header = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -19,7 +20,9 @@ const Header = () => {
     // For example, pick the first user as logged-in
     //setUserData(users[0]);   //admin
     //setUserData(users[1]); //job seeker
-    setUserData(users[2]); //recruiter
+    //setUserData(users[2]); //recruiter
+    setUserData(users[3]); //pre-university
+
   }, []);
 
   const role = userData?.role;
@@ -34,6 +37,8 @@ const Header = () => {
         return <Link to="/job-seeker">JobSpring</Link>;
       case "recruiter":
         return <Link to="/recruiter">JobSpring</Link>;
+      case "pre-university":
+        return <Link to="/pre-university">JobSpring</Link>;
       default:
         return <Link to="/">JobSpring</Link>;
     }
@@ -47,13 +52,15 @@ const Header = () => {
         return <JobSeekerNavLinks />;
       case "recruiter":
         return <RecruiterNavLinks />;
+      case "pre-university":
+        return <PreUniversityNavLinks />;
       default:
         return <NavLinks />;
     }
   };
 
   return (
-    <div className="w-full bg-mine-shaft-950 text-white px-6 h-28 flex justify-between items-center">
+    <div className="sticky top-0 z-50 shadow-md w-full bg-mine-shaft-950 text-white px-6 h-28 flex justify-between items-center">
       {/* Logo */}
       <div className="text-bright-sun-500 flex gap-3 items-center transition-all duration-300 hover:scale-105 hover:text-bright-sun-400">
         <Briefcase className="h-10 w-10" />

@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 
-const JobSeekerNavLinks = () => {
+const PreUniversityNavLinks = () => {
   const links = [
     { label: "Find Job", href: "/find-job" },
     { label: "Company", href: "/find-company" },
+    { label: "Career Planning", href: "/career-planning" },
+    { label: "Interview Questions", href: "/interview-questions" },
     { label: "Blogs", href: "/blogs" },
-    { label: "Applications", href: "/applications" },
     { label: "ChatBot", href: "/chatbot" },
-
   ];
 
   const location = useLocation();
@@ -30,4 +30,4 @@ const JobSeekerNavLinks = () => {
   );
 };
 
-export default JobSeekerNavLinks;
+export default PreUniversityNavLinks;

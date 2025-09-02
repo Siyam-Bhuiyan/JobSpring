@@ -1,7 +1,7 @@
 // src/data/userdata.tsx
 export interface UserData {
   name: string;
-  role: "admin" | "job-seeker" | "recruiter";
+  role: "admin" | "job-seeker" | "recruiter" | "pre-university";
   avatar?: string;
 }
 
@@ -22,4 +22,9 @@ export const users: UserData[] = [
     role: "recruiter",
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=carol",
   },
+  {
+    name: "David Brown",
+    role: "pre-university",
+    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=david",
+  }
 ];

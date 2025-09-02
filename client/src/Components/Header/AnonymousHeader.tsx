@@ -4,7 +4,7 @@ import NavLinks from "./NavLink/NavLink";
 
 const AnonymousHeader = () => {
   return (
-    <div className="w-full bg-mine-shaft-950 text-white px-6  h-28 flex justify-between items-center">
+    <div className="sticky top-0 z-50  shadow-md w-full bg-mine-shaft-950 text-white px-6  h-28 flex justify-between items-center">
       <div className="text-bright-sun-500 flex gap-3 items-center transition-all duration-300 hover:scale-105 hover:text-bright-sun-400">
         <Briefcase className="h-10 w-10" />
         <div className="text-2xl font-semibold ">

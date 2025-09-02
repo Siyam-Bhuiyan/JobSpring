@@ -23,6 +23,10 @@ import JobSeekerDashboard from "./Pages/Dashboards/JobSeekerDashboard";
 import JobDetailsPage from "./Pages/JobDetailsPage";
 import CompanyDetailsPage from "./Pages/CompanyDetailsPage";
 import JobApplicationForm from "./Components/Application/JobApplicationForms";
+import PreUniversityDashboard from "./PreUniversity/PreUniversityDashboard";
+import ChatBotPage from "./Pages/ChatBotPage";
+import CareerPlanningPage from "./PreUniversity/CareerPlanningPage";
+import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPAge";
 
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -103,6 +107,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/pre-university"
+                element={
+                  <ProtectedRoute allowedRoles={["pre-university"]}>
+                    <PreUniversityDashboard />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/" element={<HomePage />} />
               <Route path="/job-details/:id" element={<JobDetailsPage />} />
               <Route path="/company-details/:id" element={<CompanyDetailsPage />} />
@@ -114,8 +126,11 @@ function App() {
               <Route path="/find-talent" element={<FindTalent />} />
               <Route path="/talent-profile" element={<TalentProfilePage />} />
               <Route path="/find-company" element={<FindCompanyPage />} />
-              <Route path="/blogs" element={<BlogsPage />} />
+              <Route path="/chatbot" element={<ChatBotPage />} />
+              <Route path="/career-planning" element={<CareerPlanningPage />} />
+              <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
               <Route path="/applications" element={<ApplicationPage />} />
+              <Route path="/blogs" element={<BlogsPage />} />
             </Routes>
           </Layout>
         </BrowserRouter>
