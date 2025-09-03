@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./useAuth";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -14,7 +14,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
     return <Navigate to="/login" replace />;
   }
 
-  if (!allowedRoles.includes(user.role)) {
+  // Map backend roles to frontend route roles
+  const roleMapping: Record<string, string> = {
+    "user": "job-seeker",
+    "preuniversity": "pre-university",
+    "admin": "admin",
+    "recruiter": "recruiter"
+  };
+
+  const frontendRole = roleMapping[user.role] || user.role;
+
+  if (!allowedRoles.includes(frontendRole as "admin" | "recruiter" | "job-seeker" | "pre-university")) {
     return <Navigate to="/" replace />;
   }
 
