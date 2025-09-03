@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "tabler-icons-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/useAuth";
+import { useAuth } from "../auth/hooks";
 
 // ---------------- LOGIN ----------------
 const LoginPage: React.FC = () => {
@@ -156,7 +156,6 @@ const RegisterPage: React.FC = () => {
           navigate('/');
       }
     } catch (err) {
-      // Error is already handled in AuthContext
       console.error("Registration failed:", err);
     }
   };

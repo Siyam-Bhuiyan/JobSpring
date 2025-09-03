@@ -15,7 +15,7 @@ import TalentProfilePage from "./Pages/TalentProfilePage";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import PostJobPage from "./Pages/PostJobPage";
-import { AuthProvider } from "./auth/AuthContext";
+import { AuthProvider } from "./auth/auth";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import AdminDashboard from "./Pages/Dashboards/AdminDashboard";
 import RecruiterDashboard from "./Pages/Dashboards/RecruiterDashboard";
