@@ -1,7 +1,7 @@
 package com.jobspring.enums;
 
 public enum Role {
-    user, recruiter, admin;
+    user, recruiter, admin, preuniversity;
 
     public static boolean isValid(String v) {
         if (v == null) return false;

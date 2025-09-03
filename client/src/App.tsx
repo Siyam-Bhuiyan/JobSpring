@@ -26,7 +26,7 @@ import JobApplicationForm from "./Components/Application/JobApplicationForms";
 import PreUniversityDashboard from "./PreUniversity/PreUniversityDashboard";
 import ChatBotPage from "./Pages/ChatBotPage";
 import CareerPlanningPage from "./PreUniversity/CareerPlanningPage";
-import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPAge";
+import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPage";
 import ProfilePage from "./Components/Profile/ProfilePage";
 
 

@@ -62,4 +62,16 @@ public class UserController {
                 "name", u.getName()
         );
     }
+
+    @PostMapping("/auth/register")
+    public Map<String, Object> register(@RequestBody User user) {
+        User created = service.create(user);
+        return Map.of(
+                "message", "registration successful",
+                "userId", created.getId(),
+                "role", created.getRole(),
+                "email", created.getEmail(),
+                "name", created.getName()
+        );
+    }
 }
