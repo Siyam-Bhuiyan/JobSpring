@@ -12,22 +12,34 @@ import RecruiterNavLinks from "./NavLink/RecruiterNavLink";
 import JobSeekerNavLinks from "./NavLink/JobSeekerNavLink";
 import { users, type UserData } from "../../Data/UserData";
 import PreUniversityNavLinks from "../../PreUniversity/PreUniversityNavLink";
-
+import {useAuth} from "../../auth/auth";
 const Header = () => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+//   const [userData, setUserData] = useState<UserData | null>(null);
 
-  useEffect(() => {
-    // For example, pick the first user as logged-in
-    //setUserData(users[0]);   //admin
-    setUserData(users[1]); //job seeker
-   // setUserData(users[2]); //recruiter
-    //setUserData(users[3]); //pre-university
+//   useEffect(() => {
+//     // For example, pick the first user as logged-in
+//     //setUserData(users[0]);   //admin
+//    // setUserData(users[1]); //job seeker
+//     setUserData(users[2]); //recruiter
+//     //setUserData(users[3]); //pre-university
 
-  }, []);
+//   }, []);
 
-  const role = userData?.role;
-  const name = userData?.name;
-  const avatar = userData?.avatar;
+//   const API_BASE_URL = 'http://localhost:8081/api';
+
+//   export interface User {
+//   id: number;
+//   name: string;
+//   email: string;
+//   role: "admin" | "recruiter" | "job-seeker" | "pre-university" | "user";
+// }
+
+   const { user } = useAuth();
+
+  const role = user?.role;
+  const name = user?.name;
+  const avatar = "https://via.placeholder.com/40";
+
 
   const renderHome = () => {
     switch (role) {
@@ -64,14 +76,14 @@ const Header = () => {
       {/* Logo */}
       <div className="text-bright-sun-500 flex gap-3 items-center transition-all duration-300 hover:scale-105 hover:text-bright-sun-400">
         <Briefcase className="h-10 w-10" />
-        <div className="text-2xl font-semibold">{userData ? renderHome() : <Link to="/">JobSpring</Link>}</div>
+        <div className="text-2xl font-semibold">{user ? renderHome() : <Link to="/">JobSpring</Link>}</div>
       </div>
 
       {/* Role-based navigation */}
-      {userData ? renderNavLinks() : <NavLinks />}
+      {user ? renderNavLinks() : <NavLinks />}
 
       {/* Profile / Login */}
-      {userData ? (
+      {user ? (
         <div className="flex gap-5 items-center">
           <Link
             to="/profile"

@@ -15,17 +15,24 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   }
 
   // Map backend roles to frontend route roles
-  const roleMapping: Record<string, string> = {
-    "user": "job-seeker",
-    "preuniversity": "pre-university",
-    "admin": "admin",
-    "recruiter": "recruiter"
-  };
+const roleMapping: Record<string, "admin" | "recruiter" | "job-seeker" | "pre-university"> = {
+  "user": "job-seeker",
+  "preuniversity": "pre-university",
+  "admin": "admin",
+  "recruiter": "recruiter",
+};
+
 
   const frontendRole = roleMapping[user.role] || user.role;
 
-  if (!allowedRoles.includes(frontendRole as "admin" | "recruiter" | "job-seeker" | "pre-university")) {
-    return <Navigate to="/" replace />;
+  if (!allowedRoles.includes(frontendRole as "admin" )) {
+    return <Navigate to="/admin" replace />;
+  }else if (!allowedRoles.includes(frontendRole as "recruiter")) {
+    return <Navigate to="/recruiter" replace />;
+  }else if (!allowedRoles.includes(frontendRole as "job-seeker")) {
+    return <Navigate to="/job-seeker" replace />;
+  }else if (!allowedRoles.includes(frontendRole as "pre-university")) {
+    return <Navigate to="/pre-university" replace />;
   }
 
   return <>{children}</>;
