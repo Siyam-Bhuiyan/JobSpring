@@ -2,25 +2,46 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "tabler-icons-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext"; // <- your auth context
+import { useAuth } from "../auth/useAuth";
 
 // ---------------- LOGIN ----------------
 const LoginPage: React.FC = () => {
-  const { login } = useAuth();
+  const { login, loading, error } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker" | "pre-university">("job-seeker");
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    login(email, role);
-
-    if (role === "admin") navigate("/admin");
-    if (role === "recruiter") navigate("/recruiter");
-    if (role === "job-seeker") navigate("/job-seeker");
-    if (role === "pre-university") navigate("/pre-university");
-
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return;
+    }
+    
+    try {
+      const response = await login({ email, password });
+      
+      // Navigate based on role
+      switch (response.role) {
+        case 'admin':
+          navigate('/admin');
+          break;
+        case 'recruiter':
+          navigate('/recruiter');
+          break;
+        case 'user':
+          navigate('/job-seeker');
+          break;
+        case 'preuniversity':
+          navigate('/pre-university');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (err) {
+      // Error is already handled in AuthContext
+      console.error("Login failed:", err);
+    }
   };
 
   return (
@@ -52,6 +73,7 @@ const LoginPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -63,29 +85,20 @@ const LoginPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
 
-            {/* Role Select */}
-            <div>
-              <label className="block text-sm mb-1 text-mine-shaft-200">Role</label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value as any)}
-                className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
-              >
-                <option value="job-seeker">Job Seeker</option>
-                <option value="pre-university">Pre-University</option>
-                <option value="recruiter">Recruiter</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
+            {error && (
+              <div className="text-red-500 text-sm text-center">{error}</div>
+            )}
 
             <button
               type="submit"
-              className="w-full text-white bg-bright-sun-500 hover:bg-bright-sun-600 transition rounded-xl py-2 font-semibold shadow-lg"
+              disabled={loading}
+              className="w-full text-white bg-bright-sun-500 hover:bg-bright-sun-600 transition rounded-xl py-2 font-semibold shadow-lg disabled:opacity-50"
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
           </form>
 
@@ -103,22 +116,49 @@ const LoginPage: React.FC = () => {
 
 // ---------------- REGISTER ----------------
 const RegisterPage: React.FC = () => {
-  const { login } = useAuth();
+  const { register, loading, error } = useAuth();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker" | "pre-university">("job-seeker");
+  const [role, setRole] = useState<"admin" | "recruiter" | "job-seeker" | "pre-university" | "user">("job-seeker");
   const navigate = useNavigate();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now: simulate registration by logging in directly
-    login(email, role);
-
-    if (role === "admin") navigate("/admin");
-    if (role === "recruiter") navigate("/recruiter");
-    if (role === "job-seeker") navigate("/job-seeker");
-    if (role === "pre-university") navigate("/pre-university");
+    if (!fullName || !email || !password) {
+      alert("Please fill in all fields");
+      return;
+    }
+    
+    try {
+      const response = await register({
+        name: fullName,
+        email,
+        password,
+        role: role === "job-seeker" ? "user" : role === "pre-university" ? "preuniversity" : role,
+      });
+      
+      // Navigate based on role after registration
+      switch (response.role) {
+        case 'admin':
+          navigate('/admin');
+          break;
+        case 'recruiter':
+          navigate('/recruiter');
+          break;
+        case 'user':
+          navigate('/job-seeker');
+          break;
+        case 'preuniversity':
+          navigate('/pre-university');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (err) {
+      // Error is already handled in AuthContext
+      console.error("Registration failed:", err);
+    }
   };
 
   return (
@@ -150,6 +190,7 @@ const RegisterPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                required
               />
             </div>
 
@@ -161,6 +202,7 @@ const RegisterPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -169,7 +211,7 @@ const RegisterPage: React.FC = () => {
               <label className="block text-sm mb-1 text-mine-shaft-200">Role</label>
               <select
                 value={role}
-                onChange={(e) => setRole(e.target.value as any)}
+                onChange={(e) => setRole(e.target.value as "admin" | "recruiter" | "job-seeker" | "pre-university" | "user")}
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
               >
                 <option value="job-seeker">Job Seeker</option>
@@ -187,14 +229,20 @@ const RegisterPage: React.FC = () => {
                 className="w-full px-4 py-2 rounded-xl bg-mine-shaft-700 focus:ring-2 focus:ring-sky-blue-500 focus:outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
 
+            {error && (
+              <div className="text-red-500 text-sm text-center">{error}</div>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-bright-sun-500 hover:bg-bright-sun-600 transition rounded-xl py-2 font-semibold text-white shadow-lg"
+              disabled={loading}
+              className="w-full bg-bright-sun-500 hover:bg-bright-sun-600 transition rounded-xl py-2 font-semibold text-white shadow-lg disabled:opacity-50"
             >
-              Register
+              {loading ? "Creating Account..." : "Register"}
             </button>
           </form>
 
