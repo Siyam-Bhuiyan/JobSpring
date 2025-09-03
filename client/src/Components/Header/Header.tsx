@@ -14,25 +14,18 @@ import { users, type UserData } from "../../Data/UserData";
 import PreUniversityNavLinks from "../../PreUniversity/PreUniversityNavLink";
 import {useAuth} from "../../auth/auth";
 const Header = () => {
-//   const [userData, setUserData] = useState<UserData | null>(null);
+  // const [userData, setUserData] = useState<UserData | null>(null);
 
-//   useEffect(() => {
-//     // For example, pick the first user as logged-in
-//     //setUserData(users[0]);   //admin
-//    // setUserData(users[1]); //job seeker
-//     setUserData(users[2]); //recruiter
-//     //setUserData(users[3]); //pre-university
+  // useEffect(() => {
+  //   // For example, pick the first user as logged-in
+  //   //setUserData(users[0]);   //admin
+  //  // setUserData(users[1]); //job seeker
+  //   setUserData(users[2]); //recruiter
+  //   //setUserData(users[3]); //pre-university
 
-//   }, []);
+  // }, []);
 
-//   const API_BASE_URL = 'http://localhost:8081/api';
 
-//   export interface User {
-//   id: number;
-//   name: string;
-//   email: string;
-//   role: "admin" | "recruiter" | "job-seeker" | "pre-university" | "user";
-// }
 
    const { user } = useAuth();
 
@@ -45,7 +38,7 @@ const Header = () => {
     switch (role) {
       case "admin":
         return <Link to="/admin">JobSpring</Link>;
-      case "job-seeker":
+      case "user":
         return <Link to="/job-seeker">JobSpring</Link>;
       case "recruiter":
         return <Link to="/recruiter">JobSpring</Link>;
@@ -60,7 +53,7 @@ const Header = () => {
     switch (role) {
       case "admin":
         return <AdminNavLinks />;
-      case "job-seeker":
+      case "user":
         return <JobSeekerNavLinks />;
       case "recruiter":
         return <RecruiterNavLinks />;
