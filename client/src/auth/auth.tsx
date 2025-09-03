@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
 const API_BASE_URL = 'http://localhost:8081/api';
 
@@ -89,6 +89,13 @@ class AuthService {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export { AuthContext };
+
+// Hook
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  return ctx;
+};
 
 // Provider Component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "tabler-icons-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/hooks";
+import { useAuth } from "../auth/auth";
 
 // ---------------- LOGIN ----------------
 const LoginPage: React.FC = () => {
