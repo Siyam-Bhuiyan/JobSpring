@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Paperclip } from "lucide-react";
 import { Button, Card, Divider } from "@mantine/core";
-import { jobCardList } from "../../Data/JobsData";
+import { jobCardList } from "../Data/JobsData";
 import { IconArrowLeft } from "@tabler/icons-react";
 
 const JobApplicationForm = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const job = jobCardList.find((j) => j.id === Number(id));
 
   const [formData, setFormData] = useState({
@@ -19,6 +20,12 @@ const JobApplicationForm = () => {
     coverLetter: "",
   });
 
+  useEffect(() => {
+    if (location.state?.formData) {
+      setFormData(location.state.formData);
+    }
+  }, [location.state]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -27,6 +34,7 @@ const JobApplicationForm = () => {
       setFormData({ ...formData, [name]: value });
     }
   };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,7 +73,7 @@ const JobApplicationForm = () => {
               </Button>
             </div>
         <div className="flex items-center gap-3 mb-6">
-          <div className="  p-2 rounded-lg">
+          <div className="p-2 rounded-lg">
             <img
               src={job.logo}
               alt={job.company}
@@ -183,7 +191,7 @@ const JobApplicationForm = () => {
               color="green"
               type="submit"
               size="md"
-              onClick={() => navigate("/preview-application")}
+              onClick={() => navigate("/preview-application", { state: { formData, job } })}
               className="bg-bright-sun-400 text-black px-6 py-2 rounded-lg"
               >
               Preview   
