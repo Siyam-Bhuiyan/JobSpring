@@ -22,12 +22,13 @@ import RecruiterDashboard from "./Pages/Dashboards/RecruiterDashboard";
 import JobSeekerDashboard from "./Pages/Dashboards/JobSeekerDashboard";
 import JobDetailsPage from "./Pages/JobDetailsPage";
 import CompanyDetailsPage from "./Pages/CompanyDetailsPage";
-import JobApplicationForm from "./Components/Application/JobApplicationForms";
+import JobApplicationForm from "./Pages/JobApplicationForms";
 import PreUniversityDashboard from "./PreUniversity/PreUniversityDashboard";
 import ChatBotPage from "./Pages/ChatBotPage";
 import CareerPlanningPage from "./PreUniversity/CareerPlanningPage";
 import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPage";
 import ProfilePage from "./Components/Profile/ProfilePage";
+import PreviewApplication from "./Pages/PreviewApplication";
 
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -121,6 +122,7 @@ function App() {
               <Route path="/company-details/:id" element={<CompanyDetailsPage />} />
               <Route path="/talent-details/:id" element={<TalentProfilePage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/preview-application" element={<PreviewApplication />} />
               <Route path="/apply-job/:id" element={<JobApplicationForm />} />
               <Route path="/find-job" element={<FindJobsPage />} />
               <Route path="/post-job" element={<PostJobPage />} />

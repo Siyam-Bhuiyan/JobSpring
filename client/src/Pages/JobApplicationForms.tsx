@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Paperclip } from "lucide-react";
 import { Button, Card, Divider } from "@mantine/core";
-import { jobCardList } from "../../Data/JobsData";
+import { jobCardList } from "../Data/JobsData";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { motion } from "framer-motion";
 
 const JobApplicationForm = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const job = jobCardList.find((j) => j.id === Number(id));
 
   const [formData, setFormData] = useState({
@@ -19,6 +21,12 @@ const JobApplicationForm = () => {
     coverLetter: "",
   });
 
+  useEffect(() => {
+    if (location.state?.formData) {
+      setFormData(location.state.formData);
+    }
+  }, [location.state]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -27,6 +35,7 @@ const JobApplicationForm = () => {
       setFormData({ ...formData, [name]: value });
     }
   };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,13 +68,19 @@ const JobApplicationForm = () => {
               <Button
                 variant="light"
                 color="green"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate(`/job-details/${job.id}`)}
               >
                 <IconArrowLeft className="w-5 h-5 mr-2 " /> Back
               </Button>
             </div>
+
+         <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="flex items-center gap-3 mb-6">
-          <div className="  p-2 rounded-lg">
+          <div className="p-2 rounded-lg">
             <img
               src={job.logo}
               alt={job.company}
@@ -80,8 +95,8 @@ const JobApplicationForm = () => {
           </div>
         </div>
         <Divider size="xs" mx="md" />
-        <h2 className="text-lg font-semibold mb-6 mt-6">Submit Your Application</h2>
-        <form onSubmit={handleSubmit} className="">
+        <h2 className=" flex justify-center text-3xl font-bold mb-6 mt-6">Submit Your Application</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Full Name */}
           <div className="flex flex-col">
             <label className="text-sm font-medium mb-1">
@@ -93,7 +108,7 @@ const JobApplicationForm = () => {
               value={formData.fullName}
               onChange={handleChange}
               required
-              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+              className="bg-mine-shaft-900 p-4 rounded-lg focus:outline-none focus:ring-2 focus:green"
             />
           </div>
 
@@ -108,7 +123,7 @@ const JobApplicationForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+              className="bg-mine-shaft-900 p-4 rounded-lg focus:outline-none focus:ring-2 focus:green"
             />
           </div>
 
@@ -123,7 +138,7 @@ const JobApplicationForm = () => {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+              className="bg-mine-shaft-900 p-4 rounded-lg focus:outline-none focus:ring-2 focus:green"
             />
           </div>
 
@@ -138,7 +153,7 @@ const JobApplicationForm = () => {
               value={formData.website}
               onChange={handleChange}
               required
-              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+              className="bg-mine-shaft-900 p-4 rounded-lg focus:outline-none focus:ring-2 focus:green"
             />
           </div>
 
@@ -147,7 +162,7 @@ const JobApplicationForm = () => {
             <label className="text-sm font-medium mb-1">
               Resume/CV <span className="text-red-500">*</span>
             </label>
-            <label className="flex items-center gap-3 bg-mine-shaft-700 px-4 py-2 rounded-lg cursor-pointer hover:bg-mine-shaft-600">
+            <label className="flex items-center gap-3 bg-mine-shaft-900 p-4 rounded-lg cursor-pointer hover:bg-mine-shaft-600">
               <Paperclip className="w-5 h-5 text-yellow-400" />
               <span>
                 {formData.resume ? formData.resume.name : "Upload Resume"}
@@ -172,7 +187,7 @@ const JobApplicationForm = () => {
               value={formData.coverLetter}
               onChange={handleTextAreaChange}
               required
-              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+              className="bg-mine-shaft-900 p-4 rounded-lg focus:outline-none focus:ring-2 focus:green"
             />
           </div>
 
@@ -183,7 +198,7 @@ const JobApplicationForm = () => {
               color="green"
               type="submit"
               size="md"
-              onClick={() => navigate("/preview-application")}
+              onClick={() => navigate("/preview-application", { state: { formData, job } })}
               className="bg-bright-sun-400 text-black px-6 py-2 rounded-lg"
               >
               Preview   
@@ -200,6 +215,7 @@ const JobApplicationForm = () => {
             </Button>
           </div>
         </form>
+      </motion.div>
       </Card>
     </div>
   );

@@ -11,8 +11,10 @@ interface CompanyCardProps {
   location: string;
   employees: number;
   description: string;
-  industry?: string;
-  founded?: string;
+  industry: string;
+  founded: string;
+  website: string;
+  coverImage: string;
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = ({

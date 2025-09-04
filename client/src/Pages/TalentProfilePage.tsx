@@ -46,7 +46,7 @@ const TalentProfilePage = () => {
             {/* Header */}
             <div className="flex items-center gap-4 mb-6">
               <Button
-                variant="light"
+                variant="light" 
                 color="green"
                 onClick={() => navigate(-1)}
               >
