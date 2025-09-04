@@ -1,7 +1,6 @@
 // dynamic header based on user role
 
 
-import { useState, useEffect } from "react";
 import { Link} from "react-router-dom";
 import { Avatar, Indicator } from "@mantine/core";
 import { IconBell, IconSettings } from "@tabler/icons-react";
@@ -10,7 +9,6 @@ import AdminNavLinks from "./NavLink/AdminNavLink";
 import NavLinks from "./NavLink/NavLink";
 import RecruiterNavLinks from "./NavLink/RecruiterNavLink";
 import JobSeekerNavLinks from "./NavLink/JobSeekerNavLink";
-import { users, type UserData } from "../../Data/UserData";
 import PreUniversityNavLinks from "../../PreUniversity/PreUniversityNavLink";
 import {useAuth} from "../../auth/auth";
 const Header = () => {
@@ -42,7 +40,7 @@ const Header = () => {
         return <Link to="/job-seeker">JobSpring</Link>;
       case "recruiter":
         return <Link to="/recruiter">JobSpring</Link>;
-      case "pre-university":
+      case "preuniversity":
         return <Link to="/pre-university">JobSpring</Link>;
       default:
         return <Link to="/">JobSpring</Link>;
@@ -57,7 +55,7 @@ const Header = () => {
         return <JobSeekerNavLinks />;
       case "recruiter":
         return <RecruiterNavLinks />;
-      case "pre-university":
+      case "preuniversity":
         return <PreUniversityNavLinks />;
       default:
         return <NavLinks />;
