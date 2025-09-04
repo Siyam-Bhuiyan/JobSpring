@@ -8,7 +8,7 @@ import {
   IconClock,
   IconMapPin,
   IconCurrencyDollar,
-} from "@tabler/icons-react";
+} from "@tabler/icons-react"; 
 import { jobCardList } from "../Data/JobsData";
 import JobCard from "../Components/FindJobs/JobCard";
 import CompanyCard from "../Components/Company/CompanyCard";
@@ -70,8 +70,8 @@ const JobDetailsPage = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center">
-                  <Link to="/apply-job">
+                <div className="flex justify-center items-center gap-4">
+                  <Link to={`/apply-job/${job.id}`}>
                   <Button
                     color="green"
                     className=" text-black px-4 py-2 rounded-lg"

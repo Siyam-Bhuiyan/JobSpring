@@ -121,7 +121,7 @@ function App() {
               <Route path="/company-details/:id" element={<CompanyDetailsPage />} />
               <Route path="/talent-details/:id" element={<TalentProfilePage />} />
               <Route path="/register" element={<RegisterPage />} />
-              <Route path="/apply-job" element={<JobApplicationForm />} />
+              <Route path="/apply-job/:id" element={<JobApplicationForm />} />
               <Route path="/find-job" element={<FindJobsPage />} />
               <Route path="/post-job" element={<PostJobPage />} />
               <Route path="/find-talent" element={<FindTalent />} />

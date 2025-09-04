@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Paperclip } from "lucide-react";
-import { Button, Card } from "@mantine/core";
+import { Button, Card, Divider } from "@mantine/core";
+import { jobCardList } from "../../Data/JobsData";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 const JobApplicationForm = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const job = jobCardList.find((j) => j.id === Number(id));
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -32,111 +39,168 @@ const JobApplicationForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  if (!job) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        <Card className="bg-mine-shaft-800 border-none text-white rounded-2xl p-16 w-full max-w-5xl text-center">
+          <h2 className="text-xl font-semibold">Job not found</h2>
+          <p className="text-mine-shaft-400">
+            The job you are looking for does not exist.
+          </p>
+        </Card>
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-mine-shaft-950 flex justify-center">
-        <Card className="bg-mine-shaft-800 border-none text-white rounded-2xl p-16 w-full max-w-5xl">
-      <h2 className="text-lg font-semibold mb-6">Submit Your Application</h2>
-      <form onSubmit={handleSubmit} className="">
-        {/* Full Name */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">
-            Full Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-            className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
-          />
+    <div className="min-h-[100vh] flex justify-center  bg-mine-shaft-950 font-[Poppins, sans-serif] text-white">
+      <Card className="bg-mine-shaft-800 border-none text-white rounded-2xl p-16 w-full max-w-5xl">
+      <div className="flex items-center gap-4 mt-20 mb-6">
+              <Button
+                variant="light"
+                color="green"
+                onClick={() => navigate(-1)}
+              >
+                <IconArrowLeft className="w-5 h-5 mr-2 " /> Back
+              </Button>
+            </div>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="  p-2 rounded-lg">
+            <img
+              src={job.logo}
+              alt={job.company}
+              className="w-12 h-12 rounded"
+            />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">{job.jobTitle}</h2>
+            <p className="text-mine-shaft-400">
+              {job.company} • {job.posted} • {job.applicants} Applicants
+            </p>
+          </div>
         </div>
-
-        {/* Email */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">
-            Email <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
-          />
-        </div>
-
-        {/* Phone */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">
-            Phone Number <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
-          />
-        </div>
-
-        {/* Website */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">
-            Personal Website <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="url"
-            name="website"
-            value={formData.website}
-            onChange={handleChange}
-            required
-            className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
-          />
-        </div>
-
-        {/* Resume Upload */}
-        <div className="flex flex-col col-span-2">
-          <label className="text-sm font-medium mb-1">
-            Resume/CV <span className="text-red-500">*</span>
-          </label>
-          <label className="flex items-center gap-3 bg-mine-shaft-700 px-4 py-2 rounded-lg cursor-pointer hover:bg-mine-shaft-600">
-            <Paperclip className="w-5 h-5 text-yellow-400" />
-            <span>{formData.resume ? formData.resume.name : "Upload Resume"}</span>
+        <Divider size="xs" mx="md" />
+        <h2 className="text-lg font-semibold mb-6 mt-6">Submit Your Application</h2>
+        <form onSubmit={handleSubmit} className="">
+          {/* Full Name */}
+          <div className="flex flex-col">
+            <label className="text-sm font-medium mb-1">
+              Full Name <span className="text-red-500">*</span>
+            </label>
             <input
-              type="file"
-              name="resume"
+              type="text"
+              name="fullName"
+              value={formData.fullName}
               onChange={handleChange}
               required
-              className="hidden"
+              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
             />
-          </label>
-        </div>
+          </div>
 
-        {/* Cover Letter */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">
-            Cover Letter <span className="text-red-500">*</span>
-          </label>
-          <textarea
-            name="coverLetter"
-            value={formData.coverLetter}
-            onChange={handleTextAreaChange}
-            required
-            className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
-          />
-        </div>
+          {/* Email */}
+          <div className="flex flex-col">
+            <label className="text-sm font-medium mb-1">
+              Email <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+            />
+          </div>
 
-        {/* Submit Button */}
-        <div className="col-span-2 flex justify-end mt-4">
-          <Button type="submit" className="bg-yellow-400 text-black px-6 py-2 rounded-lg">
-            Submit Application
-          </Button>
-        </div>
-      </form>
-    </Card>
+          {/* Phone */}
+          <div className="flex flex-col">
+            <label className="text-sm font-medium mb-1">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+            />
+          </div>
+
+          {/* Website */}
+          <div className="flex flex-col">
+            <label className="text-sm font-medium mb-1">
+              Personal Website <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="url"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              required
+              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+            />
+          </div>
+
+          {/* Resume Upload */}
+          <div className="flex flex-col col-span-2">
+            <label className="text-sm font-medium mb-1">
+              Resume/CV <span className="text-red-500">*</span>
+            </label>
+            <label className="flex items-center gap-3 bg-mine-shaft-700 px-4 py-2 rounded-lg cursor-pointer hover:bg-mine-shaft-600">
+              <Paperclip className="w-5 h-5 text-yellow-400" />
+              <span>
+                {formData.resume ? formData.resume.name : "Upload Resume"}
+              </span>
+              <input
+                type="file"
+                name="resume"
+                onChange={handleChange}
+                required
+                className="hidden"
+              />
+            </label>
+          </div>
+
+          {/* Cover Letter */}
+          <div className="flex flex-col">
+            <label className="text-sm font-medium mb-1">
+              Cover Letter <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              name="coverLetter"
+              value={formData.coverLetter}
+              onChange={handleTextAreaChange}
+              required
+              className="bg-mine-shaft-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:bright-sun-400"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="col-span-2 flex gap-5 mt-14">
+            <Button
+              variant="outline"
+              color="green"
+              type="submit"
+              size="md"
+              onClick={() => navigate("/preview-application")}
+              className="bg-bright-sun-400 text-black px-6 py-2 rounded-lg"
+              >
+              Preview   
+            </Button>
+            <Button
+              variant="light"
+                color="green"
+              type="submit"
+              size="md"
+              onClick={() => navigate("/")}
+              className="bg-bright-sun-400 text-black px-6 py-2 rounded-lg"
+            >
+              Submit 
+            </Button>
+          </div>
+        </form>
+      </Card>
     </div>
   );
 };
