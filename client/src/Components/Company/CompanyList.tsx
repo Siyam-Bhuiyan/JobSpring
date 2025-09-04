@@ -15,6 +15,10 @@ const CompanyList: React.FC = () => {
             job={company.job}
             location={company.location}
             employees={company.employees}
+            website={company.website}
+            industry={company.industry}
+            founded={company.founded}
+            coverImage={company.coverImage}
             description={company.description}
           />
         </Link>

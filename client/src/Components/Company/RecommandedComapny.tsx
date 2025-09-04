@@ -11,8 +11,8 @@ const RecommandedCompany = ({ id }: RecommandedCompanyProps) => {
         <div >
             <div className="text-2xl font-semibold mb-2">Recommanded Companies</div>
             <div className="flex flex-col flex-wrap gap-5">
-           {companyData.filter((j) => j.id !== id).map((company, index) =>index<4 && (
-               <CompanyCard key={index} {...company}/>
+           {companyData.filter((j) => j.id !== id).map((company, index) => index < 4 && (
+               <CompanyCard key={index} {...company} founded={company.founded.toString()} />
            ))} 
         </div>
         </div>

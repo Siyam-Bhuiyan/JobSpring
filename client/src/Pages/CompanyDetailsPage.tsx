@@ -1,13 +1,19 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { Badge, Button, Card, Divider } from "@mantine/core";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Divider,
+} from "@mantine/core";
 import { motion } from "framer-motion";
 import {
   IconArrowLeft,
   IconBookmark,
   IconBriefcase,
-  IconClock,
   IconMapPin,
-  IconCurrencyDollar,
+  IconBuildingFactory,
+  IconCalendar,
 } from "@tabler/icons-react";
 import { companyData } from "../Data/CompanyData";
 import RecommandedCompany from "../Components/Company/RecommandedComapny";
@@ -56,24 +62,37 @@ const CompanyDetailsPage = () => {
             </div>
 
             <Card className="bg-mine-shaft-800 border-none p-6 rounded-2xl">
-              {/* Company Header */}
-              <div className="flex justify-between items-start">
-                <div className="flex items-center gap-3">
-                  <div className="bg-mine-shaft-700 p-2 rounded-lg">
-                    <img
+              <div>
+                {/* Banner & Avatar */}
+                <div className="relative">
+                  <img
+                    className="rounded-t-2xl w-full h-52 object-cover"
+                    src={company.coverImage}
+                    alt="banner"
+                  />
+                  <div className="absolute left-5 -bottom-16 rounded-full h-40 w-40 overflow-hidden bg-mine-shaft-950 border-mine-shaft-950">
+                    <Avatar
                       src={company.logo}
-                      alt={company.name}
-                      className="w-12 h-12 rounded"
+                      size={120}
+                      radius="xl"
+                      className="left-5 -bottom-4 flex justify-center items-center"
                     />
                   </div>
-                  <div>
-                    <h2 className="text-xl font-semibold">{company.name}</h2>
-                    <p className="text-mine-shaft-400">
-                      {company.location} • {company.employees} Employees
-                    </p>
+                </div>
+
+                <div className="mt-20 px-3">
+                  {/* Name and Message Button */}
+                  <div className="text-3xl font-semibold flex justify-between items-center">
+                    {company.name}
+                    <IconBookmark className="w-6 h-6 mt-2 text-bright-sun-400 cursor-pointer" />
+                  </div>
+                  {/* Location */}
+                  <div className="text-lg flex gap-1 items-center text-mine-shaft-300 mt-1">
+                    <div className="flex items-center gap-1">
+                      <IconMapPin stroke={1.5} /> {company.location}
+                    </div>
                   </div>
                 </div>
-                <IconBookmark className="w-6 h-6 mt-2 text-bright-sun-400 cursor-pointer" />
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
@@ -91,14 +110,14 @@ const CompanyDetailsPage = () => {
                   <p className="font-medium">{company.employees}</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <IconCurrencyDollar className="w-6 h-6 text-bright-sun-400" />
-                  <p className="text-mine-shaft-400">Salary</p>
-                  {/* <p className="font-medium">{company.salary}</p> */}
+                  <IconCalendar className="w-6 h-6 text-bright-sun-400" />
+                  <p className="text-mine-shaft-400">Founded</p>
+                  <p className="font-medium">{company.founded}</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <IconClock className="w-6 h-6 text-bright-sun-400" />
-                  <p className="text-mine-shaft-400">Job Type</p>
-                  {/* <p className="font-medium">{company.jobType}</p> */}
+                  <IconBuildingFactory className="w-6 h-6 text-bright-sun-400" />
+                  <p className="text-mine-shaft-400">Industry</p>
+                  <p className="font-medium">{company.industry}</p>
                 </div>
               </div>
 
@@ -106,15 +125,47 @@ const CompanyDetailsPage = () => {
 
               {/* Description */}
               <div className="mt-6">
-                <h3 className="text-lg font-semibold mb-2">Description</h3>
+                <h3 className="text-lg font-semibold mb-2">Overview</h3>
                 <p className="text-mine-shaft-300">{company.description}</p>
+              </div>
+
+              <Divider size="xs" mx="md" className="my-4" />
+
+              {/* Description */}
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold mb-2">Industry</h3>
+                <p className="text-mine-shaft-300">{company.industry}</p>
+              </div>
+
+              <Divider size="xs" mx="md" className="my-4" />
+
+              {/* Description */}
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold mb-2">Website</h3>
+                <p className="text-mine-shaft-300"><Link to={company.website} target="_blank">{company.website}</Link>  </p>
+              </div>
+
+              <Divider size="xs" mx="md" className="my-4" />
+
+              {/* Description */}
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold mb-2">Size</h3>
+                <p className="text-mine-shaft-300">{company.employees}</p>
+              </div>
+
+              <Divider size="xs" mx="md" className="my-4" />
+
+              {/* Description */}
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold mb-2">HeadQuarter</h3>
+                <p className="text-mine-shaft-300">{company.location}</p>
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
 
               {/* Jobs Offered */}
               <div className="mt-6">
-                <div className="text-lg font-semibold mb-3">Jobs Offered</div>
+                <div className="text-lg font-semibold mb-3">Specialities</div>
                 <div className="flex flex-wrap gap-3">
                   {(company.job ?? []).map((job: string, index: number) => (
                     <Badge
@@ -122,7 +173,7 @@ const CompanyDetailsPage = () => {
                       variant="light"
                       radius="lg"
                       size="lg"
-                      color="blue"
+                      color="violet"
                       className="text-black px-3 py-1"
                     >
                       {job}

@@ -109,9 +109,9 @@ const PreviewApplication = () => {
               onClick={() =>
                 navigate(`/apply-job/${job.id}`, { state: { formData, job } })
               }
-              className="bg-gray-600 text-white px-6 py-2 rounded-lg"
+              className="bg-bright-sun-600 text-white px-24 py-2 rounded-lg"
             >
-              Edit
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </Button>
             <Button
               variant="light"
@@ -120,9 +120,9 @@ const PreviewApplication = () => {
                 console.log("Final Submit:", formData);
                 navigate("/");
               }}
-              className="bg-bright-sun-400 text-black px-6 py-2 rounded-lg"
+              className="bg-bright-sun-600 text-white px-24 py-2 rounded-lg"
             >
-              Submit
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </Button>
           </div>
         </motion.div>
