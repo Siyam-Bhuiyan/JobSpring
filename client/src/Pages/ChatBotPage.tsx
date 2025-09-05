@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ChatBot from "../Components/chatBot/ChatBot";
 
 const ChatBotPage = () => {
   return (
@@ -8,7 +9,7 @@ const ChatBotPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-3xl p-10 font-bold mb-4 ">Chat Bot</div>
+        <ChatBot />
       </motion.div>
     </div>
   );
