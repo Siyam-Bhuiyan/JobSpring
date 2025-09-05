@@ -1,8 +1,7 @@
 // dynamic header based on user role
 
 import { Link } from "react-router-dom";
-import { Avatar, Indicator, Menu } from "@mantine/core";
-import { IconBell, IconSettings } from "@tabler/icons-react";
+import { Avatar } from "@mantine/core";
 import { Briefcase } from "tabler-icons-react";
 import AdminNavLinks from "./NavLink/AdminNavLink";
 import NavLinks from "./NavLink/NavLink";
@@ -11,18 +10,8 @@ import JobSeekerNavLinks from "./NavLink/JobSeekerNavLink";
 import PreUniversityNavLinks from "../../PreUniversity/PreUniversityNavLink";
 import { useAuth } from "../../auth/auth";
 import SettingsDropdown from "../Profile/SettingsDropdown";
+import NotificationsDropdown from "../Profile/NotificationDropdown";
 const Header = () => {
-  // const [userData, setUserData] = useState<UserData | null>(null);
-
-  // useEffect(() => {
-  //   // For example, pick the first user as logged-in
-  //   //setUserData(users[0]);   //admin
-  //  // setUserData(users[1]); //job seeker
-  //   setUserData(users[2]); //recruiter
-  //   //setUserData(users[3]); //pre-university
-
-  // }, []);
-
   const { user } = useAuth();
 
   const role = user?.role;
@@ -83,11 +72,7 @@ const Header = () => {
             <Avatar src={avatar} alt="Profile Picture" />
           </Link>
           <SettingsDropdown />
-          <div className="bg-crete-900 p-2 hover:bg-mine-shaft-800 transition rounded-full">
-            <Indicator color="pink" offset={6} size={8} position="top-end">
-              <IconBell />
-            </Indicator>
-          </div>
+          <NotificationsDropdown />
         </div>
       ) : (
         <div className="flex gap-5 items-center">
