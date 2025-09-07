@@ -3,7 +3,7 @@ import BlogCard from "./BlogCard";
 
 const BlogList: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-10 px-10">
+    <div className="flex flex-wrap p-5">
       {blogData.map((post) => (
         <BlogCard
           key={post.id}
@@ -11,7 +11,7 @@ const BlogList: React.FC = () => {
           time={post.time}
           title={post.title}
           image={post.image}
-          upvotes={post.upvotes}
+          upvotes={post.upvotes} 
           comments={post.comments}
           shares={post.shares}
         />

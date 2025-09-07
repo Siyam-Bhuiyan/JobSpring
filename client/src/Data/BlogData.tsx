@@ -12,17 +12,6 @@ export interface Blog {
 export const blogData: Blog[] = [
   {
     id: 1,
-    category: "Career Advice",
-    time: "3 hr. ago",
-    title: "Top 10 Tips to Ace Your Next Job Interview",
-    image:
-      "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    upvotes: 1200,
-    comments: 300,
-    shares: 150,
-  },
-  {
-    id: 2,
     category: "Remote Work",
     time: "6 hr. ago",
     title: "How to Stay Productive While Working From Home",
@@ -31,6 +20,17 @@ export const blogData: Blog[] = [
     upvotes: 950,
     comments: 210,
     shares: 110,
+  },
+  {
+    id: 2,
+    category: "Tech Trends",
+    time: "7 hr. ago",
+    title: "The Rise of Remote-First Startups in 2025",
+    image:
+      "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    upvotes: 1750,
+    comments: 380,
+    shares: 200,
   },
   {
     id: 3,
@@ -111,13 +111,13 @@ export const blogData: Blog[] = [
   },
   {
     id: 10,
-    category: "Tech Trends",
-    time: "7 hr. ago",
-    title: "The Rise of Remote-First Startups in 2025",
+    category: "Career Advice",
+    time: "3 hr. ago",
+    title: "Top 10 Tips to Ace Your Next Job Interview",
     image:
-      "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    upvotes: 1750,
-    comments: 380,
-    shares: 200,
+      "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    upvotes: 1200,
+    comments: 300,
+    shares: 150,
   },
 ];

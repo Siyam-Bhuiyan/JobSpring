@@ -23,7 +23,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 }) => {
   return (
     <div
-      className="flex flex-col gap-3 w-2/3 bg-mine-shaft-900 rounded-2xl p-6 shadow-md  mb-5 "
+      className="flex flex-col gap-3 w-full bg-mine-shaft-900 rounded-2xl p-6 shadow-md  mb-5 "
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
@@ -36,7 +36,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           <p className="text-sm font-medium">{subBlog}</p>
           <p className="text-xs text-gray-400">{time}</p>
         </div>
-        <Button size="xs" variant="light" color="blue" className="ml-auto">
+        <Button size="xs" variant="light" color="green" className="ml-auto">
           Join
         </Button>
       </div>
