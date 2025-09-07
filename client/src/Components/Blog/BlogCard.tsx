@@ -22,10 +22,16 @@ const BlogCard: React.FC<BlogCardProps> = ({
   shares,
 }) => {
   return (
-    <div className="bg-gray-900 text-white rounded-xl p-4 w-full max-w-2xl shadow-md">
+    <div
+      className="flex flex-col gap-3 w-2/3 bg-mine-shaft-900 rounded-2xl p-6 shadow-md  mb-5 "
+    >
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
-        <Avatar src="https://styles.Blogmedia.com/t5_2qh1s/styles/communityIcon_t5_2qh1s.png" size="sm" radius="xl" />
+        <Avatar
+          src="https://styles.Blogmedia.com/t5_2qh1s/styles/communityIcon_t5_2qh1s.png"
+          size="sm"
+          radius="xl"
+        />
         <div>
           <p className="text-sm font-medium">{subBlog}</p>
           <p className="text-xs text-gray-400">{time}</p>
