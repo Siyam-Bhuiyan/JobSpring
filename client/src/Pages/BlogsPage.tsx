@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import BlogCard from "../Components/Blog/BlogCard";
+import BlogList from "../Components/Blog/BlogList";
 
 const BlogsPage = () => {
   return (
@@ -9,18 +9,9 @@ const BlogsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="flex justify-center p-10 font-bold mb-4 flex-wrap">
-          <BlogCard
-            subBlog="r/interestingasfuck"
-            time="3 hr. ago"
-            title="A woman won $43M on a casino but was offered steak dinner instead"
-            image="https://images.pexels.com/photos/2693529/pexels-photo-2693529.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-            upvotes={26000}
-            comments={1600}
-            shares={800}
-          />
-          
+        <div className="flex justify-center p-10 font-bold mb-4 flex-wrap ">
         </div>
+          <BlogList />
       </motion.div>
     </div>
   );
