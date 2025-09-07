@@ -1,21 +1,4 @@
-const categories = [
-  "Career Advice",
-  "Remote Work",
-  "Industry Insights",
-  "Career Growth",
-  "Job Market",
-  "Upskilling",
-  "Work Culture",
-  "Freelancing",
-  "Tech Trends",
-];
-
-const recentPosts = [
-  "Top 10 Tips to Ace Your Next Job Interview",
-  "Highest Paying Tech Jobs in 2025",
-  "Best Online Courses to Learn Full Stack Development",
-  "Is Freelancing the Future of Work?",
-];
+import { blogData } from "../../Data/BlogData";
 
 const Sidebar = () => {
   return (
@@ -24,12 +7,12 @@ const Sidebar = () => {
       <div className="bg-mine-shaft-900 shadow-md rounded-2xl p-4">
         <h2 className="text-lg font-semibold mb-3">📂 Categories</h2>
         <ul className="space-y-2">
-          {categories.map((cat, i) => (
+          {blogData.map((cat, i) => (
             <li
               key={i}
               className=" hover:text-bright-sun-600 cursor-pointer transition"
             >
-              {cat}
+              {cat.category}
             </li>
           ))}
         </ul>
@@ -39,12 +22,13 @@ const Sidebar = () => {
       <div className="bg-mine-shaft-900 shadow-md rounded-2xl p-4">
         <h2 className="text-lg font-semibold mb-3">📰 Recent Posts</h2>
         <ul className="space-y-2">
-          {recentPosts.map((post, i) => (
+          {blogData.map((post, i) => i < 4 && (
             <li
               key={i}
               className=" hover:text-bright-sun-600 cursor-pointer transition text-sm"
             >
-              {post}
+              {post.title}
+              <span onClick={() => {window.location.href=`/blogs/${post.id}`}}></span>
             </li>
           ))}
         </ul>
@@ -61,7 +45,7 @@ const Sidebar = () => {
           placeholder="Enter your email"
           className="w-full p-2 mb-3 rounded-lg text-black"
         />
-        <button className="w-full bg-mine-shaft-900 text-bright-sun-600 font-semibold py-2 rounded-lg hover:bg-mine-shaft-500 transition">
+        <button className="w-full bg-mine-shaft-900 text-bright-sun-600 font-semibold py-2 rounded-lg hover:bg-white transition">
           Subscribe
         </button>
       </div>

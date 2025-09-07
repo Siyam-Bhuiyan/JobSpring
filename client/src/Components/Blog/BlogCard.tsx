@@ -3,7 +3,7 @@ import { Avatar, Button } from "@mantine/core";
 import { MessageCircle, Share2, ArrowUp, ArrowDown } from "lucide-react";
 
 interface BlogCardProps {
-  subBlog: string;
+  category: string;
   time: string;
   title: string;
   image: string;
@@ -13,7 +13,7 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
-  subBlog,
+  category,
   time,
   title,
   image,
@@ -22,9 +22,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   shares,
 }) => {
   return (
-    <div
-      className="flex flex-col gap-3 w-full bg-mine-shaft-900 rounded-2xl p-6 shadow-md  mb-5 "
-    >
+    <div className="flex flex-col gap-3 w-full bg-mine-shaft-900 rounded-2xl p-6 shadow-md  mb-5 ">
       {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <Avatar
@@ -32,8 +30,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
           size="sm"
           radius="xl"
         />
+
         <div>
-          <p className="text-sm font-medium">{subBlog}</p>
+          <p className="text-sm font-medium">{category}</p>
           <p className="text-xs text-gray-400">{time}</p>
         </div>
         <Button size="xs" variant="light" color="green" className="ml-auto">
@@ -52,15 +51,15 @@ const BlogCard: React.FC<BlogCardProps> = ({
       {/* Actions */}
       <div className="flex items-center gap-6 text-gray-400 text-sm">
         <div className="flex items-center gap-2">
-          <ArrowUp className="w-4 h-4 cursor-pointer hover:text-white" />
+          <ArrowUp className="w-4 h-4 cursor-pointer hover:text-bright-sun-600" />
           <span>{upvotes}</span>
-          <ArrowDown className="w-4 h-4 cursor-pointer hover:text-white" />
+          <ArrowDown className="w-4 h-4 cursor-pointer hover:text-bright-sun-600" />
         </div>
-        <div className="flex items-center gap-2 cursor-pointer hover:text-white">
+        <div className="flex items-center gap-2 cursor-pointer hover:text-bright-sun-600">
           <MessageCircle className="w-4 h-4" />
           <span>{comments}</span>
         </div>
-        <div className="flex items-center gap-2 cursor-pointer hover:text-white">
+        <div className="flex items-center gap-2 cursor-pointer hover:text-bright-sun-600">
           <Share2 className="w-4 h-4" />
           <span>{shares}</span>
         </div>

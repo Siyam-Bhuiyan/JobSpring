@@ -134,6 +134,7 @@ function App() {
               <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
               <Route path="/applications" element={<ApplicationPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
+              {/* <Route path="/blogs/:id" element={<BlogsDetails />} /> */}
               <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </Layout>

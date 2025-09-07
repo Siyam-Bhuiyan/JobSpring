@@ -7,7 +7,7 @@ const BlogList: React.FC = () => {
       {blogData.map((post) => (
         <BlogCard
           key={post.id}
-          subBlog={post.subBlog}
+          category={post.category}
           time={post.time}
           title={post.title}
           image={post.image}
