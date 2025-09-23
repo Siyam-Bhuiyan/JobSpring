@@ -27,7 +27,7 @@ import PreUniversityDashboard from "./PreUniversity/PreUniversityDashboard";
 import ChatBotPage from "./Pages/ChatBotPage";
 import CareerPlanningPage from "./PreUniversity/CareerPlanningPage";
 import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPage";
-import ProfilePage from "./Components/Profile/ProfilePage";
+import ProfilePage from "./Pages/ProfilePage";
 import PreviewApplication from "./Pages/PreviewApplication";
 
 
