@@ -1,4 +1,5 @@
 package com.jobspring.service;
+import com.jobspring.Dto.MessageDto;
 import com.jobspring.model.Message;
 import com.jobspring.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class MessageService {
     private MessageRepository messageRepository;
 
     // Save a new message
-    public Message saveMessage(Message message) {
-        return messageRepository.save(message);
+    public Message saveMessage(MessageDto messageDto) {
+        return messageRepository.save(messageDto);
     }
 
     // Get message by ID
@@ -46,6 +47,10 @@ public class MessageService {
     // Delete a message by ID
     public void deleteMessage(Long id) {
         messageRepository.deleteById(id);
+    }
+
+    public List<MessageDto> getMessagesForUserDto(String username) {
+            return null;
     }
 }
  
