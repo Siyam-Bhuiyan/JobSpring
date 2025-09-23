@@ -1,5 +1,6 @@
 package com.jobspring.repository;
 
+import com.jobspring.Dto.MessageDto;
 import com.jobspring.model.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     // Optional: find messages ordered by timestamp
     List<Message> findByReceiverIdOrderByTimestampAsc(Long receiverId);
+
+    Message saveAll(MessageDto messageDto);
 }
 

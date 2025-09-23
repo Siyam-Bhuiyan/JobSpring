@@ -16,7 +16,7 @@ public class MessageService {
 
     // Save a new message
     public Message saveMessage(MessageDto messageDto) {
-        return messageRepository.save(messageDto);
+        return messageRepository.saveAll(messageDto);
     }
 
     // Get message by ID
