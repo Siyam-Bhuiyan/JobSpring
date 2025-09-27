@@ -1,16 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Avatar,Button, Card, Divider, Tabs } from "@mantine/core";
+import { Avatar, Button, Card, Divider, Tabs } from "@mantine/core";
 import { motion } from "framer-motion";
-import {
-  IconArrowLeft,
-
-  IconMapPin,
-  
-} from "@tabler/icons-react";
+import { IconArrowLeft, IconMapPin } from "@tabler/icons-react";
 import { companyData } from "../Data/CompanyData";
 import RecommandedCompany from "../Components/Company/RecommandedComapny";
 import About from "../Components/CompanyDetails/About";
 import CompanyJobs from "../Components/CompanyDetails/CompanyJobs";
+import CompanyEmployees from "../Components/CompanyDetails/CompanyEmployee";
 
 const CompanyDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -113,14 +109,13 @@ const CompanyDetailsPage = () => {
                     <About company={company} />
                   </Tabs.Panel>
                   <Tabs.Panel value="jobs" pt="xs">
-                    <CompanyJobs/>
+                    <CompanyJobs />
                   </Tabs.Panel>
                   <Tabs.Panel value="employees" pt="xs">
-                    <div>No employees available.</div>
+                    <CompanyEmployees />
                   </Tabs.Panel>
                 </Tabs>
               </div>
-             
             </Card>
           </div>
 

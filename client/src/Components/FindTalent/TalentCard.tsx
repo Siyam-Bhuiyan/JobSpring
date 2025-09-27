@@ -29,8 +29,9 @@ const TalentCard: React.FC<TalentCardProps> = ({
 }) => {
   return (
     <div
-      className="flex-4 cursor-pointer                 
-                 w-full max-w-sm 
+      className="flex-4 cursor-pointer
+                 height-96 width-96    
+                 aspect-[4/3]              
                  bg-mine-shaft-900 
                  rounded-2xl p-6 shadow-md 
                  hover:border border-bright-sun-400
