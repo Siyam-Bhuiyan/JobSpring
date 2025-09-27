@@ -35,14 +35,15 @@ const JobCard: React.FC<JobCardProps> = ({
     <Link to={`/job-details/${id}`} className="block no-underline">
       <div
         className="flex-4 cursor-pointer 
-                  aspect-[4/3] w-full max-w-sm 
+                  height-96 width-96
+                  aspect-[4/3]
                   bg-mine-shaft-900 rounded-2xl p-6 shadow-md 
                   hover:border border-bright-sun-400
                   transition-transform duration-500 ease-in-out
                   hover:shadow-xl hover:scale-105"
       > 
         {/* Top Section */}
-        <div className="flex justify-between mb-4">
+        <div className="flex justify-between mb-10">
           <div className="flex gap-4">
             <Avatar src={logo} size={40} radius="7" />
             <div>
@@ -56,7 +57,7 @@ const JobCard: React.FC<JobCardProps> = ({
         </div>
 
         {/* Tags */}
-        <div className="mb-4 flex flex-wrap gap-3">
+        <div className="mb-6 flex flex-wrap gap-3">
           <Badge color="violet" radius="sm" variant="filled">
             {experience}
           </Badge>
@@ -69,13 +70,13 @@ const JobCard: React.FC<JobCardProps> = ({
         </div>
 
         {/* Description */}
-        <div className="text-gray-400 text-sm line-clamp-3 mb-8">
+        <div className="text-gray-400 text-sm line-clamp-2 mb-8">
           {description}
         </div>
+        <div className="mt-20">
         <Divider size="xs" mx="md" />
-
         {/* Bottom Section */}
-        <div className="mt-3 flex justify-between">
+        <div className="mt-3 flex justify-between bottom-6 ">
           <Text className="font-bold text-lg text-blue-600">{salary}</Text>
           <div className="flex gap-4">
             <IconCalendar size={16} className="text-gray-400" />
@@ -83,6 +84,7 @@ const JobCard: React.FC<JobCardProps> = ({
               Posted {posted}
             </Text>
           </div>
+        </div>
         </div>
       </div>
     </Link>

@@ -8,7 +8,7 @@ import {
   IconClock,
   IconMapPin,
   IconCurrencyDollar,
-} from "@tabler/icons-react"; 
+} from "@tabler/icons-react";
 import { jobCardList } from "../Data/JobsData";
 import JobCard from "../Components/FindJobs/JobCard";
 import CompanyCard from "../Components/Company/CompanyCard";
@@ -18,9 +18,8 @@ const JobDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // ✅ Find job by id
   const job = jobCardList.find((j) => j.id === Number(id));
-  const company = companyData.find((j) => j.id === Number(id));
+  const company = companyData.find((c) => c.name === job?.company);
 
   if (!job) {
     return (
@@ -72,12 +71,12 @@ const JobDetailsPage = () => {
                 </div>
                 <div className="flex justify-center items-center gap-4">
                   <Link to={`/apply-job/${job.id}`}>
-                  <Button
-                    color="green"
-                    className=" text-black px-4 py-2 rounded-lg"
-                  >
-                    Apply
-                  </Button>
+                    <Button
+                      color="green"
+                      className=" text-black px-4 py-2 rounded-lg"
+                    >
+                      Apply
+                    </Button>
                   </Link>
                   <IconBookmark className="w-6 h-6 mt-2 text-bright-sun-400 cursor-pointer" />
                 </div>
@@ -90,7 +89,7 @@ const JobDetailsPage = () => {
                   <IconMapPin className="w-6 h-6 text-bright-sun-400" />
                   <p className="text-mine-shaft-400">Location</p>
                   <p className="font-medium">{job.location}</p>
-                </div> 
+                </div>
                 <div className="flex flex-col items-center">
                   <IconBriefcase className="w-6 h-6 text-bright-sun-400" />
                   <p className="text-mine-shaft-400">Experience</p>
@@ -136,19 +135,25 @@ const JobDetailsPage = () => {
                 </div>
               </div>
               <Divider size="xs" mx="md" className="my-4" />
+              <div>
+                {company && (
                   <div>
-                    {company && (
-                      <CompanyCard
-                        id={company.id}
-                        logo={job.logo}
-                        name={job.company}
-                        job={company.job}
-                        location={company.location}
-                        employees={company.employees}
-                        description={company.description}
-                      />
-                    )}
+                    <CompanyCard
+                      id={company.id}
+                      logo={company.logo}
+                      name={company.name}
+                      job={company.job}
+                      location={company.location}
+                      employees={company.employees}
+                      description={company.description}
+                      industry={""}
+                      founded={""}
+                      website={""}
+                      coverImage={""}
+                    />
                   </div>
+                )}
+              </div>
             </Card>
           </div>
           {/* Right Section - Recommended Jobs */}

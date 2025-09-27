@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 const RecruiterNavLinks = () => {
   const links = [
     { label: "Find Job", href: "/find-job" },
-    { label: "Post Job", href: "/post-job" },
     { label: "Find Employee", href: "/find-talent" },
-    { label: "Company", href: "/find-company" },
-    { label: "Blogs", href: "/blogs" },
-    { label: "ChatBot", href: "/chatbot" },
+    { label: "Post Job", href: "/post-job" },
+    { label: "Posted Jobs", href: "/posted-jobs" },
+    { label: "Job History", href: "/job-history" },
 
   ];
 
