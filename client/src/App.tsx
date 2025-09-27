@@ -29,6 +29,8 @@ import CareerPlanningPage from "./PreUniversity/CareerPlanningPage";
 import InterviewQuestionsPage from "./PreUniversity/InterviewQuestionsPage";
 import ProfilePage from "./Pages/ProfilePage";
 import PreviewApplication from "./Pages/PreviewApplication";
+import PostedJobsPage from "./Pages/PostedJobPage";
+import JobHistoryPage from "./Pages/JobHistoryPage";
 
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -129,6 +131,8 @@ function App() {
               <Route path="/find-talent" element={<FindTalent />} />
               <Route path="/talent-profile" element={<TalentProfilePage />} />
               <Route path="/find-company" element={<FindCompanyPage />} />
+              <Route path="/posted-jobs" element={<PostedJobsPage />} />
+              <Route path="/job-history" element={<JobHistoryPage />} />
               <Route path="/chatbot" element={<ChatBotPage />} />
               <Route path="/career-planning" element={<CareerPlanningPage />} />
               <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
