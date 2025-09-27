@@ -35,7 +35,7 @@ const JobCard: React.FC<JobCardProps> = ({
     <Link to={`/job-details/${id}`} className="block no-underline">
       <div
         className="flex-4 cursor-pointer 
-                  aspect-[4/3] w-full max-w-sm 
+                  height-96 width-96
                   bg-mine-shaft-900 rounded-2xl p-6 shadow-md 
                   hover:border border-bright-sun-400
                   transition-transform duration-500 ease-in-out

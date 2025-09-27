@@ -10,6 +10,7 @@ import {
 import { companyData } from "../Data/CompanyData";
 import RecommandedCompany from "../Components/Company/RecommandedComapny";
 import About from "../Components/CompanyDetails/About";
+import CompanyJobs from "../Components/CompanyDetails/CompanyJobs";
 
 const CompanyDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,7 +41,7 @@ const CompanyDetailsPage = () => {
         transition={{ duration: 0.6 }}
       >
         {/* Page Container */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col xl:flex-row gap-6">
           {/* Left Section */}
           <div className="flex-1">
             {/* Header */}
@@ -112,7 +113,7 @@ const CompanyDetailsPage = () => {
                     <About company={company} />
                   </Tabs.Panel>
                   <Tabs.Panel value="jobs" pt="xs">
-                    <div>No jobs available.</div>
+                    <CompanyJobs/>
                   </Tabs.Panel>
                   <Tabs.Panel value="employees" pt="xs">
                     <div>No employees available.</div>
@@ -124,7 +125,7 @@ const CompanyDetailsPage = () => {
           </div>
 
           {/* Right Section - Recommended Companies */}
-          <div className="flex-1 lg:max-w-sm">
+          <div className="flex-1 md:max-w-sm">
             <RecommandedCompany id={company.id} />
           </div>
         </div>

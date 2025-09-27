@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const JobList: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-10 px-10">
+    <div className="flex justify-center gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5">
       {jobCardList.map((job) => (
         <Link to={`/job-details/${job.id}`} key={job.id}>
           <JobCard
