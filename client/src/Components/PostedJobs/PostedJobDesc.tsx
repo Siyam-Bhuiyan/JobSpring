@@ -42,9 +42,9 @@ const job = jobList[0];
             <JobDetails />
           </Tabs.Panel>
           <Tabs.Panel value="applicants" pt="xs">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-5">
             {
-                talents.map((talent,index) => index<6 && <TalentCard key={index} {...talent} />)
+                talents.map((talent,index) => index<6 && <TalentCard key={index} {...talent} posted />)
             }
             </div>
           </Tabs.Panel>
