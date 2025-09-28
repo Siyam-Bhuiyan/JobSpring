@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import JobHistory from "../Components/JobHistory/JobHistory";
 
 const JobHistoryPage = () => {
   return (
@@ -9,6 +10,7 @@ const JobHistoryPage = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="text-3xl p-10 font-bold mb-4 ">Job History</div>
+        <JobHistory />
       </motion.div>
     </div>
   );
