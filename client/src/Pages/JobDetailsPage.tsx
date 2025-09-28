@@ -157,7 +157,7 @@ const JobDetailsPage = () => {
             </Card>
           </div>
           {/* Right Section - Recommended Jobs */}
-          <div className="w-80">
+          <div className="w-1/4">
             <h3 className="text-lg font-semibold mb-4">Recommended Jobs</h3>
             <div className="flex flex-col gap-4">
               {jobCardList
