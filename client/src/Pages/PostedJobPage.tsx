@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import PostedJob from "../Components/PostedJobs/PostedJob";
+import PostedJobDesc from "../Components/PostedJobs/PostedJobDesc";
 
 const PostedJobsPage = () => {
   return (
@@ -8,7 +10,10 @@ const PostedJobsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-3xl p-10 font-bold mb-4 ">Posted Jobs</div>
+        <div className="flex gap-5 px-10">
+            <PostedJob/>
+            <PostedJobDesc/>
+        </div>
       </motion.div>
     </div>
   );
