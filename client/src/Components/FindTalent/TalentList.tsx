@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const TalentList: React.FC = () => {
   return (
-    <div className="flex justify-center gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5">
+    <div className="justify-center gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5">
       {talents.map((talent) => (
         <Link to={`/talent-details/${talent.id}`} key={talent.id}>
           <TalentCard

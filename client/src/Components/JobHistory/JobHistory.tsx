@@ -4,7 +4,7 @@ import JobHistoryCard from "./JobHistoryCard";
 
 const JobHistory = () => {
   return (
-    <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif] px-10">
+    <div className="px-10">
       <div>
         <Tabs variant="outline" radius="md" defaultValue="applied">
           <Tabs.List className="left-4 [&_button]:!text-lg font-semibold [&_button[data-active='true']]:text-bright-sun-400">
@@ -22,39 +22,31 @@ const JobHistory = () => {
             </Tabs.Tab>
           </Tabs.List>
           <Tabs.Panel value="applied" pt="xs" className="[&>div]:w-full">
-            <div className="flex flex-wrap gap-5 mt-10">
-              {
-                  jobList.map((job,index) => (
-                      <JobHistoryCard key={index} {...job} applied />
-                  ))
-              }
+            <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
+              {jobList.map((job, index) => (
+                <JobHistoryCard key={index} {...job} applied />
+              ))}
             </div>
           </Tabs.Panel>
           <Tabs.Panel value="saved" pt="xs">
-            <div className="flex flex-wrap gap-5 mt-10">
-              {
-                  jobList.map((job,index) => (
-                      <JobHistoryCard key={index} {...job} saved/>
-                  ))
-              }
+            <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
+              {jobList.map((job, index) => (
+                <JobHistoryCard key={index} {...job} saved />
+              ))}
             </div>
           </Tabs.Panel>
           <Tabs.Panel value="offered" pt="xs">
-            <div className="flex flex-wrap gap-5 mt-10">
-              {
-                  jobList.map((job,index) => (
-                      <JobHistoryCard key={index} {...job} offered/>
-                  ))
-              }
+            <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
+              {jobList.map((job, index) => (
+                <JobHistoryCard key={index} {...job} offered />
+              ))}
             </div>
           </Tabs.Panel>
           <Tabs.Panel value="interviewing" pt="xs" className="[&>div]:w-full">
-           <div className="flex flex-wrap gap-5 mt-10">
-              {
-                  jobList.map((job,index) => (
-                      <JobHistoryCard key={index} {...job} interviewing/>
-                  ))
-              }
+            <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
+              {jobList.map((job, index) => (
+                <JobHistoryCard key={index} {...job} interviewing />
+              ))}
             </div>
           </Tabs.Panel>
         </Tabs>

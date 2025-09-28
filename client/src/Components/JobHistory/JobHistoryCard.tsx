@@ -1,5 +1,10 @@
 import { Badge, Text, Avatar, Divider, Button } from "@mantine/core";
-import { IconBookmark, IconBookmarkFilled, IconCalendar, IconCalendarMonth } from "@tabler/icons-react";
+import {
+  IconBookmark,
+  IconBookmarkFilled,
+  IconCalendar,
+  IconCalendarMonth,
+} from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 const JobHistoryCard = (props: any) => {
@@ -11,7 +16,7 @@ const JobHistoryCard = (props: any) => {
                   bg-mine-shaft-900 rounded-2xl p-6 shadow-md 
                   hover:border border-bright-sun-400
                  "
-      > 
+      >
         {/* Top Section */}
         <div className="flex justify-between mb-10">
           <div className="flex gap-4">
@@ -23,7 +28,11 @@ const JobHistoryCard = (props: any) => {
               </Text>
             </div>
           </div>
-          {props.saved?<IconBookmarkFilled className="text-bright-sun-400 cursor-pointer" />:<IconBookmark className="text-gray-400 hover:text-blue-500 cursor-pointer" />}
+          {props.saved ? (
+            <IconBookmarkFilled className="text-bright-sun-400 cursor-pointer" />
+          ) : (
+            <IconBookmark className="text-gray-400 hover:text-blue-500 cursor-pointer" />
+          )}
         </div>
 
         {/* Tags */}
@@ -44,31 +53,61 @@ const JobHistoryCard = (props: any) => {
           {props.description}
         </div>
         <div className="mt-20">
-        <Divider size="xs" mx="md" />
-        <Divider size="xs" mx="md" />
-        {/* Bottom Section */}
-        <div className="mt-3 flex justify-between bottom-6 ">
-          <Text className="font-bold text-lg text-blue-600">{props.salary}</Text>
-          <div className="flex gap-4">
-            <IconCalendar size={16} className="text-gray-400" />
-            <Text size="sm" className="text-gray-400">
-              {props.applied || props.interviewing ?"Applied ":props.offered?"Interviewed ":"Posted "} {props.posted}
+          <Divider size="xs" mx="md" />
+          <Divider size="xs" mx="md" />
+          {/* Bottom Section */}
+          <div className="mt-3 flex justify-between bottom-6 ">
+            <Text className="font-bold text-lg text-blue-600">
+              {props.salary}
             </Text>
+            <div className="flex gap-4">
+              <IconCalendar size={16} className="text-gray-400" />
+              <Text size="sm" className="text-gray-400">
+                {props.applied || props.interviewing
+                  ? "Applied "
+                  : props.offered
+                  ? "Interviewed "
+                  : "Posted "}{" "}
+                {props.posted}
+              </Text>
+            </div>
           </div>
         </div>
-        </div>
-      {(props.offered || props.interviewing) && <Divider size="xs" mx="md" className="mt-3" />}  
-      {
-        props.offered && <div className="flex gap-2 mt-3">
-           <Button variant="outline" color="green" fullWidth>Accept</Button>
-           <Button variant="light" color="green" fullWidth>Reject</Button>
-        </div>
-      }
-      {
-        props.interviewing && <div className="flex gap-1 text-sm items-center mt-3">
-           <IconCalendarMonth className="text-bright-sun-400 w-5 h-5" stroke={1.5} /> Sun, 25 August &bull; <span className="text-mine-shaft-400">10:00 AM</span>
-        </div>
-      }
+        {(props.offered || props.interviewing) && (
+          <Divider size="xs" mx="md" className="mt-3" />
+        )}
+        {props.offered && (
+          <div className="flex gap-2 mt-3">
+            <div
+              className="flex-1 
+                 transition-transform duration-500 ease-in-out
+                 hover:shadow-xl hover:scale-105"
+            >
+              <Button variant="outline" color="green" fullWidth>
+                Accept
+              </Button>
+            </div>
+            <div
+              className="flex-1 
+                 transition-transform duration-500 ease-in-out
+                 hover:shadow-xl hover:scale-105"
+            >
+              <Button variant="light" color="green" fullWidth>
+                Reject
+              </Button>
+            </div>
+          </div>
+        )}
+        {props.interviewing && (
+          <div className="flex gap-1 text-sm items-center mt-3">
+            <IconCalendarMonth
+              className="text-bright-sun-400 w-5 h-5"
+              stroke={1.5}
+            />{" "}
+            Sun, 25 August &bull;{" "}
+            <span className="text-mine-shaft-400">10:00 AM</span>
+          </div>
+        )}
       </div>
     </Link>
   );
