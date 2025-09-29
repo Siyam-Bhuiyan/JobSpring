@@ -66,15 +66,20 @@ export const searchFields: SearchField[] = [
 
 export interface ExperienceDetail {
   company: string;
+  logo: string;
   role: string;
   duration: string;
   description: string;
+  location: string;
 }
 
 export interface Certification {
-  name: string;
+  title: string;
+  logo: string;
   issuer: string;
   year: string;
+  issued: string;
+  credentialId: string;
 }
 
 export interface Resume {
@@ -116,14 +121,30 @@ export const talents: Talent[] = [
     experienceDetails: [
       {
         company: "Adobe",
+        logo: "https://logo.clearbit.com/google.com",
         role: "UX/UI Designer",
         duration: "2018 - Present",
+        location: "Los Angeles, United States",
         description: "Designed user-centric interfaces for Adobe Creative Cloud tools.",
       },
     ],
     certifications: [
-      { name: "Certified UX Designer", issuer: "Interaction Design Foundation", year: "2020" },
-      { name: "Figma Advanced", issuer: "Coursera", year: "2021" },
+      {
+        title: "Certified UX Designer",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "Interaction Design Foundation",
+        year: "2020",
+        issued: "2020",
+        credentialId: "UX123",
+      },
+      {
+        title: "Figma Advanced",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "Coursera",
+        year: "2021",
+        issued: "2021",
+        credentialId: "FIGMA123",
+      },
     ],
     resume: {
       title: "Diana_Prince_Resume.pdf",
@@ -145,14 +166,30 @@ export const talents: Talent[] = [
     experienceDetails: [
       {
         company: "Wayne Enterprises",
+        logo: "https://logo.clearbit.com/google.com",
         role: "Lead Full Stack Developer",
         duration: "2016 - Present",
+        location: "Gotham, United States",
         description: "Architected and developed internal enterprise systems.",
       },
     ],
     certifications: [
-      { name: "AWS Certified Developer", issuer: "Amazon", year: "2019" },
-      { name: "MongoDB Professional", issuer: "MongoDB University", year: "2020" },
+      {
+        title: "AWS Certified Developer",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "Amazon",
+        year: "2019",
+        issued: "2019",
+        credentialId: "AWS123",
+      },
+      {
+        title: "MongoDB Professional",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "MongoDB University",
+        year: "2020",
+        issued: "2020",
+        credentialId: "MONGO123",
+      },
     ],
     resume: {
       title: "Bruce_Wayne_Resume.pdf",
@@ -166,7 +203,8 @@ export const talents: Talent[] = [
     company: "Daily Planet",
     experience: "1 Year",
     topskills: ["SQL", "Python", "Tableau"],
-    about: "Data Analyst skilled in data visualization and predictive analytics...",
+    about:
+      "Data Analyst skilled in data visualization and predictive analytics...",
     expectedCtc: "25 - 40 LPA",
     location: "Metropolis, United States",
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Clark",
@@ -174,13 +212,22 @@ export const talents: Talent[] = [
     experienceDetails: [
       {
         company: "Daily Planet",
+        logo: "https://logo.clearbit.com/google.com",
         role: "Junior Data Analyst",
         duration: "2022 - Present",
+        location: "Metropolis, United States",
         description: "Worked on extracting insights from large news datasets.",
       },
     ],
     certifications: [
-      { name: "Data Analyst Nanodegree", issuer: "Udacity", year: "2022" },
+      {
+        title: "Data Analyst Nanodegree",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "Udacity",
+        year: "2022",
+        issued: "2022",
+        credentialId: "DAN123",
+      },
     ],
     resume: {
       title: "Clark_Kent_Resume.pdf",
@@ -194,7 +241,8 @@ export const talents: Talent[] = [
     company: "S.H.I.E.L.D.",
     experience: "2 Years",
     topskills: ["Network Security", "Penetration Testing", "Cryptography"],
-    about: "Cybersecurity expert with a focus on threat detection and risk management.",
+    about:
+      "Cybersecurity expert with a focus on threat detection and risk management.",
     expectedCtc: "45 - 70 LPA",
     location: "Moscow, Russia",
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Natasha",
@@ -202,14 +250,31 @@ export const talents: Talent[] = [
     experienceDetails: [
       {
         company: "S.H.I.E.L.D.",
+        logo: "https://logo.clearbit.com/google.com",
         role: "Cybersecurity Specialist",
         duration: "2021 - Present",
-        description: "Led red team exercises and strengthened enterprise cyber defenses.",
+        location: "Moscow, Russia",
+        description:
+          "Led red team exercises and strengthened enterprise cyber defenses.",
       },
     ],
     certifications: [
-      { name: "Certified Ethical Hacker", issuer: "EC-Council", year: "2021" },
-      { name: "CompTIA Security+", issuer: "CompTIA", year: "2022" },
+      {
+        title: "Certified Ethical Hacker",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "EC-Council",
+        year: "2021",
+        issued: "2021",
+        credentialId: "CEH123",
+      },
+      {
+        title: "CompTIA Security+",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "CompTIA",
+        year: "2022",
+        issued: "2022",
+        credentialId: "CS123",
+      },
     ],
     resume: {
       title: "Natasha_Romanoff_Resume.pdf",
@@ -219,26 +284,34 @@ export const talents: Talent[] = [
   {
     id: 5,
     name: "Tony Stark",
-    role: "AI/ML Engineer",
+    role: "AI Researcher",
     company: "Stark Industries",
-    experience: "4 Years",
-    topskills: ["Python", "TensorFlow", "PyTorch"],
-    about: "AI/ML Engineer with deep expertise in building intelligent systems...",
-    expectedCtc: "70 - 100 LPA",
-    location: "New York, United States",
+    experience: "10 Years",
+    topskills: ["AI", "ML", "Deep Learning"],
+    about: "Pioneer in AI systems and futuristic tech innovations.",
+    expectedCtc: "80 - 120 LPA",
+    location: "Malibu, United States",
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Tony",
-    coverImage: "https://picsum.photos/id/1044/800/300",
+    coverImage: "https://picsum.photos/id/1050/800/300",
     experienceDetails: [
       {
         company: "Stark Industries",
-        role: "AI/ML Engineer",
-        duration: "2019 - Present",
-        description: "Developed AI systems for defense and clean energy projects.",
+        logo: "https://logo.clearbit.com/google.com",
+        role: "Chief AI Scientist",
+        duration: "2013 - Present",
+        location: "Malibu, United States",
+        description: "Built JARVIS & FRIDAY AI systems.",
       },
     ],
     certifications: [
-      { name: "Deep Learning Specialization", issuer: "Coursera", year: "2020" },
-      { name: "TensorFlow Developer Certificate", issuer: "Google", year: "2021" },
+      {
+        title: "MIT AI Certification",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "MIT",
+        year: "2012",
+        issued: "2012",
+        credentialId: "AI123",
+      },
     ],
     resume: {
       title: "Tony_Stark_Resume.pdf",
@@ -247,148 +320,164 @@ export const talents: Talent[] = [
   },
   {
     id: 6,
-    name: "Steve Rogers",
-    role: "Project Manager",
-    company: "Avengers Initiative",
-    experience: "6 Years",
-    topskills: ["Agile", "Scrum", "Leadership"],
-    about: "Experienced Project Manager with a proven track record in leading cross-functional teams.",
-    expectedCtc: "30 - 45 LPA",
-    location: "Brooklyn, United States",
-    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Steve",
-    coverImage: "https://picsum.photos/id/1052/800/300",
-    experienceDetails: [
-      {
-        company: "Avengers Initiative",
-        role: "Project Manager",
-        duration: "2017 - Present",
-        description: "Coordinated global-scale projects and managed diverse teams.",
-      },
-    ],
-    certifications: [
-      { name: "PMP Certification", issuer: "PMI", year: "2019" },
-      { name: "Scrum Master", issuer: "Scrum Alliance", year: "2020" },
-    ],
-    resume: {
-      title: "Steve_Rogers_Resume.pdf",
-      fileUrl: "/resumes/steve-rogers.pdf",
-    },
-  },
-  {
-    id: 7,
-    name: "Wanda Maximoff",
-    role: "Product Designer",
-    company: "VisionTech",
-    experience: "8 Years",
-    topskills: ["Figma", "Illustrator", "User Research"],
-    about: "Product Designer passionate about creating human-centered experiences.",
-    expectedCtc: "28 - 42 LPA",
-    location: "Sokovia",
-    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Wanda",
-    coverImage: "https://picsum.photos/id/1069/800/300",
-    experienceDetails: [
-      {
-        company: "VisionTech",
-        role: "Lead Product Designer",
-        duration: "2015 - Present",
-        description: "Designed and iterated user-friendly products for global clients.",
-      },
-    ],
-    certifications: [
-      { name: "Design Thinking Certification", issuer: "IDEO U", year: "2018" },
-      { name: "Advanced UX Research", issuer: "Coursera", year: "2019" },
-    ],
-    resume: {
-      title: "Wanda_Maximoff_Resume.pdf",
-      fileUrl: "/resumes/wanda-maximoff.pdf",
-    },
-  },
-  {
-    id: 8,
     name: "Peter Parker",
     role: "Frontend Developer",
-    company: "Parker Web Solutions",
-    experience: "1 Year",
-    topskills: ["JavaScript", "React", "Next.js"],
-    about: "Frontend Developer specializing in modern web technologies.",
+    company: "Daily Bugle",
+    experience: "2 Years",
+    topskills: ["HTML", "CSS", "JavaScript"],
+    about: "Frontend engineer passionate about interactive UI experiences.",
     expectedCtc: "20 - 35 LPA",
     location: "Queens, United States",
     image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Peter",
-    coverImage: "https://picsum.photos/id/1074/800/300",
+    coverImage: "https://picsum.photos/id/1062/800/300",
     experienceDetails: [
       {
-        company: "Parker Web Solutions",
+        company: "Daily Bugle",
+        logo: "https://logo.clearbit.com/google.com",
         role: "Frontend Developer",
-        duration: "2022 - Present",
-        description: "Built responsive websites and optimized UI performance.",
+        duration: "2021 - Present",
+        location: "Queens, United States",
+        description: "Developed user-friendly news web apps.",
       },
     ],
     certifications: [
-      { name: "React Developer", issuer: "Meta", year: "2022" },
-      { name: "JavaScript Algorithms", issuer: "freeCodeCamp", year: "2021" },
+      {
+        title: "React Developer Certification",
+        logo: "https://logo.clearbit.com/google.com",
+        issuer: "Meta",
+        year: "2021",
+        issued: "2021",
+        credentialId: "REACT123",
+      },
     ],
     resume: {
       title: "Peter_Parker_Resume.pdf",
       fileUrl: "/resumes/peter-parker.pdf",
     },
   },
-  {
-    id: 9,
-    name: "Carol Danvers",
-    role: "Cloud Architect",
-    company: "NASA",
-    experience: "2 Years",
-    topskills: ["AWS", "Azure", "Kubernetes"],
-    about: "Cloud Architect with expertise in designing scalable cloud infrastructures.",
-    expectedCtc: "55 - 80 LPA",
-    location: "Washington, D.C., United States",
-    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Carol",
-    coverImage: "https://picsum.photos/id/1084/800/300",
-    experienceDetails: [
-      {
-        company: "NASA",
-        role: "Cloud Architect",
-        duration: "2021 - Present",
-        description: "Deployed hybrid cloud solutions and managed Kubernetes clusters.",
-      },
-    ],
-    certifications: [
-      { name: "AWS Solutions Architect", issuer: "Amazon", year: "2021" },
-      { name: "Azure Cloud Expert", issuer: "Microsoft", year: "2022" },
-    ],
-    resume: {
-      title: "Carol_Danvers_Resume.pdf",
-      fileUrl: "/resumes/carol-danvers.pdf",
+{
+  id: 7,
+  name: "Wanda Maximoff",
+  role: "Product Designer",
+  company: "VisionTech",
+  experience: "8 Years",
+  topskills: ["Figma", "Illustrator", "User Research"],
+  about: "Product Designer passionate about creating human-centered experiences.",
+  expectedCtc: "28 - 42 LPA",
+  location: "Sokovia",
+  image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Wanda",
+  coverImage: "https://picsum.photos/id/1069/800/300",
+  experienceDetails: [
+    {
+      company: "VisionTech",
+      logo: "https://logo.clearbit.com/google.com",
+      role: "Lead Product Designer",
+      duration: "2015 - Present",
+      location: "Sokovia",
+      description: "Designed and iterated user-friendly products for global clients.",
     },
+  ],
+  certifications: [
+    { title: "Design Thinking Certification", logo: "https://logo.clearbit.com/google.com", issuer: "IDEO U", year: "2018", issued: "2018", credentialId: "DT123" },
+    { title: "Advanced UX Research", logo: "https://logo.clearbit.com/google.com", issuer: "Coursera", year: "2019", issued: "2019", credentialId: "UXR123" },
+  ],
+  resume: {
+    title: "Wanda_Maximoff_Resume.pdf",
+    fileUrl: "/resumes/wanda-maximoff.pdf",
   },
-  {
-    id: 10,
-    name: "T'Challa",
-    role: "Business Analyst",
-    company: "Wakanda Tech",
-    experience: "3 Years",
-    topskills: ["Business Strategy", "Data Modeling", "Agile"],
-    about: "Business Analyst bridging business goals and technology solutions.",
-    expectedCtc: "32 - 48 LPA",
-    location: "Wakanda",
-    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=TChalla",
-    coverImage: "https://picsum.photos/id/1099/800/300",
-    experienceDetails: [
-      {
-        company: "Wakanda Tech",
-        role: "Business Analyst",
-        duration: "2020 - Present",
-        description: "Managed stakeholder requirements and data-driven strategies.",
-      },
-    ],
-    certifications: [
-      { name: "Certified Business Analyst Professional", issuer: "IIBA", year: "2021" },
-      { name: "Agile Business Analyst", issuer: "Scrum Alliance", year: "2022" },
-    ],
-    resume: {
-      title: "TChalla_Resume.pdf",
-      fileUrl: "/resumes/tchalla.pdf",
+},
+{
+  id: 8,
+  name: "Peter Parker",
+  role: "Frontend Developer",
+  company: "Parker Web Solutions",
+  experience: "1 Year",
+  topskills: ["JavaScript", "React", "Next.js"],
+  about: "Frontend Developer specializing in modern web technologies.",
+  expectedCtc: "20 - 35 LPA",
+  location: "Queens, United States",
+  image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Peter",
+  coverImage: "https://picsum.photos/id/1074/800/300",
+  experienceDetails: [
+    {
+      company: "Parker Web Solutions",
+      logo: "https://logo.clearbit.com/google.com",
+      role: "Frontend Developer",
+      duration: "2022 - Present",
+      location: "Queens, United States",
+      description: "Built responsive websites and optimized UI performance.",
     },
+  ],
+  certifications: [
+    { title: "React Developer", logo: "https://logo.clearbit.com/google.com", issuer: "Meta", year: "2022", issued: "2022", credentialId: "REACT123" },
+    { title: "JavaScript Algorithms", logo: "https://logo.clearbit.com/google.com", issuer: "freeCodeCamp", year: "2021", issued: "2021", credentialId: "JS123" },
+  ],
+  resume: {
+    title: "Peter_Parker_Resume.pdf",
+    fileUrl: "/resumes/peter-parker.pdf",
   },
+},
+{
+  id: 9,
+  name: "Carol Danvers",
+  role: "Cloud Architect",
+  company: "NASA",
+  experience: "2 Years",
+  topskills: ["AWS", "Azure", "Kubernetes"],
+  about: "Cloud Architect with expertise in designing scalable cloud infrastructures.",
+  expectedCtc: "55 - 80 LPA",
+  location: "Washington, D.C., United States",
+  image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Carol",
+  coverImage: "https://picsum.photos/id/1084/800/300",
+  experienceDetails: [
+    {
+      company: "NASA",
+      logo: "https://logo.clearbit.com/google.com",
+      role: "Cloud Architect",
+      duration: "2021 - Present",
+      location: "Washington, D.C., United States",
+      description: "Deployed hybrid cloud solutions and managed Kubernetes clusters.",
+    },
+  ],
+  certifications: [
+    { title: "AWS Solutions Architect", logo: "https://logo.clearbit.com/google.com", issuer: "Amazon", year: "2021", issued: "2021", credentialId: "AWS123" },
+    { title: "Azure Cloud Expert", logo: "https://logo.clearbit.com/google.com", issuer: "Microsoft", year: "2022", issued: "2022", credentialId: "AZURE123" },
+  ],
+  resume: {
+    title: "Carol_Danvers_Resume.pdf",
+    fileUrl: "/resumes/carol-danvers.pdf",
+  },
+},
+{
+  id: 10,
+  name: "T'Challa",
+  role: "Business Analyst",
+  company: "Wakanda Tech",
+  experience: "3 Years",
+  topskills: ["Business Strategy", "Data Modeling", "Agile"],
+  about: "Business Analyst bridging business goals and technology solutions.",
+  expectedCtc: "32 - 48 LPA",
+  location: "Wakanda",
+  image: "https://api.dicebear.com/7.x/adventurer/svg?seed=TChalla",
+  coverImage: "https://picsum.photos/id/1099/800/300",
+  experienceDetails: [
+    {
+      company: "Wakanda Tech",
+      logo: "https://logo.clearbit.com/google.com",
+      role: "Business Analyst",
+      duration: "2020 - Present",
+      location: "Wakanda",
+      description: "Managed stakeholder requirements and data-driven strategies.",
+    },
+  ],
+  certifications: [
+    { title: "Certified Business Analyst Professional", logo: "https://logo.clearbit.com/google.com", issuer: "IIBA", year: "2021", issued: "2021", credentialId: "CBA123" },
+    { title: "Agile Business Analyst", logo: "https://logo.clearbit.com/google.com", issuer: "Scrum Alliance", year: "2022", issued: "2022", credentialId: "ABA123" },
+  ],
+  resume: {
+    title: "TChalla_Resume.pdf",
+    fileUrl: "/resumes/tchalla.pdf",
+  },
+}
 ];
 

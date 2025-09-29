@@ -10,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { talents } from "../Data/TalentData";
 import RecommandedTalents from "../Components/FindTalent/RecommandedTalents";
+import ExperienceCard from "../Components/FindTalent/Experience";
+import CertificateCard from "../Components/FindTalent/Certificate";
 
 const TalentProfilePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -126,15 +128,12 @@ const TalentProfilePage = () => {
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
-
-              {/* Description */}
               <div className="mt-6 px-3">
                 <h3 className="text-lg font-semibold mb-2">About</h3>
                 <p className="text-mine-shaft-300">{talent.about}</p>
               </div>
-              <Divider size="xs" mx="md" className="my-4" />
 
-              {/* Jobs Offer */}
+              <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3">
                 <div className="text-lg font-semibold mb-3">Skills</div>
                 <div className="flex flex-wrap gap-3">
@@ -156,32 +155,36 @@ const TalentProfilePage = () => {
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
-              
-              <div className="mt-6 px-3">
+              <div className="mt-6 px-3 flex flex-col gap-6">
                 <h3 className="text-lg font-semibold mb-2">Experience</h3>
-                <p className="text-mine-shaft-300">{talent.experienceDetails.map(exp => (
-                  <div key={exp.company}>
-                    <h4 className="font-medium">{exp.role} at {exp.company}</h4>
-                    <p className="text-sm">{exp.duration}</p>
-                    <p className="text-mine-shaft-300">{exp.description}</p>
+                {talent.experienceDetails.map((exp, index) => (
+                  <div key={index}>
+                    <ExperienceCard
+                      company={exp.company}  
+                      role={exp.role}
+                      duration={exp.duration}
+                      location={exp.location}
+                      description={exp.description}
+                    />
                   </div>
-                ))}</p>
+                ))}
               </div>
 
-              <Divider size="xs" mx="md" className="my-4" />
-              
-              <div className="mt-6 px-3">
+              <Divider size="xs" mx="md" className="my-4" />             
+              <div className="mt-6 px-3 flex flex-col gap-5">
                 <h3 className="text-lg font-semibold mb-2">Certifications</h3>
-                <p className="text-mine-shaft-300">{talent.certifications.map(cert => (
-                  <div key={cert.name}>
-                    <h4 className="font-medium">{cert.name}</h4>
-                    <p className="text-sm">{cert.issuer} - {cert.year}</p>
-                  </div>
-                ))}</p>
+                {talent.certifications.map(cert => (
+                  <CertificateCard
+                    key={cert.credentialId}
+                    title={cert.title}
+                    issuer={cert.issuer}
+                    issued={cert.issued}
+                    credentialId={cert.credentialId}
+                  />
+                ))}
               </div>
 
-              <Divider size="xs" mx="md" className="my-4" />
-              
+              <Divider size="xs" mx="md" className="my-4" />             
               <div className="mt-6 px-3">
                 <h3 className="text-lg font-semibold mb-2">Resume</h3>
                 <p className="text-mine-shaft-300">{talent.resume.title}</p>
