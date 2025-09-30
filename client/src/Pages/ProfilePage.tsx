@@ -256,7 +256,7 @@ const ProfilePage = () => {
                         (job: string, index: number) => (
                           <Badge
                             key={index}
-                            variant="filled"
+                            variant="light"
                             radius="lg"
                             size="lg"
                             color="violet"
@@ -271,6 +271,7 @@ const ProfilePage = () => {
                 )}
               </div>
 
+              {/* // */}
               <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3 flex flex-col gap-6">
                 <div className="flex justify-between items-center gap-10">
@@ -295,19 +296,7 @@ const ProfilePage = () => {
                     )}
                   </ActionIcon>
                 </div>
-                {edit[3] ? (
-                  <>
-                    <Textarea
-                      className="w-full p-2 bg-mine-shaft-700 text-white rounded-lg"
-                      value={about}
-                      autosize
-                      placeholder="Write something about yourself..."
-                      minRows={3}
-                      onChange={(event) => setAbout(event.currentTarget.value)}
-                    />
-                  </>
-                ) : (
-                  <>
+              
                     {talent.experienceDetails.map((exp, index) => (
                       <div key={index}>
                         <ExperienceCard
@@ -316,11 +305,11 @@ const ProfilePage = () => {
                           duration={exp.duration}
                           location={exp.location}
                           description={exp.description}
+                          edit={edit[3]}
                         />
                       </div>
                     ))}
-                  </>
-                )}
+                
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
