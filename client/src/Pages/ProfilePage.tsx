@@ -5,6 +5,8 @@ import {
   Button,
   Card,
   Divider,
+  TagsInput,
+  Textarea,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import {
@@ -80,6 +82,8 @@ const ProfilePage = () => {
   };
   const { user } = useAuth();
   const name = user?.name;
+  const [about, setAbout] = useState(`${talent.about}`);
+  const [skills, setSkills] = useState(talent.topskills);
   return (
     <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif] p-5">
       <motion.div
@@ -133,6 +137,7 @@ const ProfilePage = () => {
                         />
                       ) : (
                         <IconPencil
+                          color="green"
                           className="w-4/5 h-4/5 text-mine-shaft-400"
                           stroke={1.5}
                         />
@@ -167,67 +172,247 @@ const ProfilePage = () => {
                   )}
                 </div>
               </div>
+
               <Divider size="xs" mx="md" className="my-4" />
-              <div className="mt-6 px-3">
-                <h3 className="text-lg font-semibold mb-2">About</h3>
-                <p className="text-mine-shaft-300">{talent.about}</p>
+              <div className="mt-6 px-3 ">
+                <div className="flex justify-between items-center gap-10">
+                  <h3 className="text-lg font-semibold mb-2">About</h3>
+                  <ActionIcon
+                    onClick={() => handleEdit(1)}
+                    variant="subtle"
+                    size="lg"
+                    color="green"
+                  >
+                    {edit[1] ? (
+                      <IconDeviceFloppy
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    ) : (
+                      <IconPencil
+                        color="green"
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    )}
+                  </ActionIcon>
+                </div>
+                {edit[1] ? (
+                  <>
+                    <Textarea
+                      className="w-full rounded-lg"
+                      value={about}
+                      autosize
+                      placeholder="Write something about yourself..."
+                      minRows={3}
+                      onChange={(event) => setAbout(event.currentTarget.value)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p className="text-mine-shaft-300">{about}</p>
+                  </>
+                )}
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3">
-                <div className="text-lg font-semibold mb-3">Skills</div>
-                <div className="flex flex-wrap gap-3">
-                  {(talent.topskills ?? []).map(
-                    (job: string, index: number) => (
-                      <Badge
-                        key={index}
-                        variant="filled"
-                        radius="lg"
-                        size="lg"
-                        color="violet"
-                        className="text-black px-3 py-1"
-                      >
-                        {job}
-                      </Badge>
-                    )
-                  )}
+                <div className="flex justify-between items-center gap-10">
+                  <div className="text-lg font-semibold mb-3">Skills</div>
+                  <ActionIcon
+                    onClick={() => handleEdit(2)}
+                    variant="subtle"
+                    size="lg"
+                    color="green"
+                  >
+                    {edit[2] ? (
+                      <IconDeviceFloppy
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    ) : (
+                      <IconPencil
+                        color="green"
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    )}
+                  </ActionIcon>
                 </div>
+                {edit[2] ? (
+                  <>
+                    <TagsInput
+                    label="Add your top skills"
+                    placeholder="Add skills"
+                    variant="filled"
+                    value={skills}
+                    onChange={setSkills}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className="flex flex-wrap gap-3">
+                      {(skills ?? []).map(
+                        (job: string, index: number) => (
+                          <Badge
+                            key={index}
+                            variant="filled"
+                            radius="lg"
+                            size="lg"
+                            color="violet"
+                            className="text-black px-3 py-1"
+                          >
+                            {job}
+                          </Badge>
+                        )
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3 flex flex-col gap-6">
-                <h3 className="text-lg font-semibold mb-2">Experience</h3>
-                {talent.experienceDetails.map((exp, index) => (
-                  <div key={index}>
-                    <ExperienceCard
-                      company={exp.company}
-                      role={exp.role}
-                      duration={exp.duration}
-                      location={exp.location}
-                      description={exp.description}
+                <div className="flex justify-between items-center gap-10">
+                  <h3 className="text-lg font-semibold mb-2">Experience</h3>
+                  <ActionIcon
+                    onClick={() => handleEdit(3)}
+                    variant="subtle"
+                    size="lg"
+                    color="green"
+                  >
+                    {edit[3] ? (
+                      <IconDeviceFloppy
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    ) : (
+                      <IconPencil
+                        color="green"
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    )}
+                  </ActionIcon>
+                </div>
+                {edit[3] ? (
+                  <>
+                    <Textarea
+                      className="w-full p-2 bg-mine-shaft-700 text-white rounded-lg"
+                      value={about}
+                      autosize
+                      placeholder="Write something about yourself..."
+                      minRows={3}
+                      onChange={(event) => setAbout(event.currentTarget.value)}
                     />
-                  </div>
-                ))}
+                  </>
+                ) : (
+                  <>
+                    {talent.experienceDetails.map((exp, index) => (
+                      <div key={index}>
+                        <ExperienceCard
+                          company={exp.company}
+                          role={exp.role}
+                          duration={exp.duration}
+                          location={exp.location}
+                          description={exp.description}
+                        />
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3 flex flex-col gap-5">
-                <h3 className="text-lg font-semibold mb-2">Certifications</h3>
-                {talent.certifications.map((cert) => (
-                  <CertificateCard
-                    key={cert.credentialId}
-                    title={cert.title}
-                    issuer={cert.issuer}
-                    issued={cert.issued}
-                    credentialId={cert.credentialId}
-                  />
-                ))}
+                <div className="flex justify-between items-center gap-10">
+                  <h3 className="text-lg font-semibold mb-2">Certifications</h3>
+                  <ActionIcon
+                    onClick={() => handleEdit(4)}
+                    variant="subtle"
+                    size="lg"
+                    color="green"
+                  >
+                    {edit[4] ? (
+                      <IconDeviceFloppy
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    ) : (
+                      <IconPencil
+                        color="green"
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    )}
+                  </ActionIcon>
+                </div>
+                {edit[4] ? (
+                  <>
+                    <Textarea
+                      className="w-full p-2 bg-mine-shaft-700 text-white rounded-lg"
+                      value={about}
+                      autosize
+                      placeholder="Write something about yourself..."
+                      minRows={3}
+                      onChange={(event) => setAbout(event.currentTarget.value)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {talent.certifications.map((cert) => (
+                      <CertificateCard
+                        key={cert.credentialId}
+                        title={cert.title}
+                        issuer={cert.issuer}
+                        issued={cert.issued}
+                        credentialId={cert.credentialId}
+                      />
+                    ))}
+                  </>
+                )}
               </div>
 
               <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3">
-                <h3 className="text-lg font-semibold mb-2">Resume</h3>
-                <p className="text-mine-shaft-300">{talent.resume.title}</p>
+                <div className="flex justify-between items-center gap-10">
+                  <h3 className="text-lg font-semibold mb-2">Resume</h3>
+                  <ActionIcon
+                    onClick={() => handleEdit(5)}
+                    variant="subtle"
+                    size="lg"
+                    color="green"
+                  >
+                    {edit[5] ? (
+                      <IconDeviceFloppy
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    ) : (
+                      <IconPencil
+                        color="green"
+                        className="w-4/5 h-4/5 text-mine-shaft-400"
+                        stroke={1.5}
+                      />
+                    )}
+                  </ActionIcon>
+                </div>
+                {edit[5] ? (
+                  <>
+                    <Textarea
+                      className="w-full p-2 bg-mine-shaft-700 text-white rounded-lg"
+                      value={about}
+                      autosize
+                      placeholder="Write something about yourself..."
+                      minRows={3}
+                      onChange={(event) => setAbout(event.currentTarget.value)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p className="text-mine-shaft-300">{talent.resume.title}</p>
+                  </>
+                )}
               </div>
             </Card>
           </div>
