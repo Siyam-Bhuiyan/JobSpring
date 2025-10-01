@@ -1,5 +1,5 @@
 import { Tabs } from "@mantine/core";
-import { jobList } from "../../Data/JobsData";
+import { jobCardList, jobList } from "../../Data/JobsData";
 import JobHistoryCard from "./JobHistoryCard";
 
 const JobHistory = () => {
@@ -30,21 +30,21 @@ const JobHistory = () => {
           </Tabs.Panel>
           <Tabs.Panel value="saved" pt="xs">
             <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
-              {jobList.map((job, index) => (
+              {jobCardList.map((job, index) => (
                 <JobHistoryCard key={index} {...job} saved />
               ))}
             </div>
           </Tabs.Panel>
           <Tabs.Panel value="offered" pt="xs">
             <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
-              {jobList.map((job, index) => (
+              {jobCardList.map((job, index) => (
                 <JobHistoryCard key={index} {...job} offered />
               ))}
             </div>
           </Tabs.Panel>
           <Tabs.Panel value="interviewing" pt="xs" className="[&>div]:w-full">
             <div className="justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 p-5 flex-wrap height-96 width-96 gap-5 mt-5">
-              {jobList.map((job, index) => (
+              {jobCardList.map((job, index) => (
                 <JobHistoryCard key={index} {...job} interviewing />
               ))}
             </div>

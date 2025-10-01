@@ -571,11 +571,11 @@ const ProfilePage = () => {
                   </label>
                 )}
 
-                <div className="absolute left-5 -bottom-16 rounded-full h-40 w-40 overflow-hidden bg-mine-shaft-500 border-8 border-mine-shaft-950">
-                  <Avatar src={avatarImage} size={130} radius="xl" />
+                <div className="absolute -bottom-16 rounded-full h-40 w-40 overflow-hidden bg-mine-shaft-500 border-8 border-mine-shaft-950">
+                  <Avatar src={avatarImage} size={150} radius="xl"/>
                   {/* Edit avatar image */}
                   {(
-                    <label className="absolute bottom-2 right-2 bg-black/50 p-2 rounded-full cursor-pointer">
+                    <label className="absolute bottom-2 right-3 bg-mine-shaft-700 p-2 rounded-full cursor-pointer">
                       <IconCamera className="text-white w-4 h-4" />
                       <input
                         type="file"
@@ -608,11 +608,13 @@ const ProfilePage = () => {
                   </div>
                 </div>
                 {edit[0] ? (
-                  <div className="flex gap-6 flex-wrap mt-3">
+            
+                    <div className="grid grid-cols-2 gap-4 mt-3">
                     <SelectInput {...select[0]} />
                     <SelectInput {...select[1]} />
                     <SelectInput {...select[2]} />
                   </div>
+                 
                 ) : (
                   <>
                     <div className="text-xl flex gap-1 items-center mt-2">
