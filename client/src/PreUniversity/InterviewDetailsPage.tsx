@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import CareerPlanning from "./InterviewQuestion/CareerPlanning";
+import InterviewDetails from "./InterviewQuestion/InterviewDetails";
 
-const CareerPlanningPage = () => {
+const InterviewDetailsPage = () => {
   return (
     <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif]">
       <motion.div
@@ -9,10 +9,13 @@ const CareerPlanningPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <CareerPlanning />
+        <InterviewDetails
+          question="What is React?"
+          description="React is a JavaScript library for building UIs"
+        />
       </motion.div>
     </div>
   );
 };
 
-export default CareerPlanningPage;
+export default InterviewDetailsPage;

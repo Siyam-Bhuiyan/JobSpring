@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
-import "@mantine/tiptap/styles.css"; 
+import "@mantine/tiptap/styles.css";
 import "@mantine/dates/styles.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
@@ -32,12 +32,14 @@ import ProfilePage from "./Pages/ProfilePage";
 import PreviewApplication from "./Pages/PreviewApplication";
 import PostedJobsPage from "./Pages/PostedJobPage";
 import JobHistoryPage from "./Pages/JobHistoryPage";
-
+import InterviewDetailsPage from "./PreUniversity/InterviewDetailsPage";
+import MockTestPage from "./PreUniversity/MockTestPage";
+import ResultPage from "./PreUniversity/ResultPage";
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
-  const hideLayout = ["/login", "/register","/"].includes(location.pathname);
+  const hideLayout = ["/login", "/register", "/"].includes(location.pathname);
 
   return (
     <>
@@ -122,10 +124,19 @@ function App() {
               />
               <Route path="/" element={<HomePage />} />
               <Route path="/job-details/:id" element={<JobDetailsPage />} />
-              <Route path="/company-details/:id" element={<CompanyDetailsPage />} />
-              <Route path="/talent-details/:id" element={<TalentProfilePage />} />
+              <Route
+                path="/company-details/:id"
+                element={<CompanyDetailsPage />}
+              />
+              <Route
+                path="/talent-details/:id"
+                element={<TalentProfilePage />}
+              />
               <Route path="/register" element={<RegisterPage />} />
-              <Route path="/preview-application" element={<PreviewApplication />} />
+              <Route
+                path="/preview-application"
+                element={<PreviewApplication />}
+              />
               <Route path="/apply-job/:id" element={<JobApplicationForm />} />
               <Route path="/find-job" element={<FindJobsPage />} />
               <Route path="/post-job" element={<PostJobPage />} />
@@ -136,7 +147,16 @@ function App() {
               <Route path="/job-history" element={<JobHistoryPage />} />
               <Route path="/chatbot" element={<ChatBotPage />} />
               <Route path="/career-planning" element={<CareerPlanningPage />} />
-              <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
+              <Route
+                path="/interview-questions"
+                element={<InterviewQuestionsPage />}
+              />
+              <Route
+                path="/interview-details"
+                element={<InterviewDetailsPage />}
+              />
+              <Route path="/mock-test" element={<MockTestPage />} />
+              <Route path="/result" element={<ResultPage />} />
               <Route path="/applications" element={<ApplicationPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
               {/* <Route path="/blogs/:id" element={<BlogsDetails />} /> */}
