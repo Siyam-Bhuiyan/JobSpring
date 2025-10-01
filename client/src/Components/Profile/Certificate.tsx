@@ -1,6 +1,7 @@
-import { Button } from "@mantine/core";
+import { ActionIcon, Button } from "@mantine/core";
 import { useState } from "react";
 import CertificationInput from "./CertificationInput";
+import { IconTrash } from "@tabler/icons-react";
 
 const CertificationCard = (props: any) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -33,28 +34,26 @@ const CertificationCard = (props: any) => {
             </div>
           </div>
           <div className="text-right">
+            <div className="flex gap-2 items-center">
+              <div className="flex flex-col text-right">
             <p className="text-sm text-mine-shaft-400">Issued {props.issued}</p>
             <p className="text-xs text-mine-shaft-500">
               ID: {props.credentialId}
             </p>
+              </div>
+            {props.editMode && (
+              <ActionIcon
+                onClick={() => setIsEditing(true)}
+                variant="subtle"
+                size="lg"
+                color="red"
+              >
+              <IconTrash stroke={1.5} />
+            </ActionIcon>)}
+            </div>
           </div>
         </div>
       </div>
-      {/* Buttons */}
-      {props.editMode && (
-        <div className="flex gap-5 mt-4">
-          <Button
-            onClick={() => setIsEditing(true)}
-            variant="outline"
-            color="green"
-          >
-            Edit
-          </Button>
-          <Button onClick={props.onDelete} variant="light" color="red">
-            Delete
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

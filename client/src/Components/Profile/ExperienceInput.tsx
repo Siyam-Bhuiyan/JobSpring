@@ -60,7 +60,7 @@ const ExperienceInput = (props: any) => {
       />
       <div className="flex gap-4 mt-4">
         <Button onClick={() => props.setEdit(false)} color="green">Save</Button>
-        <Button color="red" variant="outline" onClick={props.onCancel}>
+        <Button color="red" variant="outline" onClick={() => props.setEdit(false)}>
           Cancel
         </Button>
       </div>

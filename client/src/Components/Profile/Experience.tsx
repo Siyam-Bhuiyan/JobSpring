@@ -51,7 +51,7 @@ const ExperienceCard = (props: any) => {
             Edit
           </Button>
           <Button
-            onClick={props.onDelete}
+            onClick={() => props.setEdit(false)}
             variant="light"
             color="red"
           >
