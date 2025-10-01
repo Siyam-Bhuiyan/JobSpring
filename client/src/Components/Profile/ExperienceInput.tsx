@@ -1,68 +1,27 @@
-import { Textarea } from "@mantine/core";
+import { Button, Checkbox, Textarea } from "@mantine/core";
 import fields from "../../Data/ProfileData";
 import SelectInput from "./SelectInput";
-import {useState } from "react";
+import { useState } from "react";
 import { MonthPickerInput } from "@mantine/dates";
 
-const ExperienceInput = (props:any) => {
+const ExperienceInput = (props: any) => {
   const select = fields;
-const [startDate, setStartDate] = useState<Date | null>(new Date());
-    const talent = {
-    id: 1,
-    name: "T'Challa",
-    role: "Business Analyst",
-    company: "Wakanda Tech",
-    experience: "3 Years",
-    topskills: ["Business Strategy", "Data Modeling", "Agile"],
-    about: "Business Analyst bridging business goals and technology solutions.",
-    expectedCtc: "32 - 48 LPA",
-    location: "Wakanda",
-    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=TChalla",
-    coverImage: "https://picsum.photos/id/1099/800/300",
-    experienceDetails: [
-      {
-        company: "Wakanda Tech",
-        logo: "https://logo.clearbit.com/google.com",
-        role: "Business Analyst",
-        duration: "2020 - Present",
-        location: "Wakanda",
-        description:
-          "Managed stakeholder requirements and data-driven strategies.",
-      },
-    ],
-    certifications: [
-      {
-        title: "Certified Business Analyst Professional",
-        logo: "https://logo.clearbit.com/google.com",
-        issuer: "IIBA",
-        year: "2021",
-        issued: "2021",
-        credentialId: "CBA123",
-      },
-      {
-        title: "Agile Business Analyst",
-        logo: "https://logo.clearbit.com/google.com",
-        issuer: "Scrum Alliance",
-        year: "2022",
-        issued: "2022",
-        credentialId: "ABA123",
-      },
-    ],
-    resume: {
-      title: "TChalla_Resume.pdf",
-      fileUrl: "/resumes/tchalla.pdf",
-    },
-  };
-  const [desc, setDesc] = useState(`${talent.experienceDetails[0].description}`);
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const [desc, setDesc] = useState(props.initialData?.description || "");
+  const [checked, setChecked] = useState(false);
+
   return (
     <div className="flex flex-col gap-3">
-      <div className="text-lg font-semibold">Edit Experience</div>
+      <div className="text-lg font-semibold">{props.add?"Add ":"Edit "} Experience</div>
       <div className="flex gap-10 [&>*]:w-1/2">
-        <SelectInput {...select[0]} />
-        <SelectInput {...select[1]} />
+        <SelectInput {...select[0]} value={props.initialData?.company} />
+        <SelectInput {...select[1]} value={props.initialData?.role} />
       </div>
-      <SelectInput {...select[2]} />
+      <SelectInput {...select[2]} value={props.initialData?.location} />
+
       <Textarea
+        withAsterisk
         label="Summary"
         className="w-full rounded-lg"
         value={desc}
@@ -71,21 +30,39 @@ const [startDate, setStartDate] = useState<Date | null>(new Date());
         minRows={3}
         onChange={(event) => setDesc(event.currentTarget.value)}
       />
+      
       <div className="flex gap-10 [&>*]:w-1/2">
-      <MonthPickerInput
-        label="Start Date"
-        placeholder="Pick Date"
-        className="w-full"
-        value={startDate}
-        onChange={(value) => setStartDate(value ? new Date(value) : null)}
+        <MonthPickerInput
+          withAsterisk
+          maxDate={endDate || undefined}
+          label="Start Date"
+          placeholder="Pick Date"
+          className="w-full"
+          value={startDate}
+          onChange={(value) => setStartDate(value ? new Date(value) : null)}
+        />
+        <MonthPickerInput
+          disabled={checked}
+          withAsterisk
+          minDate={startDate || undefined}
+          label="End Date"
+          placeholder="Pick Date"
+          className="w-full"
+          value={endDate}
+          onChange={(value) => setEndDate(value ? new Date(value) : null)}
+        />
+      </div>
+      <Checkbox
+        checked={checked}
+        onChange={(event) => setChecked(event.currentTarget.checked)} autoContrast
+        label="I currently work here"
+        className="mt-2"
       />
-      <MonthPickerInput
-        label="Start Date"
-        placeholder="Pick Date"
-        className="w-full"
-        value={startDate}
-        onChange={(value) => setStartDate(value ? new Date(value) : null)}
-      />
+      <div className="flex gap-4 mt-4">
+        <Button onClick={() => props.setEdit(false)} color="green">Save</Button>
+        <Button color="red" variant="outline" onClick={props.onCancel}>
+          Cancel
+        </Button>
       </div>
     </div>
   );
