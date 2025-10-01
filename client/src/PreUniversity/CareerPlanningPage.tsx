@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import CareerPlanning from "./InterviewQuestion/CareerPlannning";
 
 const CareerPlanningPage = () => {
   return (
@@ -9,6 +10,7 @@ const CareerPlanningPage = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="text-3xl p-10 font-bold mb-4 ">Career Planning</div>
+        <CareerPlanning />
       </motion.div>
     </div>
   );
