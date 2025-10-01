@@ -19,12 +19,13 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import ExperienceCard from "../Components/Profile/Experience";
-import CertificateCard from "../Components/Profile/Certificate";
 import { useAuth } from "../auth/auth";
 import { useState } from "react";
 import SelectInput from "../Components/Profile/SelectInput";
 import fields from "../Data/ProfileData";
 import ExperienceInput from "../Components/Profile/ExperienceInput";
+import CertificationCard from "../Components/Profile/Certificate";
+import CertificationInput from "../Components/Profile/CertificationInput";
 
 const ProfilePage = () => {
   const select = fields;
@@ -74,7 +75,7 @@ const ProfilePage = () => {
         logo: "https://logo.clearbit.com/google.com",
         issuer: "IIBA",
         year: "2021",
-        issued: "2021",
+        issued: "Aug 2021",
         credentialId: "CBA123",
       },
       {
@@ -82,7 +83,7 @@ const ProfilePage = () => {
         logo: "https://logo.clearbit.com/google.com",
         issuer: "Scrum Alliance",
         year: "2022",
-        issued: "2022",
+        issued: "Sept 2022",
         credentialId: "ABA123",
       },
     ],
@@ -98,6 +99,7 @@ const ProfilePage = () => {
   const [about, setAbout] = useState(talent.about);
   const [skills, setSkills] = useState(talent.topskills);
   const [addExp, setAddExp] = useState(false);
+  const [addCert, setAddCert] = useState(false);
   return (
     <div className="min-h-[100vh] bg-mine-shaft-950 font-[Poppins, sans-serif] p-5">
       <motion.div
@@ -235,22 +237,22 @@ const ProfilePage = () => {
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold mb-2">Experience</h3>
                   <div className="flex gap-2">
-                  <ActionIcon
-                    onClick={() => setAddExp(true)}
-                    variant="subtle"
-                    size="lg"
-                    color="green"
-                  >
-                    <IconPlus />
-                  </ActionIcon>
-                  <ActionIcon
-                    onClick={() => handleEdit(3)}
-                    variant="subtle"
-                    size="lg"
-                    color="green"
-                  >
-                    {edit[3] ? <IconDeviceFloppy /> : <IconPencil />}
-                  </ActionIcon>
+                    <ActionIcon
+                      onClick={() => setAddExp(true)}
+                      variant="subtle"
+                      size="lg"
+                      color="green"
+                    >
+                      <IconPlus />
+                    </ActionIcon>
+                    <ActionIcon
+                      onClick={() => handleEdit(3)}
+                      variant="subtle"
+                      size="lg"
+                      color="green"
+                    >
+                      {edit[3] ? <IconDeviceFloppy /> : <IconPencil />}
+                    </ActionIcon>
                   </div>
                 </div>
 
@@ -270,7 +272,7 @@ const ProfilePage = () => {
               </div>
 
               {/* Certifications */}
-              <Divider size="xs" mx="md" className="my-4" />
+              {/* <Divider size="xs" mx="md" className="my-4" />
               <div className="mt-6 px-3 flex flex-col gap-5">
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold mb-2">Certifications</h3>
@@ -286,6 +288,44 @@ const ProfilePage = () => {
                 {talent.certifications.map((cert) => (
                   <CertificateCard key={cert.credentialId} {...cert} />
                 ))}
+              </div> */}
+              {/* Certifications */}
+              <Divider size="xs" mx="md" className="my-4" />
+              <div className="mt-6 px-3 flex flex-col gap-6">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold mb-2">Certifications</h3>
+                  <div className="flex gap-2">
+                    <ActionIcon
+                      onClick={() => setAddCert(true)}
+                      variant="subtle"
+                      size="lg"
+                      color="green"
+                    >
+                      <IconPlus />
+                    </ActionIcon>
+                    <ActionIcon
+                      onClick={() => handleEdit(4)}
+                      variant="subtle"
+                      size="lg"
+                      color="green"
+                    >
+                      {edit[4] ? <IconDeviceFloppy /> : <IconPencil />}
+                    </ActionIcon>
+                  </div>
+                </div>
+
+                {talent.certifications.map((cert, i) => (
+                  <CertificationCard
+                    key={i}
+                    {...cert}
+                    editMode={edit[4]} // toggles edit/delete
+                    onDelete={() => {
+                      talent.certifications.splice(i, 1);
+                      setEdit([...edit]); // re-render
+                    }}
+                  />
+                ))}
+                {addCert && <CertificationInput addd setEdit={setAddCert} />}
               </div>
 
               {/* Resume */}
