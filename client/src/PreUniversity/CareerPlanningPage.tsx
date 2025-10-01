@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import CareerPlanning from "./InterviewQuestion/CareerPlannning";
+import CareerPlanning from "./InterviewQuestion/CareerPlanning";
 
 const CareerPlanningPage = () => {
   return (
@@ -9,7 +9,6 @@ const CareerPlanningPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-3xl p-10 font-bold mb-4 ">Career Planning</div>
         <CareerPlanning />
       </motion.div>
     </div>
