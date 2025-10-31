@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Loader2 } from "lucide-react";
 
-const apiKey = "";
+// Read API key from Vite env (must be prefixed with VITE_ to be exposed to the client)
+const apiKey = (import.meta.env.VITE_GEMINI_API_KEY || "").trim();
 const modelName = "gemini-2.5-flash-preview-09-2025";
-const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+const apiUrl = apiKey
+  ? `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`
+  : null;
 
 // --- Career Counselor Context ---
 const systemPrompt = `You are an expert career counselor and job search advisor with deep knowledge of:
@@ -44,24 +47,45 @@ const App = () => {
   const fetchWithRetry = async (url, options, maxRetries = 5) => {
     for (let i = 0; i < maxRetries; i++) {
       try {
+        if (!url) throw new Error('No API key configured (apiUrl is null)');
         const response = await fetch(url, options);
         if (!response.ok) {
+          // Handle 429 with retry/backoff
           if (response.status === 429 && i < maxRetries - 1) {
             const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
             await new Promise(resolve => setTimeout(resolve, delay));
             continue;
           }
-          throw new Error(`API request failed with status ${response.status}`);
+
+          // Try to extract error details from body for better diagnostics
+          let bodyText = '';
+          try { bodyText = await response.text(); } catch { /* ignore */ }
+
+          if (response.status === 403) {
+            throw new Error(`403 Forbidden from Generative API. Response body: ${bodyText || '[empty]'}\nPossible causes: API not enabled, key restricted, billing disabled, or key not allowed for browser use.`);
+          }
+
+          throw new Error(`API request failed with status ${response.status}. Body: ${bodyText}`);
         }
         return response.json();
       } catch (error) {
         if (i === maxRetries - 1) throw error;
+        // small delay before next try
+        await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 700));
       }
     }
   };
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
+
+    if (!apiUrl) {
+      setMessages(prev => [...prev, {
+        sender: 'bot',
+  text: 'API key is missing or not configured. Please set VITE_GEMINI_API_KEY in the client .env and restart the dev server.\n\nSee README or Google Cloud Console: enable Generative Language API, confirm billing, and set proper key restrictions.'
+      }]);
+      return;
+    }
 
     const userQuery = input.trim();
     const userMessage = { sender: "user", text: userQuery };
@@ -99,16 +123,17 @@ const App = () => {
 
     } catch (error) {
       console.error('Error in Gemini API call:', error);
+  const msg = (error as Error)?.message || String(error);
       setMessages(prev => [...prev, {
         sender: "bot",
-        text: "I apologize, but I encountered a connection or API error. Please check your network and try again."
+        text: `I apologize, but I encountered an API error: ${msg}\n\nCommon causes: API key missing/disabled, API not enabled for your project, billing disabled, or key restrictions (referer/IP) blocking the request.`
       }]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const Message = ({ msg }) => (
+  const Message = ({ msg }: { msg: { sender: string; text: string } }) => (
     <div
       className={`p-3 rounded-xl max-w-[80%] md:max-w-[60%] whitespace-pre-wrap shadow-lg transition-all duration-300 ${
         msg.sender === "user"
@@ -131,6 +156,13 @@ const App = () => {
           </h1>
           <span className="text-sm text-green-200">Gemini 2.5 Flash</span>
         </div>
+
+        {/* API key / configuration warning */}
+        {!apiUrl && (
+          <div className="bg-red-800 text-red-100 p-3 text-sm">
+            API key not found or not configured. Set <code>VITE_GEMINI_API_KEY</code> in the client <code>.env</code> and restart the dev server. Also ensure the Generative Language API is enabled and billing is active in your Google Cloud project.
+          </div>
+        )}
 
         {/* Messages Area */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar">
