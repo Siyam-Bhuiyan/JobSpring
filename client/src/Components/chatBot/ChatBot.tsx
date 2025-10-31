@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Loader2 } from "lucide-react";
 
-// Read API key from Vite env (must be prefixed with VITE_ to be exposed to the client)
 const apiKey = (import.meta.env.VITE_GEMINI_API_KEY || "").trim();
 const modelName = "gemini-2.5-flash-preview-09-2025";
 const apiUrl = apiKey
@@ -17,7 +16,7 @@ const systemPrompt = `You are an expert career counselor and job search advisor 
 - Professional growth strategies
 - Work-life balance
 
-Provide detailed, practical advice while being encouraging and supportive. Focus on actionable steps and realistic goals.`;
+Provide precise, short, practical advice while being encouraging and supportive. Focus on actionable steps and realistic goals.`;
 
 const App = () => {
   const [messages, setMessages] = useState([
